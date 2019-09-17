@@ -9,7 +9,7 @@
 using namespace std;
 
 bool isRunning = false;
-const int diskSpaceNeeded = 1000000000000;
+const float diskSpaceNeeded = 300;
 
 void CheckIsRunning()
 {
@@ -36,25 +36,24 @@ _diskfree_t populateStruct()
 	else
 	{
 		cout << "Struct was not populated correctly." << endl;
+		return diskfree;
 	}
 }
 
-void CheckStorage(const int diskSpaceNeeded)
+void CheckStorage(const float diskSpaceNeeded)
 {
 	struct _diskfree_t diskfree = populateStruct();
 
-	int neededClusters =
-		(diskSpaceNeeded / (diskfree.sectors_per_cluster * diskfree.bytes_per_sector));
+	cout << diskfree.avail_clusters << endl;
+
+	float neededClusters = (diskSpaceNeeded/ (diskfree.sectors_per_cluster * diskfree.bytes_per_sector));
 	
 	if (diskfree.avail_clusters < neededClusters)
 	{
 		cout << "Not enough storage" << endl;
 	}
-	else
+	else if(diskfree.avail_clusters >= neededClusters)
 	{
-		cout << diskfree.bytes_per_sector << endl;
-		cout <
-		cout << diskfree.avail_clusters << endl;
 		cout << "Enough memory allocated." << endl;
 	}
 }
