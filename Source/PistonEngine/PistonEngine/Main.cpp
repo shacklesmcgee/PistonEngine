@@ -8,17 +8,24 @@ DWORD ReadCPUSpeed();
 
 int main(void) 
 {
-	//Check for RAM Size Errors
-	//if (CheckMemory(30000000, 30000000))
+	//Check Physical RAM error
+	//if (CheckMemory(30000, 300))
 	//{
-		//Run Game
+	//	//Run Game
 	//}
 
+	//Check Virtual RAM error
+	//if (CheckMemory(300, 300000000))
+	//{
+	//	//Run Game
+	//}
 
-	if (CheckMemory(300, 300))
+	//Check Available RAM
+	if (CheckMemory(30000, 300))
 	{
 		//Run Game
 	}
+
 	system("PAUSE");
 	return 0;
 
@@ -30,13 +37,13 @@ bool CheckMemory(const DWORDLONG physNeed, const DWORDLONG virtNeed)
 	status.dwLength = sizeof(status);
 	GlobalMemoryStatusEx(&status);
 
-	if (status.ullAvailPhys < (physNeed * 1024))
+	if (status.ullAvailPhys < (physNeed * (1024 * 1024)))
 	{
 		cout << "Not enough physical memory!" << endl;
 		return false;
 	}
 
-	if (status.ullAvailVirtual < (virtNeed * 1024))
+	if (status.ullAvailVirtual < (virtNeed * (1024 * 1024)))
 	{
 		cout << "Not enough virtual memory!" << endl;
 		return false;
