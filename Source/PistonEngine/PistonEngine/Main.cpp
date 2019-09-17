@@ -42,8 +42,8 @@ bool CheckMemory(const DWORDLONG physNeed, const DWORDLONG virtNeed)
 		return false;
 	}
 	
-	cout << "Available Physical RAM : " << status.ullAvailPhys / (1024) << " MB" << endl;
-	cout << "Available Virtual RAM : " << status.ullAvailVirtual / (1024) << " MB" << endl;
+	cout << "Available Physical RAM : " << status.ullAvailPhys / (1024 * 1024) << " MB" << endl;
+	cout << "Available Virtual RAM : " << status.ullAvailVirtual / (1024 * 1024) << " MB" << endl;
 
 	return true;
 }
