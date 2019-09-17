@@ -1,0 +1,6 @@
+﻿  Main.cpp
+C:\Users\reyno\Documents\GitHub\PistonEngine\PistonEngine\Source\PistonEngine\PistonEngine\Main.cpp(12,42): warning C4305:  'initializing': truncation from '__int64' to 'int'
+C:\Users\reyno\Documents\GitHub\PistonEngine\PistonEngine\Source\PistonEngine\PistonEngine\Main.cpp(12,29): warning C4309:  'initializing': truncation of constant value
+C:\Users\reyno\Documents\GitHub\PistonEngine\PistonEngine\Source\PistonEngine\PistonEngine\Main.cpp(49,30): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\reyno\Documents\GitHub\PistonEngine\PistonEngine\Source\PistonEngine\PistonEngine\Main.cpp(40): warning C4715:  'populateStruct': not all control paths return a value
+  PistonEngine.vcxproj -> C:\Users\reyno\Documents\GitHub\PistonEngine\PistonEngine\Source\PistonEngine\x64\Debug\PistonEngine.exe
