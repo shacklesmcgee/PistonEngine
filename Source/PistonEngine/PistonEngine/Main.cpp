@@ -1,17 +1,18 @@
 #include <Windows.h>
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
 DWORD ReadCPUSpeed();
-wstring ReadCPUArch();
+string ReadCPUArch();
 
 int main(void) 
 {
 
 	cout << "CPU Speed is : " << ReadCPUSpeed() << " MHz" << endl;
-	cout << "CPU Architechture is : " << ReadCPUArch(L"Identifier") << " MHz" << endl;
+	cout << "CPU Architechture is : " << ReadCPUArch1() << endl;
 
 
 	system("PAUSE");
@@ -44,41 +45,31 @@ DWORD ReadCPUSpeed()
 	return dwMHz;
 }
 
-wstring ReadCPUArch(wstring name)
+string ReadCPUArch()
 {
-	DWORD BufSize = sizeof(DWORD);
-	//wstring name = "Identifier";
-
-	DWORD cbData;
-
-	DWORD type;
+	char buf[255];
+	DWORD BufSize = sizeof(buf);
+	DWORD type = REG_SZ;
 	HKEY hKey;
 
-	if (RegQueryValueEx(hKey, name.c_str(), NULL, &type, NULL, &cbData) != ERROR_SUCCESS)
-	{
-		RegCloseKey(hKey);
-		throw "Could not read registry value";
-	}
 
-	if (type != REG_SZ)
-	{
-		RegCloseKey(hKey);
-		throw "Incorrect registry value type";
-	}
 
-	wstring value(cbData / sizeof(wchar_t), L'\0');
-	if (RegQueryValueEx(hKey, name.c_str(), NULL, NULL, reinterpret_cast<LPBYTE>(&value[0]), &cbData) != ERROR_SUCCESS)
-	{
-		RegCloseKey(hKey);
-		throw "Could not read registry value";
-	}
+	long lError = RegOpenKeyEx(HKEY_LOCAL_MACHINE,
+		"HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0",
+		0,
+		KEY_READ,
+		&hKey);
 
+	if (lError == ERROR_SUCCESS)
+	{
+		RegQueryValueEx(hKey,
+			"Identifier",
+			NULL,
+			&type,
+			(unsigned char*)buf,
+			&BufSize);
+	}
 	RegCloseKey(hKey);
 
-	size_t firstNull = value.find_first_of(L'\0');
-	if (firstNull != string::npos)
-		value.resize(firstNull);
-
-	return value;
+	return buf;
 }
-
