@@ -12,7 +12,7 @@ int main(void)
 {
 
 	cout << "CPU Speed is : " << ReadCPUSpeed() << " MHz" << endl;
-	cout << "CPU Architechture is : " << ReadCPUArch1() << endl;
+	cout << "CPU Architechture is : " << ReadCPUArch() << endl;
 
 
 	system("PAUSE");
