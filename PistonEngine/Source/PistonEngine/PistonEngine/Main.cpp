@@ -1,75 +1,56 @@
 #include <Windows.h>
 #include <iostream>
-#include <string>
-#include <vector>
 
 using namespace std;
 
+bool CheckMemory(const DWORDLONG physNeed, const DWORDLONG virtNeed);
 DWORD ReadCPUSpeed();
-string ReadCPUArch();
 
 int main(void)
 {
+	//Check Physical RAM error
+	//if (CheckMemory(30000, 300))
+	//{
+	//	//Run Game
+	//}
 
-	cout << "CPU Speed is : " << ReadCPUSpeed() << " MHz" << endl;
-	cout << "CPU Architechture is : " << ReadCPUArch() << endl;
+	//Check Virtual RAM error
+	//if (CheckMemory(300, 300000000))
+	//{
+	//	//Run Game
+	//}
 
+	//Check Available RAM
+	if (CheckMemory(300, 300))
+	{
+		//Run Game
+	}
 
 	system("PAUSE");
 	return 0;
 
 }
 
-DWORD ReadCPUSpeed()
+bool CheckMemory(const DWORDLONG physNeed, const DWORDLONG virtNeed)
 {
-	DWORD BufSize = sizeof(DWORD);
-	DWORD dwMHz = 0;
-	DWORD type = REG_DWORD;
-	HKEY hKey;
+	MEMORYSTATUSEX status;
+	status.dwLength = sizeof(status);
+	GlobalMemoryStatusEx(&status);
 
-	long lError = RegOpenKeyEx(HKEY_LOCAL_MACHINE,
-		"HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0",
-		0,
-		KEY_READ,
-		&hKey);
-
-	if (lError == ERROR_SUCCESS)
+	if (status.ullAvailPhys < (physNeed * (1024 * 1024)))
 	{
-		RegQueryValueEx(hKey,
-			"~MHZ",
-			NULL,
-			&type,
-			(LPBYTE)& dwMHz,
-			&BufSize);
+		cout << "Not enough physical memory!" << endl;
+		return false;
 	}
-	return dwMHz;
-}
 
-string ReadCPUArch()
-{
-	char buf[255];
-	DWORD BufSize = sizeof(buf);
-	DWORD type = REG_SZ;
-	HKEY hKey;
-
-
-
-	long lError = RegOpenKeyEx(HKEY_LOCAL_MACHINE,
-		"HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0",
-		0,
-		KEY_READ,
-		&hKey);
-
-	if (lError == ERROR_SUCCESS)
+	if (status.ullAvailVirtual < (virtNeed * (1024 * 1024)))
 	{
-		RegQueryValueEx(hKey,
-			"Identifier",
-			NULL,
-			&type,
-			(unsigned char*)buf,
-			&BufSize);
+		cout << "Not enough virtual memory!" << endl;
+		return false;
 	}
-	RegCloseKey(hKey);
 
-	return buf;
+	cout << "Available Physical RAM : " << status.ullAvailPhys / (1024 * 1024) << " MB" << endl;
+	cout << "Available Virtual RAM : " << status.ullAvailVirtual / (1024 * 1024) << " MB" << endl;
+
+	return true;
 }
