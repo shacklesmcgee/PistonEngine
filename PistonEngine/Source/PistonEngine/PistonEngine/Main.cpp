@@ -13,12 +13,9 @@ using namespace std;
 bool isRunning = false;
 const float diskSpaceNeeded = 300;
 
-<<<<<<< .merge_file_a03040
 void ReadCPUSpeed();
 void ReadCPUArch();
-=======
 bool CheckMemory(const DWORDLONG physNeed, const DWORDLONG virtNeed);
->>>>>>> .merge_file_a10456
 
 void CheckIsRunning()
 {
@@ -67,7 +64,6 @@ void CheckStorage(const float diskSpaceNeeded)
 	}
 }
 
-<<<<<<< .merge_file_a03040
 void ReadCPUSpeed()
 {
 	DWORD BufSize = sizeof(DWORD);
@@ -121,7 +117,8 @@ void ReadCPUArch()
 	RegCloseKey(hKey);
 
 	cout << "CPU Architechture is : " << buf << endl;
-=======
+}
+
 bool CheckMemory(const DWORDLONG physNeed, const DWORDLONG virtNeed)
 {
 	MEMORYSTATUSEX status;
@@ -144,7 +141,6 @@ bool CheckMemory(const DWORDLONG physNeed, const DWORDLONG virtNeed)
 	cout << "Available Virtual RAM : " << status.ullAvailVirtual / (1024 * 1024) << " MB" << endl;
 
 	return true;
->>>>>>> .merge_file_a10456
 }
 
 int main()
@@ -152,10 +148,9 @@ int main()
 	CheckIsRunning();
 	CheckStorage(diskSpaceNeeded);
 
-<<<<<<< .merge_file_a03040
 	ReadCPUSpeed();
 	ReadCPUArch();
-=======
+
 	//Check Physical RAM error
 	//if (CheckMemory(30000, 300))
 	//{
@@ -173,8 +168,6 @@ int main()
 	{
 		//Run Game
 	}
-
->>>>>>> .merge_file_a10456
 
 	system("PAUSE");
 	return 0;
