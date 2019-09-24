@@ -151,6 +151,7 @@ int main()
 	ReadCPUSpeed();
 	ReadCPUArch();
 
+
 	//Check Physical RAM error
 	//if (CheckMemory(30000, 300))
 	//{
@@ -162,6 +163,7 @@ int main()
 	//{
 	//	//Run Game
 	//}
+
 
 	//Check Available RAM
 	if (CheckMemory(300, 300))
