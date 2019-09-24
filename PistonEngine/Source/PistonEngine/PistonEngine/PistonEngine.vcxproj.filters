@@ -13,10 +13,30 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Actor">
+      <UniqueIdentifier>{07d63b78-408d-4f53-aa60-4b0655b1a619}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SpecialAbilityComponent.cpp">
+      <Filter>Source Files\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="SpecialAbility2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AbilitiesInterface.h">
+      <Filter>Source Files\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="SpecialAbilityComponent.h">
+      <Filter>Source Files\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="SpecialAbility2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

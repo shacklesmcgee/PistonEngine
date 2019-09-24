@@ -63,5 +63,8 @@ int main()
 	CheckIsRunning();
 	CheckStorage(diskSpaceNeeded);
 	system("PAUSE");
+
+
+
 	return 0;
 }
