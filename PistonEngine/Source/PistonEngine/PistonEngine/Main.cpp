@@ -164,7 +164,6 @@ int main()
 	//	//Run Game
 	//}
 
-
 	//Check Available RAM
 	if (CheckMemory(300, 300))
 	{
