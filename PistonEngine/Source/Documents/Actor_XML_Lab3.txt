@@ -1,0 +1,36 @@
+<Actor>
+    <TransformComponent>
+        <Position x="1.385883" y="10.21463" z="-2.88255"/>
+        <Rotation x="3.461321" y="355.6992" z="204.3322" />
+        <Scale x="7.2182" y="7.2182" z="5" />
+    </TransformComponent>
+
+    <MeshFilterComponent>
+        <Mesh = "Cube" />
+    </MeshFilterComponent>
+
+    <BoxColliderComponent>
+        <Is_Trigger="false"/>
+        <Material="None"/>
+        <Center x="0" y="0" z="0"/>
+        <Size x="1" y="1" z="1"/>
+    </BoxColliderComponent>
+
+    <MeshRendererComponent>
+        <Cast_Shadows="true"/>
+        <Receive_Shadows="true"/>
+        <Materials Size="1" Element_0="White"/>
+        <Use_Light_Probes="false"/>
+    </MeshRendererComponent>
+
+    <RigidbodyComponent>
+        <Mass="7.2182"/>
+        <Drag="0"/>
+        <Angular_Drag="0.05"/>
+        <Use_Gravity="true"/>
+        <Is_Kinematic="false"/>
+        <Interpolate="None"/>
+        <Collision_Detection="Continuous"/>
+    </RigidbodyComponent>
+
+
