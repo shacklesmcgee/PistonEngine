@@ -26,7 +26,6 @@ bool CheckIsRunning()
 	}
 	else
 	{
-		isRunning = true;
 		cout << "There is no instance of the game running. Generating instance." << endl;
 		return false;
 	}
@@ -151,6 +150,8 @@ int main()
 	{
 		return 0;
 	}
+	isRunning = true;
+	//generate window, set is
 
 	CheckStorage(diskSpaceNeeded);
 
