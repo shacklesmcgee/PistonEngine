@@ -17,16 +17,18 @@ void ReadCPUSpeed();
 void ReadCPUArch();
 bool CheckMemory(const DWORDLONG physNeed, const DWORDLONG virtNeed);
 
-void CheckIsRunning()
+bool CheckIsRunning()
 {
 	if (isRunning == true)
 	{
 		cout << "There is already an instance of the game." << endl;
+		return true;
 	}
 	else
 	{
 		isRunning = true;
 		cout << "There is no instance of the game running. Generating instance." << endl;
+		return false;
 	}
 };
 
@@ -145,7 +147,11 @@ bool CheckMemory(const DWORDLONG physNeed, const DWORDLONG virtNeed)
 
 int main()
 {
-	CheckIsRunning();
+	if (CheckIsRunning())
+	{
+		return 0;
+	}
+
 	CheckStorage(diskSpaceNeeded);
 
 	ReadCPUSpeed();
