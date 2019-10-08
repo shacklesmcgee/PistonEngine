@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<Actor>
+    <TransformComponent>
+        <Position> x=1.385883 y=10.21463 z=-2.88255 </Position>
+        <Rotation> x=3.461321 y=355.6992 z=204.3322 </Rotation>
+        <Scale> x=7.2182 y=7.2182 z=5 </Scale>
+    </TransformComponent>
+
+    <MeshFilterComponent>
+       <Mesh> Cube </Mesh>
+    </MeshFilterComponent>
+
+    <BoxColliderComponent>
+        <Is_Trigger> false </Is_Trigger>
+        <Material> None </Material>
+        <Center> x=0 y=0 z=0 </Center>
+        <Size> x=1 y=1 z=1 </Size>
+    </BoxColliderComponent>
+
+    <MeshRendererComponent>
+        <Cast_Shadows> true </Cast_Shadows>
+        <Receive_Shadows> true </Receive_Shadows>
+        <Materials>
+            <Size> 1 </Size>
+		    <Element_0> White </Element_0>
+	    </Materials>
+        <Use_Light_Probes> false </Use_Light_Probes>
+    </MeshRendererComponent>
+
+    <RigidbodyComponent>
+        <Mass> 7.2182 </Mass> 
+        <Drag> 0 </Drag>
+        <Angular_Drag> 0.05 </Angular_Drag>
+        <Use_Gravity> true </Use_Gravity>
+        <Is_Kinematic> false </Is_Kinematic>
+        <Interpolate> None </Interpolate>
+        <Collision_Detection> Continuous </Collision_Detection>
+    </RigidbodyComponent>
+</Actor>
+
