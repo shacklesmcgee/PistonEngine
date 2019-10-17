@@ -118,7 +118,33 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="ActorComponent.cpp" />
+    <ClCompile Include="AIComponent.cpp" />
+    <ClCompile Include="AnimationComponent.cpp" />
+    <ClCompile Include="ArrowComponent.cpp" />
+    <ClCompile Include="BoxComponent.cpp" />
+    <ClCompile Include="HealthComponent.cpp" />
+    <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MaterialComponent.cpp" />
+    <ClCompile Include="MovementComponentInterface.cpp" />
+    <ClCompile Include="PhysicsComponentInterface.cpp" />
+    <ClCompile Include="PickupComponentInterface.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Actor.h" />
+    <ClInclude Include="ActorComponent.h" />
+    <ClInclude Include="AIComponent.h" />
+    <ClInclude Include="AnimationComponent.h" />
+    <ClInclude Include="ArrowComponent.h" />
+    <ClInclude Include="BoxComponent.h" />
+    <ClInclude Include="HealthComponent.h" />
+    <ClInclude Include="InputComponent.h" />
+    <ClInclude Include="MaterialComponent.h" />
+    <ClInclude Include="MovementComponentInterface.h" />
+    <ClInclude Include="PhysicsComponentInterface.h" />
+    <ClInclude Include="PickupComponentInterface.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
