@@ -131,6 +131,7 @@
     <ClCompile Include="MovementComponentInterface.cpp" />
     <ClCompile Include="PhysicsComponentInterface.cpp" />
     <ClCompile Include="PickupComponentInterface.cpp" />
+    <ClCompile Include="RenderingComponentInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
@@ -145,6 +146,7 @@
     <ClInclude Include="MovementComponentInterface.h" />
     <ClInclude Include="PhysicsComponentInterface.h" />
     <ClInclude Include="PickupComponentInterface.h" />
+    <ClInclude Include="RenderingComponentInterface.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
