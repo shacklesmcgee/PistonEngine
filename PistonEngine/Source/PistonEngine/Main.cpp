@@ -7,6 +7,7 @@
 //#include <ctype.h>
 #include <string>
 #include <vector>
+#include <tchar.h>
 
 using namespace std;
 
@@ -47,7 +48,7 @@ _diskfree_t populateStruct()
 	}
 }
 
-void CheckStorage(const float diskSpaceNeeded)
+bool CheckStorage(const float diskSpaceNeeded)
 {
 	struct _diskfree_t diskfree = populateStruct();
 
@@ -58,10 +59,12 @@ void CheckStorage(const float diskSpaceNeeded)
 	if (diskfree.avail_clusters < neededClusters)
 	{
 		cout << "Not enough storage" << endl;
+		return false;
 	}
 	else if(diskfree.avail_clusters >= neededClusters)
 	{
 		cout << "Enough memory allocated." << endl;
+		return true;
 	}
 }
 
@@ -144,39 +147,108 @@ bool CheckMemory(const DWORDLONG physNeed, const DWORDLONG virtNeed)
 	return true;
 }
 
-int main()
+static TCHAR szWindowClass[] = _T("Piston Engine");
+static TCHAR szTitle[] = _T("Piston Engine tester window");
+
+LRESULT CALLBACK WndProc(_In_ HWND   hWnd, _In_ UINT   message, _In_ WPARAM wParam, _In_ LPARAM lParam)
 {
-	if (CheckIsRunning())
+	return DefWindowProc(hWnd, message, wParam, lParam);
+}
+
+HINSTANCE hInst;
+HWND hWnd;
+
+int _stdcall WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+{
+	if (hWnd)
 	{
-		return 0;
+		cout << "There is already an instance of the game!" << endl;
+		return 1;
 	}
-	isRunning = true;
-	//generate window, set is
-
-	CheckStorage(diskSpaceNeeded);
-
+	if (!CheckMemory(300, 300))
+	{
+		return 1;
+	}
+	if (!CheckStorage(diskSpaceNeeded))
+	{
+		return 1;
+	}
 	ReadCPUSpeed();
 	ReadCPUArch();
 
+	WNDCLASSEX wcex;
 
-	//Check Physical RAM error
-	//if (CheckMemory(30000, 300))
-	//{
-	//	//Run Game
-	//}
+	wcex.cbSize = sizeof(WNDCLASSEX);
+	wcex.style = CS_HREDRAW | CS_VREDRAW;
+	wcex.lpfnWndProc = WndProc;
+	wcex.cbClsExtra = 0;
+	wcex.cbWndExtra = 0;
+	wcex.hInstance = hInstance;
+	wcex.hIcon = LoadIcon(hInstance, IDI_APPLICATION);
+	wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
+	wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
+	wcex.lpszMenuName = NULL;
+	wcex.lpszClassName = szWindowClass;
+	wcex.hIconSm = LoadIcon(wcex.hInstance, IDI_APPLICATION);
 
-	//Check Virtual RAM error
-	//if (CheckMemory(300, 300000000))
-	//{
-	//	//Run Game
-	//}
-
-	//Check Available RAM
-	if (CheckMemory(300, 300))
+	if (!RegisterClassEx(&wcex))
 	{
-		//Run Game
+		MessageBox(NULL,
+			_T("Call to RegisterClassEx failed!"),
+			_T("Windows Desktop Guided Tour"),
+			NULL);
+
+		return 1;
 	}
 
-	system("PAUSE");
-	return 0;
+	// Store instance handle in a variable
+	hInst = hInstance;
+
+	// The parameters to CreateWindow explained:
+	// szWindowClass: the name of the application
+	// szTitle: the text that appears in the title bar
+	// WS_OVERLAPPEDWINDOW: the type of window to create
+	// CW_USEDEFAULT, CW_USEDEFAULT: initial position (x, y)
+	// 500, 100: initial size (width, length)
+	// NULL: the parent of this window
+	// NULL: this application dows not have a menu bar
+	// hInstance: the first parameter from WinMain
+	// NULL: not used in this application
+	hWnd = CreateWindow(
+		szWindowClass,
+		szTitle,
+		WS_OVERLAPPEDWINDOW,
+		CW_USEDEFAULT, CW_USEDEFAULT,
+		500, 500,
+		NULL,
+		NULL,
+		hInstance,
+		NULL
+	);
+
+	if (!hWnd)
+	{
+		MessageBox(NULL,
+			_T("Call to CreateWindow failed!"),
+			_T("Windows Desktop Guided Tour"),
+			NULL);
+
+		return 1;
+	}
+
+	// The parameters to ShowWindow explained:
+	// hWnd: the value returned from CreateWindow
+	// nCmdShow: the fourth parameter from WinMain
+	ShowWindow(hWnd, nCmdShow);
+	UpdateWindow(hWnd);
+
+	// Main message loop:
+	MSG msg;
+	while (GetMessage(&msg, NULL, 0, 0))
+	{
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
+	}
+
+	return (int)msg.wParam;
 }
