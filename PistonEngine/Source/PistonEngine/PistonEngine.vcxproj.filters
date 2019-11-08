@@ -60,6 +60,9 @@
     <ClCompile Include="PhysicsComponentInterface.cpp">
       <Filter>Actors</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h">
@@ -100,6 +103,9 @@
     </ClInclude>
     <ClInclude Include="RenderingComponentInterface.h">
       <Filter>Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngine.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
