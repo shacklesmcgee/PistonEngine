@@ -1,0 +1,4 @@
+Add a component interface for input.
+Add a script that checks if the enemy is currently being controlled by any input.
+If so disable AI component interface and enable input component interface.
+When input ends disable input component interface and enable AI component interface.
