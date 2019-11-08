@@ -124,6 +124,7 @@
     <ClCompile Include="AnimationComponent.cpp" />
     <ClCompile Include="ArrowComponent.cpp" />
     <ClCompile Include="BoxComponent.cpp" />
+    <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="HealthComponent.cpp" />
     <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -140,6 +141,7 @@
     <ClInclude Include="AnimationComponent.h" />
     <ClInclude Include="ArrowComponent.h" />
     <ClInclude Include="BoxComponent.h" />
+    <ClInclude Include="GameEngine.h" />
     <ClInclude Include="HealthComponent.h" />
     <ClInclude Include="InputComponent.h" />
     <ClInclude Include="MaterialComponent.h" />
