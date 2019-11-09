@@ -1,0 +1,1 @@
+#include "PickupComponentInterface.h"
