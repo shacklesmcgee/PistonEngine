@@ -1,4 +1,6 @@
 #include "GameEngine.h"
+#include "DemoEvent.h"
+#include "Connection.h"
 
 using namespace std;
 
@@ -37,16 +39,52 @@ bool GameEngine::Initialize(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR 
 	ReadCPUSpeed();
 	ReadCPUArch();
 
+
+	testDelegates();
+
 	CreateGameWindow(hInstance, hPrevInstance, lpCmdLine, nCmdShow);
-	
+
 	return true;
 }
 
+void freeObserver(const Event& event)
+{
+	if (event.type() == DemoEvent::descriptor)
+		OutputDebugString("left mouse clicked\n");
+}
+
+void GameEngine::testDelegates()
+{
+	ClassObserver classObserver;
+
+	auto connection1 = dispatcher.subscribe(MouseEvent::descriptor, freeObserver);
+	/*auto connection2 = dispatcher.subscribe(DemoEvent::descriptor,
+		std::bind(&ClassObserver::handle,
+			classObserver,
+			std::placeholders::_1));*/
+
+	//OutputDebugString("Posting a mouse event.This should trigger two observers\n");
+
+	//dispatcher.post(DemoEvent());
+	//connection1.disconnect();
+
+	//OutputDebugString("Posting a demo event.This should trigger one observers\n");
+	//dispatcher.post(DemoEvent());
+
+	//connection2.disconnect();
+
+
+	//OutputDebugString("Posting a demo event.This should trigger no observers\n");
+	//dispatcher.post(DemoEvent());
+
+	// Multiple disconnects are not harmful
+	//connection1.disconnect();
+	//connection2.disconnect();
+
+}
 
 LRESULT CALLBACK WndProc(_In_ HWND   hWnd, _In_ UINT   message, _In_ WPARAM wParam, _In_ LPARAM lParam)
 {
-	InputComponentInterface in;
-	in.KeyboardInput(hWnd, message, wParam, lParam);
 	return DefWindowProc(hWnd, message, wParam, lParam);
 }
 
@@ -123,10 +161,13 @@ void GameEngine::CreateGameWindow(HINSTANCE hInstance, HINSTANCE hPrevInstance, 
 	ShowWindow(hWnd, nCmdShow);
 	UpdateWindow(hWnd);
 
+	InputComponentInterface in;
+
 	// Main message loop:
 	MSG msg;
 	while (GetMessage(&msg, NULL, 0, 0))
 	{
+		in.KeyboardInput(hWnd, msg.message, msg.wParam, msg.lParam, dispatcher);
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
 	}

@@ -7,6 +7,8 @@
 #include <vector>
 #include <tchar.h>
 #include "InputComponentInterface.h"
+#include "ClassObserver.h"
+#include "Dispatcher.h"
 
 class GameEngine {
 public:
@@ -15,6 +17,7 @@ public:
 
 	bool Initialize(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow);
 
+	Dispatcher dispatcher;
 private:
 	const float diskSpaceNeeded = 300;
 
@@ -25,4 +28,5 @@ private:
 	void ReadCPUArch();
 	bool CheckStorage(const float diskSpaceNeeded);
 	bool CheckMemory(const DWORDLONG physNeed, const DWORDLONG virtNeed);
+	void testDelegates();
 };
