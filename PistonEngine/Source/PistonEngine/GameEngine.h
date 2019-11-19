@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include <tchar.h>
+#include "InputComponentInterface.h"
 
 class GameEngine {
 public:

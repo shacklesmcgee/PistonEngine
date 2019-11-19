@@ -1,5 +1,0 @@
-﻿  InputComponentInterface.cpp
-  Main.cpp
-  Generating Code...
-C:\Users\Tyler\Desktop\PistonEngine-development\PistonEngine-development\PistonEngine\Source\PistonEngine\Main.cpp(15): warning C4715: 'WinMain': not all control paths return a value
-  PistonEngine.vcxproj -> C:\Users\Tyler\Desktop\PistonEngine-development\PistonEngine-development\PistonEngine\Source\..\Game\x64\Debug\PistonEngine.exe

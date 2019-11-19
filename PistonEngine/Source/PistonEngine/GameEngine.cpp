@@ -17,6 +17,8 @@ GameEngine::~GameEngine()
 
 bool GameEngine::Initialize(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
+
+
 	if (FindWindow("Piston Engine", 0))
 	{
 		cout << "There is already an instance of the game!" << endl;
@@ -43,6 +45,8 @@ bool GameEngine::Initialize(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR 
 
 LRESULT CALLBACK WndProc(_In_ HWND   hWnd, _In_ UINT   message, _In_ WPARAM wParam, _In_ LPARAM lParam)
 {
+	InputComponentInterface in;
+	in.KeyboardInput(hWnd, message, wParam, lParam);
 	return DefWindowProc(hWnd, message, wParam, lParam);
 }
 
