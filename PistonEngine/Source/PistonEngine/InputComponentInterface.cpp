@@ -17,6 +17,7 @@ InputComponentInterface::~InputComponentInterface()
 
 void InputComponentInterface::KeyboardInput(_In_ HWND   hWnd, _In_ UINT   message, _In_ WPARAM wParam, _In_ LPARAM lParam, Dispatcher dispatcher)
 {
+	
 
 	switch (message)
 	{
@@ -34,12 +35,13 @@ void InputComponentInterface::KeyboardInput(_In_ HWND   hWnd, _In_ UINT   messag
 		debugString = to_string(wParam) + " down \n";
 		debugOutput = debugString.c_str();
 		OutputDebugString(debugOutput);
-		dispatcher.post(MouseEvent());
+		dispatcher.post(MouseEvent(true));
 		break;
 	case WM_LBUTTONUP:
 		debugString = to_string(wParam) + " up \n";
 		debugOutput = debugString.c_str();
 		OutputDebugString(debugOutput);
+		dispatcher.post(MouseEvent(false));
 		break;
 	case WM_RBUTTONDOWN:
 		debugString = to_string(wParam) + " down \n";

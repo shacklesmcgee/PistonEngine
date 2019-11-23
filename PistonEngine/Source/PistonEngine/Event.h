@@ -22,6 +22,7 @@ public:
 
 	/** @returns The descriptor type of this event */
 	virtual DescriptorType type() const = 0;
+
 };
 
 #endif

@@ -49,38 +49,33 @@ bool GameEngine::Initialize(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR 
 
 void freeObserver(const Event& event)
 {
-	if (event.type() == DemoEvent::descriptor)
-		OutputDebugString("left mouse clicked\n");
+	if (event.type() == MouseEvent::descriptor)
+	{
+		OutputDebugString("left mouse pressed\n");
+	}
+}
+
+void mouseObserver(const MouseEvent& mouseEvent)
+{
+	if (mouseEvent.type() == MouseEvent::descriptor)
+	{
+		if (mouseEvent.pressed)
+			OutputDebugString("left mouse pressed\n");
+
+		else if (mouseEvent.released)
+			OutputDebugString("left mouse released\n");
+	}
 }
 
 void GameEngine::testDelegates()
 {
 	ClassObserver classObserver;
 
-	auto connection1 = dispatcher.subscribe(MouseEvent::descriptor, freeObserver);
-	/*auto connection2 = dispatcher.subscribe(DemoEvent::descriptor,
+	//auto connection1 = dispatcher.subscribe(MouseEvent::descriptor, mouseObserver);
+	auto connection1 = dispatcher.subscribe(MouseEvent::descriptor,
 		std::bind(&ClassObserver::handle,
 			classObserver,
-			std::placeholders::_1));*/
-
-	//OutputDebugString("Posting a mouse event.This should trigger two observers\n");
-
-	//dispatcher.post(DemoEvent());
-	//connection1.disconnect();
-
-	//OutputDebugString("Posting a demo event.This should trigger one observers\n");
-	//dispatcher.post(DemoEvent());
-
-	//connection2.disconnect();
-
-
-	//OutputDebugString("Posting a demo event.This should trigger no observers\n");
-	//dispatcher.post(DemoEvent());
-
-	// Multiple disconnects are not harmful
-	//connection1.disconnect();
-	//connection2.disconnect();
-
+			std::placeholders::_1));
 }
 
 LRESULT CALLBACK WndProc(_In_ HWND   hWnd, _In_ UINT   message, _In_ WPARAM wParam, _In_ LPARAM lParam)

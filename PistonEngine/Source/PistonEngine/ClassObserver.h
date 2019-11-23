@@ -22,7 +22,14 @@ public:
 			// This demonstrates how to obtain the underlying event type in case a
 			// slot is set up to handle multiple events of different types.
 			const MouseEvent& mouseEvent = static_cast<const MouseEvent&>(e);
-			OutputDebugString("class observer started\n");
+			if (mouseEvent.pressed)
+			{
+				OutputDebugString("left mouse pressed\n");
+			}
+			else if (mouseEvent.released)
+			{
+				OutputDebugString("left mouse released\n");
+			}
 		}
 	}
 };

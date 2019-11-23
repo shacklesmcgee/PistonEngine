@@ -18,9 +18,6 @@ public:
 	void KeyboardInput(_In_ HWND   hWnd, _In_ UINT   message, _In_ WPARAM wParam, _In_ LPARAM lParam, Dispatcher dispatcher);//keyboard key down
 	
 private:
-	
-	//bool OnKeyUp(unsigned int const keyCode);//keyboard key up
-
 
 };
 
