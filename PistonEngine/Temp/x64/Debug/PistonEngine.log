@@ -1,32 +1,3 @@
-﻿  Actor.cpp
-  c1xx: fatal error C1083: Cannot open source file: 'Actor.cpp': No such file or directory
-  ActorComponent.cpp
-  c1xx: fatal error C1083: Cannot open source file: 'ActorComponent.cpp': No such file or directory
-  AIComponent.cpp
-  c1xx: fatal error C1083: Cannot open source file: 'AIComponent.cpp': No such file or directory
-  AnimationComponent.cpp
-  c1xx: fatal error C1083: Cannot open source file: 'AnimationComponent.cpp': No such file or directory
-  ArrowComponent.cpp
-  c1xx: fatal error C1083: Cannot open source file: 'ArrowComponent.cpp': No such file or directory
-  BoxComponent.cpp
-  c1xx: fatal error C1083: Cannot open source file: 'BoxComponent.cpp': No such file or directory
-  GameEngine.cpp
-  HealthComponent.cpp
-  c1xx: fatal error C1083: Cannot open source file: 'HealthComponent.cpp': No such file or directory
-  InputComponent.cpp
-  InputComponentInterface.cpp
-  Main.cpp
-  MaterialComponent.cpp
-  c1xx: fatal error C1083: Cannot open source file: 'MaterialComponent.cpp': No such file or directory
-  MovementComponentInterface.cpp
-  c1xx: fatal error C1083: Cannot open source file: 'MovementComponentInterface.cpp': No such file or directory
-  PhysicsComponentInterface.cpp
-  c1xx: fatal error C1083: Cannot open source file: 'PhysicsComponentInterface.cpp': No such file or directory
-  PickupComponentInterface.cpp
-  c1xx: fatal error C1083: Cannot open source file: 'PickupComponentInterface.cpp': No such file or directory
-  RenderingComponentInterface.cpp
-  c1xx: fatal error C1083: Cannot open source file: 'RenderingComponentInterface.cpp': No such file or directory
-  Generating Code...
-D:\Github\PistonEngine\PistonEngine\Source\PistonEngine\Main.cpp(15): warning C4715:  'WinMain': not all control paths return a value
-D:\Github\PistonEngine\PistonEngine\Source\PistonEngine\GameEngine.cpp(171): warning C4715:  'GameEngine::CheckStorage': not all control paths return a value
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppCommon.targets(429,5): error MSB6006: "CL.exe" exited with code 2.
+﻿  GameEngine.cpp
+C:\Users\reyno\Documents\GitHub\PistonEngine\PistonEngine\Source\PistonEngine\GameEngine.cpp(211): warning C4715:  'GameEngine::CheckStorage': not all control paths return a value
+  PistonEngine.vcxproj -> C:\Users\reyno\Documents\GitHub\PistonEngine\PistonEngine\Source\..\Game\x64\Debug\PistonEngine.exe

@@ -24,34 +24,36 @@ void InputComponentInterface::KeyboardInput(_In_ HWND   hWnd, _In_ UINT   messag
 	case WM_KEYDOWN:
 		debugString = to_string(wParam) + " down \n";
 		debugOutput = debugString.c_str();
-		OutputDebugString(debugOutput);
+		//OutputDebugString(debugOutput);
 		break;
 	case WM_KEYUP:
 		debugString = to_string(wParam) + " up \n";
 		debugOutput = debugString.c_str();
-		OutputDebugString(debugOutput);
+		//OutputDebugString(debugOutput);
 		break;
 	case WM_LBUTTONDOWN:
 		debugString = to_string(wParam) + " down \n";
 		debugOutput = debugString.c_str();
-		OutputDebugString(debugOutput);
-		dispatcher.post(MouseEvent(true));
+		//OutputDebugString(debugOutput);
+		dispatcher.post(MouseEvent(true, 0));
 		break;
 	case WM_LBUTTONUP:
 		debugString = to_string(wParam) + " up \n";
 		debugOutput = debugString.c_str();
-		OutputDebugString(debugOutput);
-		dispatcher.post(MouseEvent(false));
+		//OutputDebugString(debugOutput);
+		dispatcher.post(MouseEvent(false, 0));
 		break;
 	case WM_RBUTTONDOWN:
 		debugString = to_string(wParam) + " down \n";
 		debugOutput = debugString.c_str();
-		OutputDebugString(debugOutput);
+		//OutputDebugString(debugOutput);
+		dispatcher.post(MouseEvent(true, 1));
 		break;
 	case WM_RBUTTONUP:
 		debugString = to_string(wParam) + " up \n";
 		debugOutput = debugString.c_str();
-		OutputDebugString(debugOutput);
+		dispatcher.post(MouseEvent(false, 1));
+		//OutputDebugString(debugOutput);
 		break;
 
 	// the window is being destroyed, so terminate the application

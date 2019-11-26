@@ -5,10 +5,11 @@
 // This definition is still required in order to comply with the ODR of C++.
 constexpr MouseEvent::DescriptorType MouseEvent::descriptor;
 
-MouseEvent::MouseEvent(bool keyPressed)
+MouseEvent::MouseEvent(bool keyPressed, int key)
 {
 	pressed = keyPressed;
 	released = !pressed;
+	Button = key;
 
 	OutputDebugString("Mouse event started\n");
 }

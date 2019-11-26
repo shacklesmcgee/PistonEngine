@@ -19,8 +19,6 @@ GameEngine::~GameEngine()
 
 bool GameEngine::Initialize(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-
-
 	if (FindWindow("Piston Engine", 0))
 	{
 		cout << "There is already an instance of the game!" << endl;
@@ -51,7 +49,7 @@ void freeObserver(const Event& event)
 {
 	if (event.type() == MouseEvent::descriptor)
 	{
-		OutputDebugString("left mouse pressed\n");
+		OutputDebugString("NOOO left mouse pressed\n");
 	}
 }
 
@@ -59,11 +57,17 @@ void mouseObserver(const MouseEvent& mouseEvent)
 {
 	if (mouseEvent.type() == MouseEvent::descriptor)
 	{
-		if (mouseEvent.pressed)
+		if (mouseEvent.Button == 10 && mouseEvent.pressed)
 			OutputDebugString("left mouse pressed\n");
 
-		else if (mouseEvent.released)
+		else if (mouseEvent.Button == 10 && mouseEvent.released)
 			OutputDebugString("left mouse released\n");
+
+		else if (mouseEvent.Button == 1 && mouseEvent.pressed)
+			OutputDebugString("Right mouse pressed\n");
+
+		else if (mouseEvent.Button == 1 && mouseEvent.released)
+			OutputDebugString("Right mouse released\n");
 	}
 }
 

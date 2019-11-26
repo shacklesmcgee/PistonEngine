@@ -6,7 +6,7 @@
 class MouseEvent : public Event
 {
 public:
-	MouseEvent(bool keyPressed);
+	MouseEvent(bool keyPressed, int key);
 	virtual ~MouseEvent();
 
 	static constexpr DescriptorType descriptor = "MouseEvent";
@@ -15,6 +15,7 @@ public:
 
 	bool pressed;
 	bool released;
+	int Button;
 };
 
 #endif
