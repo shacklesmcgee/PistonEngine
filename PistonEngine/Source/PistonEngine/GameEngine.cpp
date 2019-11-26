@@ -45,14 +45,6 @@ bool GameEngine::Initialize(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR 
 	return true;
 }
 
-void freeObserver(const Event& event)
-{
-	if (event.type() == MouseEvent::descriptor)
-	{
-		OutputDebugString("NOOO left mouse pressed\n");
-	}
-}
-
 void mouseObserver(const MouseEvent& mouseEvent)
 {
 	if (mouseEvent.type() == MouseEvent::descriptor)
