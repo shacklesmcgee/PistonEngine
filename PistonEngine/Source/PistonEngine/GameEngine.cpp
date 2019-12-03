@@ -1,4 +1,6 @@
 #include "GameEngine.h"
+#include "DemoEvent.h"
+#include "Connection.h"
 
 using namespace std;
 
@@ -35,11 +37,42 @@ bool GameEngine::Initialize(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR 
 	ReadCPUSpeed();
 	ReadCPUArch();
 
+
+	testDelegates();
+
 	CreateGameWindow(hInstance, hPrevInstance, lpCmdLine, nCmdShow);
-	
+
 	return true;
 }
 
+void mouseObserver(const MouseEvent& mouseEvent)
+{
+	if (mouseEvent.type() == MouseEvent::descriptor)
+	{
+		if (mouseEvent.Button == 10 && mouseEvent.pressed)
+			OutputDebugString("left mouse pressed\n");
+
+		else if (mouseEvent.Button == 10 && mouseEvent.released)
+			OutputDebugString("left mouse released\n");
+
+		else if (mouseEvent.Button == 1 && mouseEvent.pressed)
+			OutputDebugString("Right mouse pressed\n");
+
+		else if (mouseEvent.Button == 1 && mouseEvent.released)
+			OutputDebugString("Right mouse released\n");
+	}
+}
+
+void GameEngine::testDelegates()
+{
+	ClassObserver classObserver;
+
+	//auto connection1 = dispatcher.subscribe(MouseEvent::descriptor, mouseObserver);
+	auto connection1 = dispatcher.subscribe(MouseEvent::descriptor,
+		std::bind(&ClassObserver::handle,
+			classObserver,
+			std::placeholders::_1));
+}
 
 LRESULT CALLBACK WndProc(_In_ HWND   hWnd, _In_ UINT   message, _In_ WPARAM wParam, _In_ LPARAM lParam)
 {
@@ -119,10 +152,13 @@ void GameEngine::CreateGameWindow(HINSTANCE hInstance, HINSTANCE hPrevInstance, 
 	ShowWindow(hWnd, nCmdShow);
 	UpdateWindow(hWnd);
 
+	InputComponentInterface in;
+
 	// Main message loop:
 	MSG msg;
 	while (GetMessage(&msg, NULL, 0, 0))
 	{
+		in.KeyboardInput(hWnd, msg.message, msg.wParam, msg.lParam, dispatcher);
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
 	}
