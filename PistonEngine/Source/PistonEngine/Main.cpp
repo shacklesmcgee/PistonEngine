@@ -8,7 +8,9 @@ int _stdcall WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR 
 			
 			return 0;
 		
-
+		//game engine intialize
+		//game engine start
+		//runs within the game engine
 
 		
 		//return gameEngine.Run();
