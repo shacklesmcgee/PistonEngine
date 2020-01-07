@@ -2,7 +2,9 @@
 #define MOUSE_EVENT_H__
 
 #include "Event.h"
-
+#include "Windows.h"
+#undef max
+#undef min
 class MouseEvent : public Event
 {
 public:

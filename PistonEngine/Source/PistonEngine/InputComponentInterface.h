@@ -1,5 +1,7 @@
 #pragma once
 #include "Windows.h"
+#undef max
+#undef min
 #include "strsafe.h"
 #include <string>
 #include <cstring>

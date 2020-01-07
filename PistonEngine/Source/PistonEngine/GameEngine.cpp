@@ -1,6 +1,5 @@
 #include "GameEngine.h"
-#include "DemoEvent.h"
-#include "Connection.h"
+
 
 using namespace std;
 
@@ -39,29 +38,50 @@ bool GameEngine::Initialize(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR 
 
 
 	testDelegates();
-
-	CreateGameWindow(hInstance, hPrevInstance, lpCmdLine, nCmdShow);
+	
+	//_gameState = GameEngine::Uninitialized;
+	//Start();
+	//CreateGameWindow(hInstance, hPrevInstance, lpCmdLine, nCmdShow);
 
 	return true;
 }
+//
+//
+//void GameEngine::Start()
+//{
+//	//if (_gameState != Uninitialized)
+//	//	return;
+//
+//	_mainWindow.create(sf::VideoMode(1024, 768, 32), "GameName");
+//
+//	//_gameState = GameEngine::Playing;
+//
+//	sf::CircleShape shape(100.f);
+//	shape.setFillColor(sf::Color::Green);
+//
+//	while (!IsExiting())
+//	{
+//		_mainWindow.clear();
+//		_mainWindow.draw(shape);
+//		_mainWindow.display();
+//	}
+//
+//	_mainWindow.close();
+//}
+//
+//bool GameEngine::IsExiting()
+//{
+//	sf::Event event;
+//
+//	while (_mainWindow.pollEvent(event))
+//	{
+//		if (event.type == sf::Event::Closed)
+//			return true;
+//	}
+//
+//	return false;
+//}
 
-void mouseObserver(const MouseEvent& mouseEvent)
-{
-	if (mouseEvent.type() == MouseEvent::descriptor)
-	{
-		if (mouseEvent.Button == 10 && mouseEvent.pressed)
-			OutputDebugString("left mouse pressed\n");
-
-		else if (mouseEvent.Button == 10 && mouseEvent.released)
-			OutputDebugString("left mouse released\n");
-
-		else if (mouseEvent.Button == 1 && mouseEvent.pressed)
-			OutputDebugString("Right mouse pressed\n");
-
-		else if (mouseEvent.Button == 1 && mouseEvent.released)
-			OutputDebugString("Right mouse released\n");
-	}
-}
 
 void GameEngine::testDelegates()
 {
