@@ -19,8 +19,8 @@ public:
 	GameEngine();
 	~GameEngine();
 
-	bool Initialize(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow);
-	static void Start();
+	bool Initialize();
+	void Start();
 
 	Dispatcher dispatcher;
 private:
@@ -30,12 +30,12 @@ private:
 	static void GameLoop();
 
 	enum GameState {Uninitialized, ShowingSplash, Paused, ShowingMenu, Playing, Exiting};
-	static GameState _gameState;
+	GameState _gameState;
 
 	//Problem seems to be here, i dunno
 	//static sf::RenderWindow _mainWindow;
 
-	void CreateGameWindow(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow);
+	//void CreateGameWindow(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow);
 	bool checksPassed = true;
 	void ReadCPUSpeed();
 	void ReadCPUArch();
