@@ -16,8 +16,16 @@ GameEngine::~GameEngine()
 {
 }
 
-bool GameEngine::Initialize()
+bool GameEngine::Initialize(sf::RenderWindow& _mainWindow)
 {
+	_gameState = GameEngine::Uninitialized;
+
+	//sf::RenderWindow _mainWindow(sf::VideoMode(1024, 768, 32), "Piston Engine");
+	_mainWindow.create(sf::VideoMode(1024, 768, 32), "Piston Engine");
+
+	SplashScreen _splash;
+	_splash.Show(_mainWindow);
+
 	if (FindWindow("Piston Engine", 0))
 	{
 		cout << "There is already an instance of the game!" << endl;
@@ -35,24 +43,17 @@ bool GameEngine::Initialize()
 	//maybe change to check cpu speed
 	ReadCPUSpeed();
 	ReadCPUArch();
-
-
 	testDelegates();
-	_gameState = GameEngine::Uninitialized;
-	//Start();
-	//CreateGameWindow(hInstance, hPrevInstance, lpCmdLine, nCmdShow);
 
 	return true;
+
 }
 
 
-void GameEngine::Start()
+void GameEngine::Start(sf::RenderWindow& _mainWindow)
 {
 	if (_gameState != GameEngine::Uninitialized)
 		return;
-
-	sf::RenderWindow _mainWindow(sf::VideoMode(1024, 768, 32), "Piston Engine");
-	//_mainWindow.create(sf::VideoMode(1024, 768, 32), "GameName");
 
 	_gameState = GameEngine::Playing;
 	sf::CircleShape shape(100.f);

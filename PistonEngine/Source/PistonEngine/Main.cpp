@@ -3,9 +3,10 @@
 int main()
 {
 	GameEngine gameEngine;
+	sf::RenderWindow mainWindow;
 
-	if (gameEngine.Initialize())	
-		gameEngine.Start();
+	if (gameEngine.Initialize(mainWindow))	
+		gameEngine.Start(mainWindow);
 
 	return 0;
 }

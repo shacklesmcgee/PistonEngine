@@ -10,6 +10,7 @@
 #include "ClassObserver.h"
 #include "Dispatcher.h"
 #include "Connection.h"
+#include "SplashScreen.h"
 #include "Windows.h"
 #undef max
 #undef min
@@ -19,8 +20,8 @@ public:
 	GameEngine();
 	~GameEngine();
 
-	bool Initialize();
-	void Start();
+	bool Initialize(sf::RenderWindow& _mainWindow);
+	void Start(sf::RenderWindow& _mainWindow);
 
 	Dispatcher dispatcher;
 private:
@@ -33,7 +34,7 @@ private:
 	GameState _gameState;
 
 	//Problem seems to be here, i dunno
-	//static sf::RenderWindow _mainWindow;
+	//sf::RenderWindow& _mainWindow;
 
 	//void CreateGameWindow(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow);
 	bool checksPassed = true;
