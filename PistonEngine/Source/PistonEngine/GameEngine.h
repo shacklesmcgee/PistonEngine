@@ -11,6 +11,13 @@
 #include "Dispatcher.h"
 #include "Connection.h"
 #include "SplashScreen.h"
+#include "GameObject.h"
+
+
+
+
+
+
 #include "Windows.h"
 #undef max
 #undef min
@@ -23,15 +30,16 @@ public:
 	bool Initialize(sf::RenderWindow& _mainWindow);
 	void Start(sf::RenderWindow& _mainWindow);
 
+	enum GameState { Uninitialized, ShowingSplash, Paused, ShowingMenu, Playing, Exiting };
+	GameState _gameState;
+
 	Dispatcher dispatcher;
 private:
 	const float diskSpaceNeeded = 300;
 
 	static bool IsExiting();
-	static void GameLoop();
+	static void GameLoop(sf::RenderWindow& _mainWindow);
 
-	enum GameState {Uninitialized, ShowingSplash, Paused, ShowingMenu, Playing, Exiting};
-	GameState _gameState;
 
 	//Problem seems to be here, i dunno
 	//sf::RenderWindow& _mainWindow;

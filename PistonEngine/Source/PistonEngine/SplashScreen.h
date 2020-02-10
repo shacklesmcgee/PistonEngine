@@ -1,9 +1,9 @@
 #pragma once
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
-\
+
 class SplashScreen
 {
 public:
-	void Show(sf::RenderWindow& _mainWindow);
+	bool Show(sf::RenderWindow& _mainWindow);
 };

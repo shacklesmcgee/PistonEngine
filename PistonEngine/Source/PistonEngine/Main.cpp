@@ -3,7 +3,7 @@
 int main()
 {
 	GameEngine gameEngine;
-	sf::RenderWindow mainWindow;
+	static sf::RenderWindow mainWindow;
 
 	if (gameEngine.Initialize(mainWindow))	
 		gameEngine.Start(mainWindow);
