@@ -1,10 +1,14 @@
 #include "GameEngine.h"
 
-
-int _stdcall WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+int main()
 {
-		GameEngine gameEngine;
-		if (!gameEngine.Initialize(hInstance, hPrevInstance, lpCmdLine, nCmdShow))
+	GameEngine gameEngine;
+	static sf::RenderWindow mainWindow;
+
+	if (gameEngine.Initialize(mainWindow))	
+		gameEngine.Start(mainWindow);
+
+	//if (!gameEngine.Initialize(hInstance, hPrevInstance, lpCmdLine, nCmdShow))
 			
 			return 0;
 		
@@ -12,8 +16,7 @@ int _stdcall WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR 
 		//game engine start
 		//runs within the game engine
 
-		
-		//return gameEngine.Run();
+	return 0;
 }
 
 

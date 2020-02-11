@@ -1,6 +1,7 @@
+#include <chrono>
+#include <thread>
 #include "GameEngine.h"
-#include "DemoEvent.h"
-#include "Connection.h"
+
 
 using namespace std;
 
@@ -17,8 +18,20 @@ GameEngine::~GameEngine()
 {
 }
 
-bool GameEngine::Initialize(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+bool GameEngine::Initialize(sf::RenderWindow& _mainWindow)
 {
+	_gameState = GameState::Uninitialized;
+
+	//sf::RenderWindow _mainWindow(sf::VideoMode(1024, 768, 32), "Piston Engine");
+	_mainWindow.create(sf::VideoMode(1280, 720, 32), "Piston Engine");
+
+	SplashScreen _splash;
+	if (_splash.Show(_mainWindow) == false)
+	{
+		_gameState = GameState::ShowingSplash;
+	}
+
+
 	if (FindWindow("Piston Engine", 0))
 	{
 		cout << "There is already an instance of the game!" << endl;
@@ -36,32 +49,50 @@ bool GameEngine::Initialize(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR 
 	//maybe change to check cpu speed
 	ReadCPUSpeed();
 	ReadCPUArch();
-
-
 	testDelegates();
-
-	CreateGameWindow(hInstance, hPrevInstance, lpCmdLine, nCmdShow);
-
+	
+	//sleeping for 3 seconds to show off splash screen
+	std::this_thread::sleep_for(std::chrono::seconds(2));
+	_gameState = GameState::Uninitialized;
+	
 	return true;
+
 }
 
-void mouseObserver(const MouseEvent& mouseEvent)
+
+void GameEngine::Start(sf::RenderWindow& _mainWindow)
 {
-	if (mouseEvent.type() == MouseEvent::descriptor)
+	if (_gameState != GameState::Uninitialized)
+		return;
+
+	_gameState = GameEngine::Playing;
+	sf::CircleShape shape(100.f);
+	shape.setFillColor(sf::Color::Green);
+
+	GameObject testGameObject;
+
+	while (_mainWindow.isOpen())
 	{
-		if (mouseEvent.Button == 10 && mouseEvent.pressed)
-			OutputDebugString("left mouse pressed\n");
+		sf::Event event;
+		while (_mainWindow.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				_mainWindow.close();
+		}
+		_mainWindow.clear();
+		_mainWindow.draw(shape);
+		_mainWindow.display();
 
-		else if (mouseEvent.Button == 10 && mouseEvent.released)
-			OutputDebugString("left mouse released\n");
-
-		else if (mouseEvent.Button == 1 && mouseEvent.pressed)
-			OutputDebugString("Right mouse pressed\n");
-
-		else if (mouseEvent.Button == 1 && mouseEvent.released)
-			OutputDebugString("Right mouse released\n");
+		GameLoop(_mainWindow);
 	}
 }
+
+
+void GameEngine::GameLoop(sf::RenderWindow& _mainWindow)
+{
+
+}
+
 
 void GameEngine::testDelegates()
 {
@@ -72,98 +103,6 @@ void GameEngine::testDelegates()
 		std::bind(&ClassObserver::handle,
 			classObserver,
 			std::placeholders::_1));
-}
-
-LRESULT CALLBACK WndProc(_In_ HWND   hWnd, _In_ UINT   message, _In_ WPARAM wParam, _In_ LPARAM lParam)
-{
-	return DefWindowProc(hWnd, message, wParam, lParam);
-}
-
-
-void GameEngine::CreateGameWindow(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
-{
-
-	HINSTANCE hInst;
-	HWND hWnd;
-
-	WNDCLASSEX wcex;
-
-	wcex.cbSize = sizeof(WNDCLASSEX);
-	wcex.style = CS_HREDRAW | CS_VREDRAW;
-	wcex.lpfnWndProc = WndProc;
-	wcex.cbClsExtra = 0;
-	wcex.cbWndExtra = 0;
-	wcex.hInstance = hInstance;
-	wcex.hIcon = LoadIcon(hInstance, IDI_APPLICATION);
-	wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
-	wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-	wcex.lpszMenuName = NULL;
-	wcex.lpszClassName = szWindowClass;
-	wcex.hIconSm = LoadIcon(wcex.hInstance, IDI_APPLICATION);
-
-	if (!RegisterClassEx(&wcex))
-	{
-		MessageBox(NULL,
-			_T("Call to RegisterClassEx failed!"),
-			_T("Windows Desktop Guided Tour"),
-			NULL);
-
-		//return 1;
-	}
-
-	// Store instance handle in a variable
-	hInst = hInstance;
-
-	// The parameters to CreateWindow explained:
-	// szWindowClass: the name of the application
-	// szTitle: the text that appears in the title bar
-	// WS_OVERLAPPEDWINDOW: the type of window to create
-	// CW_USEDEFAULT, CW_USEDEFAULT: initial position (x, y)
-	// 500, 100: initial size (width, length)
-	// NULL: the parent of this window
-	// NULL: this application dows not have a menu bar
-	// hInstance: the first parameter from WinMain
-	// NULL: not used in this application
-	hWnd = CreateWindow(
-		szWindowClass,
-		szTitle,
-		WS_OVERLAPPEDWINDOW,
-		CW_USEDEFAULT, CW_USEDEFAULT,
-		500, 500,
-		NULL,
-		NULL,
-		hInstance,
-		NULL
-	);
-
-	if (!hWnd)
-	{
-		MessageBox(NULL,
-			_T("Call to CreateWindow failed!"),
-			_T("Windows Desktop Guided Tour"),
-			NULL);
-
-		//return 1;
-	}
-
-	// The parameters to ShowWindow explained:
-	// hWnd: the value returned from CreateWindow
-	// nCmdShow: the fourth parameter from WinMain
-	ShowWindow(hWnd, nCmdShow);
-	UpdateWindow(hWnd);
-
-	InputComponentInterface in;
-
-	// Main message loop:
-	MSG msg;
-	while (GetMessage(&msg, NULL, 0, 0))
-	{
-		in.KeyboardInput(hWnd, msg.message, msg.wParam, msg.lParam, dispatcher);
-		TranslateMessage(&msg);
-		DispatchMessage(&msg);
-	}
-
-	//return (int)msg.wParam;
 }
 
 _diskfree_t populateStruct()

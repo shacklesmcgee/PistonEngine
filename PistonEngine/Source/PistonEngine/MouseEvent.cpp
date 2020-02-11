@@ -1,5 +1,4 @@
 #include "MouseEvent.h"
-#include "Windows.h"
 #include <iostream>
 
 // This definition is still required in order to comply with the ODR of C++.

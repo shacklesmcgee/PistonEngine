@@ -1,12 +1,14 @@
 #pragma once
+
+#include <SFML/Graphics/Transform.hpp>
 #include "BaseComponent.h"
 #include <vector>
 
 class GameObject
 {
 public:
-	GameObject();
-	~GameObject();
+	GameObject() { parent = NULL; }
+	~GameObject(void);
 
 	virtual void Update(float msec);
 
