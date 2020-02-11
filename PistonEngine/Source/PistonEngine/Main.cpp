@@ -1,7 +1,9 @@
 #include "GameEngine.h"
 
+
 int main()
 {
+
 	GameEngine gameEngine;
 	static sf::RenderWindow mainWindow;
 
@@ -18,5 +20,4 @@ int main()
 
 	return 0;
 }
-
 

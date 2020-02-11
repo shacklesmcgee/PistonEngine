@@ -1,10 +1,9 @@
 #pragma once
-#include "GameObject.h"
 #include <string>
+#include "Vector2.h"
 
 class BaseComponent
 {
-protected:
+public:
 	std::string name;
-	GameObject* owner;
 };

@@ -20,10 +20,13 @@ GameEngine::~GameEngine()
 
 bool GameEngine::Initialize(sf::RenderWindow& _mainWindow)
 {
-	_gameState = GameState::Uninitialized;
-
-	//sf::RenderWindow _mainWindow(sf::VideoMode(1024, 768, 32), "Piston Engine");
-	_mainWindow.create(sf::VideoMode(1280, 720, 32), "Piston Engine");
+	sol::state lua;
+	lua.open_libraries(sol::lib::base);
+	lua.script_file("Scripts/settings.lua");
+	bool isfullscreen = lua["config"]["fullscreen"];
+	int xRes = lua["config"]["resolution"]["x"];
+	int yRes = lua["config"]["resolution"]["y"];
+	_mainWindow.create(sf::VideoMode(xRes, yRes, 32), "Piston Engine");
 
 	SplashScreen _splash;
 	if (_splash.Show(_mainWindow) == false)
@@ -49,10 +52,10 @@ bool GameEngine::Initialize(sf::RenderWindow& _mainWindow)
 	//maybe change to check cpu speed
 	ReadCPUSpeed();
 	ReadCPUArch();
-	testDelegates();
+	startDelegates();
 	
 	//sleeping for 3 seconds to show off splash screen
-	std::this_thread::sleep_for(std::chrono::seconds(2));
+	//std::this_thread::sleep_for(std::chrono::seconds(2));
 	_gameState = GameState::Uninitialized;
 	
 	return true;
@@ -69,7 +72,9 @@ void GameEngine::Start(sf::RenderWindow& _mainWindow)
 	sf::CircleShape shape(100.f);
 	shape.setFillColor(sf::Color::Green);
 
-	GameObject testGameObject;
+	_gameObjectManager.Create("ball");
+	_gameObjectManager.GetGameObject("ball")->AddComponent(new GraphicsComponent());
+	_gameObjectManager.GetGameObject("ball")->Graphics->SetTexture("../../Assets/ball.png");
 
 	while (_mainWindow.isOpen())
 	{
@@ -79,10 +84,6 @@ void GameEngine::Start(sf::RenderWindow& _mainWindow)
 			if (event.type == sf::Event::Closed)
 				_mainWindow.close();
 		}
-		_mainWindow.clear();
-		_mainWindow.draw(shape);
-		_mainWindow.display();
-
 		GameLoop(_mainWindow);
 	}
 }
@@ -90,15 +91,23 @@ void GameEngine::Start(sf::RenderWindow& _mainWindow)
 
 void GameEngine::GameLoop(sf::RenderWindow& _mainWindow)
 {
+	_mainWindow.clear();
+
+	for (auto const& value : _gameObjectManager.GetAllGameObjects()) {
+		if (value->Graphics)
+		{
+			_mainWindow.draw(value->Graphics->GetSprite());
+		}
+	}
+	_mainWindow.display();
 
 }
 
 
-void GameEngine::testDelegates()
+void GameEngine::startDelegates()
 {
 	ClassObserver classObserver;
 
-	//auto connection1 = dispatcher.subscribe(MouseEvent::descriptor, mouseObserver);
 	auto connection1 = dispatcher.subscribe(MouseEvent::descriptor,
 		std::bind(&ClassObserver::handle,
 			classObserver,

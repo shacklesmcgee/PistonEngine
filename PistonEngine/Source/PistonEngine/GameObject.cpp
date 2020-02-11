@@ -14,6 +14,31 @@ void GameObject::AddChild(GameObject * s)
 	s->parent = this;
 }
 
+void GameObject::AddComponent(BaseComponent* componentToAdd)
+{
+	components.push_back(componentToAdd);
+
+	if (static_cast<GraphicsComponent*>(componentToAdd))
+	{
+		Graphics = static_cast<GraphicsComponent*>(componentToAdd);
+	}
+}
+
+BaseComponent* GameObject::GetComponent(string componentToGet)
+{
+	BaseComponent* comp = NULL;
+
+	for (auto const& value : components) {
+		if (value->name == componentToGet)
+		{
+			comp = value;
+			break;
+		}
+
+	}
+	return comp;
+}
+
 void GameObject::Update(float msec)
 {
 	if (parent)
