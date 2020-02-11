@@ -7,11 +7,10 @@ public:
 	TransformComponent();
 	~TransformComponent();
 
-	void getTransform();//this should not be a void function
-	void setTransform();
-
 protected:
-	//Transform;
-	//WorldTransform;
-	//parent
+	std::vector <float> position;
+
+public:
+	std::vector<float> getPosition();
+	void setPosition(std::vector<float> newLocation);
 };

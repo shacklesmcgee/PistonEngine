@@ -13,10 +13,13 @@ public:
 	virtual void Update(float msec);
 
 	void AddChild(GameObject* s);
+	void AddComponent(BaseComponent* c);
+
+	void draw();
 
 protected:
 	GameObject* parent;
 	std::vector<GameObject*> children;
 
-	BaseComponent components[];
+	std::vector<BaseComponent*> components[];
 };

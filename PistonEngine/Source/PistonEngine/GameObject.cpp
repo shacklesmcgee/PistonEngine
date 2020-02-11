@@ -14,6 +14,15 @@ void GameObject::AddChild(GameObject * s)
 	s->parent = this;
 }
 
+void GameObject::AddComponent(BaseComponent* c)
+{
+	components->push_back(c);
+}
+
+void GameObject::draw()
+{
+}
+
 void GameObject::Update(float msec)
 {
 	if (parent)

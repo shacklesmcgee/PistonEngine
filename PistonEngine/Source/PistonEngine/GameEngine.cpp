@@ -1,6 +1,7 @@
 #include <chrono>
 #include <thread>
 #include "GameEngine.h"
+#include "TransformComponent.h"
 
 
 using namespace std;
@@ -66,10 +67,13 @@ void GameEngine::Start(sf::RenderWindow& _mainWindow)
 		return;
 
 	_gameState = GameEngine::Playing;
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
 
 	GameObject testGameObject;
+	//testGameObject.AddComponent(new TransformComponent());
+	//testGameObject.draw(); //should the game object just contain information about what to draw, or actually call the draw method? Should we have a
+	//rendering handler class?
+	sf::CircleShape shape(100.f);
+	shape.setFillColor(sf::Color::Green);
 
 	while (_mainWindow.isOpen())
 	{
