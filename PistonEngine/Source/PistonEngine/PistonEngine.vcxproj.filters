@@ -80,13 +80,14 @@
     <ClInclude Include="SplashScreen.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="GameObjectManager.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="RigidBodyComponent.h">
+    <ClInclude Include="GameObject.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseComponent.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

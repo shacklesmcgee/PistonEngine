@@ -163,6 +163,7 @@
     <ClCompile Include="SplashScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BaseComponent.h" />
     <ClInclude Include="ClassObserver.h" />
     <ClInclude Include="Connection.h" />
     <ClInclude Include="DemoEvent.h" />
