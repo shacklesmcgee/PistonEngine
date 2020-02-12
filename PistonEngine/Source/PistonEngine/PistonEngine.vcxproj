@@ -166,7 +166,6 @@
     <ClCompile Include="MouseEvent.cpp" />
     <ClCompile Include="RigidBodyComponent.cpp" />
     <ClCompile Include="SplashScreen.cpp" />
-    <ClCompile Include="Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseComponent.h" />
@@ -183,7 +182,6 @@
     <ClInclude Include="MouseEvent.h" />
     <ClInclude Include="RigidBodyComponent.h" />
     <ClInclude Include="SplashScreen.h" />
-    <ClInclude Include="Vector2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

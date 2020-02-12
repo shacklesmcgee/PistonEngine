@@ -41,6 +41,8 @@ public:
 	Dispatcher dispatcher;
 
 	GameObjectManager _gameObjectManager;
+	sf::Clock _clock;
+	
 private:
 	const float diskSpaceNeeded = 300;
 

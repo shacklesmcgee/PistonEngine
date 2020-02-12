@@ -50,8 +50,11 @@ void GameObject::Update(float msec)
 		//worldTransform = transform;
 	}
 
-	for (std::vector<GameObject*>::iterator i = children.begin(); i != children.end(); ++i)
-	{
-		(*i)->Update(msec);
+	for (auto const& value : children) {
+		value->Update(msec);
+	}
+
+	for (auto const& value : components) {
+		value->Update(msec);
 	}
 }

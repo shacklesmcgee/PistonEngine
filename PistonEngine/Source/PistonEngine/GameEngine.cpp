@@ -20,6 +20,7 @@ GameEngine::~GameEngine()
 
 bool GameEngine::Initialize(sf::RenderWindow& _mainWindow)
 {
+
 	sol::state lua;
 	lua.open_libraries(sol::lib::base);
 	lua.script_file("Scripts/settings.lua");
@@ -72,9 +73,11 @@ void GameEngine::Start(sf::RenderWindow& _mainWindow)
 	sf::CircleShape shape(100.f);
 	shape.setFillColor(sf::Color::Green);
 
+	//Creating an object
 	_gameObjectManager.Create("ball");
 	_gameObjectManager.GetGameObject("ball")->AddComponent(new GraphicsComponent());
 	_gameObjectManager.GetGameObject("ball")->Graphics->SetTexture("../../Assets/ball.png");
+
 
 	while (_mainWindow.isOpen())
 	{
@@ -91,9 +94,12 @@ void GameEngine::Start(sf::RenderWindow& _mainWindow)
 
 void GameEngine::GameLoop(sf::RenderWindow& _mainWindow)
 {
+	sf::Time dt = _clock.restart();
 	_mainWindow.clear();
 
 	for (auto const& value : _gameObjectManager.GetAllGameObjects()) {
+		value->Update(dt.asMilliseconds());
+
 		if (value->Graphics)
 		{
 			_mainWindow.draw(value->Graphics->GetSprite());

@@ -8,6 +8,6 @@ RigidBodyComponent::~RigidBodyComponent(void)
 {
 }
 
-void RigidBodyComponent::Update(float msec)
+void RigidBodyComponent::Update(float dt)
 {
 }

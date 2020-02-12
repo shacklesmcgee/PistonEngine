@@ -2,8 +2,8 @@
 
 void GameObjectManager::Create(string _name)
 {
-	GameObject* _gameObject = NULL;
-	//_gameObject->name = _name;
+	GameObject* _gameObject = new GameObject();
+	_gameObject->name = _name;
 	_gameObjects.push_back(_gameObject);
 }
 
@@ -15,7 +15,7 @@ void GameObjectManager::Update(float msec)
 	}
 }
 
-GameObject * GameObjectManager::GetGameObject(string _name)
+GameObject* GameObjectManager::GetGameObject(string _name)
 {
 	GameObject* obj = NULL;
 

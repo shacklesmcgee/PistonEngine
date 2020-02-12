@@ -3,7 +3,6 @@
 GraphicsComponent::GraphicsComponent()
 {
 	name = "GraphicsComponent";
-	//_mainWindow.draw(_sprite);
 }
 
 GraphicsComponent::~GraphicsComponent(void)
@@ -26,6 +25,7 @@ sf::Sprite GraphicsComponent::GetSprite()
 	return _sprite;
 }
 
-void GraphicsComponent::Update(float msec)
+void GraphicsComponent::Update(float dt)
 {
+	_sprite.move(sf::Vector2f(0.1f, 0.1f));
 }

@@ -18,7 +18,7 @@ public:
 	void SetTexture(string textureLocation);
 
 	sf::Sprite GetSprite();
-	virtual void Update(float msec);
+	virtual void Update(float dt);
 
 };
 
