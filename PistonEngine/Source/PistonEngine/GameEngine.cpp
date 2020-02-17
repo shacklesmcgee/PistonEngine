@@ -1,6 +1,7 @@
 #include <chrono>
 #include <thread>
 #include "GameEngine.h"
+#include "TransformComponent.h"
 
 
 using namespace std;
@@ -70,14 +71,11 @@ void GameEngine::Start(sf::RenderWindow& _mainWindow)
 		return;
 
 	_gameState = GameEngine::Playing;
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
 
 	//Creating an object
 	_gameObjectManager.Create("ball");
 	_gameObjectManager.GetGameObject("ball")->AddComponent(new GraphicsComponent());
 	_gameObjectManager.GetGameObject("ball")->Graphics->SetTexture("../../Assets/ball.png");
-
 
 	while (_mainWindow.isOpen())
 	{

@@ -1,6 +1,85 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="Connection.cpp">
+      <Filter>Mains</Filter>
+    </ClCompile>
+    <ClCompile Include="DemoEvent.cpp">
+      <Filter>Mains</Filter>
+    </ClCompile>
+    <ClCompile Include="Dispatcher.cpp">
+      <Filter>Mains</Filter>
+    </ClCompile>
+    <ClCompile Include="Event.cpp">
+      <Filter>Mains</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngine.cpp">
+      <Filter>Mains</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Mains</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectManager.cpp">
+      <Filter>Mains</Filter>
+    </ClCompile>
+    <ClCompile Include="InputComponentInterface.cpp">
+      <Filter>Mains</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Mains</Filter>
+    </ClCompile>
+    <ClCompile Include="MouseEvent.cpp">
+      <Filter>Mains</Filter>
+    </ClCompile>
+    <ClCompile Include="RigidBodyComponent.cpp">
+      <Filter>Mains</Filter>
+    </ClCompile>
+    <ClCompile Include="SplashScreen.cpp">
+      <Filter>Mains</Filter>
+    </ClCompile>
+    <ClCompile Include="TransformComponent.cpp">
+      <Filter>Mains</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BaseComponent.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="ClassObserver.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Connection.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="DemoEvent.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Dispatcher.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngine.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectManager.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="InputComponentInterface.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseEvent.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="RigidBodyComponent.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SplashScreen.h">
+      <Filter>Headers</Filter>
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
@@ -66,6 +145,17 @@
     <ClInclude Include="MouseEvent.h">
       <Filter>Event System</Filter>
     </ClInclude>
+    <ClInclude Include="TransformComponent.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{c26c31f1-2788-4b1c-8df9-989e729577b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mains">
+      <UniqueIdentifier>{dbfb62d6-4c72-45ef-bb47-d626ce2cb2da}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Components">

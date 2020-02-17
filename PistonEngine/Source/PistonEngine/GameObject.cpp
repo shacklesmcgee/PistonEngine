@@ -37,7 +37,6 @@ BaseComponent* GameObject::GetComponent(string componentToGet)
 
 	}
 	return comp;
-}
 
 void GameObject::Update(float msec)
 {

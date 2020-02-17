@@ -17,12 +17,13 @@ public:
 	virtual void Update(float msec);
 
 	void AddChild(GameObject* s);
+
 	void AddComponent(BaseComponent* componentToAdd);
 	BaseComponent* GetComponent(string componentToGet);
-
+  
 	GraphicsComponent* Graphics;
 	RigidBodyComponent* RigidBody;
-
+  
 	string name;
 
 protected:
@@ -31,6 +32,4 @@ protected:
 	vector<GameObject*> children;
 
 	vector<BaseComponent*> components;
-
-	
 };
