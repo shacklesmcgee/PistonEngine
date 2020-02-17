@@ -80,6 +80,70 @@
     </ClInclude>
     <ClInclude Include="SplashScreen.h">
       <Filter>Headers</Filter>
+    <ClCompile Include="GameEngine.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameObjectManager.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="SplashScreen.cpp" />
+    <ClCompile Include="GraphicsComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="RigidBodyComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Connection.cpp">
+      <Filter>Event System</Filter>
+    </ClCompile>
+    <ClCompile Include="DemoEvent.cpp">
+      <Filter>Event System</Filter>
+    </ClCompile>
+    <ClCompile Include="Dispatcher.cpp">
+      <Filter>Event System</Filter>
+    </ClCompile>
+    <ClCompile Include="Event.cpp">
+      <Filter>Event System</Filter>
+    </ClCompile>
+    <ClCompile Include="InputComponentInterface.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="MouseEvent.cpp">
+      <Filter>Event System</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameEngine.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameObjectManager.h" />
+    <ClInclude Include="SplashScreen.h" />
+    <ClInclude Include="BaseComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="RigidBodyComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ClassObserver.h">
+      <Filter>Event System</Filter>
+    </ClInclude>
+    <ClInclude Include="Connection.h">
+      <Filter>Event System</Filter>
+    </ClInclude>
+    <ClInclude Include="DemoEvent.h">
+      <Filter>Event System</Filter>
+    </ClInclude>
+    <ClInclude Include="Dispatcher.h">
+      <Filter>Event System</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>Event System</Filter>
+    </ClInclude>
+    <ClInclude Include="InputComponentInterface.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseEvent.h">
+      <Filter>Event System</Filter>
     </ClInclude>
     <ClInclude Include="TransformComponent.h">
       <Filter>Headers</Filter>
@@ -91,6 +155,14 @@
     </Filter>
     <Filter Include="Mains">
       <UniqueIdentifier>{dbfb62d6-4c72-45ef-bb47-d626ce2cb2da}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Components">
+      <UniqueIdentifier>{a32cdba4-cb13-49ec-a87b-f848060e976b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Event System">
+      <UniqueIdentifier>{413d3bb5-4231-47a4-b08f-52c286a83a59}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

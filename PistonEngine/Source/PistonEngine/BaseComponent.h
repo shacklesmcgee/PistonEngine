@@ -4,6 +4,8 @@
 
 class BaseComponent
 {
-protected:
+public:
 	std::string name;
+
+  virtual void Update(float dt) {};
 };

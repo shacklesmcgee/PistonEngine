@@ -2,7 +2,11 @@
 
 #include <SFML/Graphics/Transform.hpp>
 #include "BaseComponent.h"
+#include "GraphicsComponent.h"
+#include "RigidBodyComponent.h"
+
 #include <vector>
+using namespace std;
 
 class GameObject
 {
@@ -13,13 +17,19 @@ public:
 	virtual void Update(float msec);
 
 	void AddChild(GameObject* s);
-	void AddComponent(BaseComponent* c);
 
-	void draw();
+	void AddComponent(BaseComponent* componentToAdd);
+	BaseComponent* GetComponent(string componentToGet);
+  
+	GraphicsComponent* Graphics;
+	RigidBodyComponent* RigidBody;
+  
+	string name;
 
 protected:
-	GameObject* parent;
-	std::vector<GameObject*> children;
 
-	std::vector<BaseComponent*> components[];
+	GameObject* parent;
+	vector<GameObject*> children;
+
+	vector<BaseComponent*> components;
 };

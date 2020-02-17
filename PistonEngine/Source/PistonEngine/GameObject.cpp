@@ -14,14 +14,29 @@ void GameObject::AddChild(GameObject * s)
 	s->parent = this;
 }
 
-void GameObject::AddComponent(BaseComponent* c)
+void GameObject::AddComponent(BaseComponent* componentToAdd)
 {
-	components->push_back(c);
+	components.push_back(componentToAdd);
+
+	if (static_cast<GraphicsComponent*>(componentToAdd))
+	{
+		Graphics = static_cast<GraphicsComponent*>(componentToAdd);
+	}
 }
 
-void GameObject::draw()
+BaseComponent* GameObject::GetComponent(string componentToGet)
 {
-}
+	BaseComponent* comp = NULL;
+
+	for (auto const& value : components) {
+		if (value->name == componentToGet)
+		{
+			comp = value;
+			break;
+		}
+
+	}
+	return comp;
 
 void GameObject::Update(float msec)
 {
@@ -34,8 +49,11 @@ void GameObject::Update(float msec)
 		//worldTransform = transform;
 	}
 
-	for (std::vector<GameObject*>::iterator i = children.begin(); i != children.end(); ++i)
-	{
-		(*i)->Update(msec);
+	for (auto const& value : children) {
+		value->Update(msec);
+	}
+
+	for (auto const& value : components) {
+		value->Update(msec);
 	}
 }
