@@ -14,19 +14,62 @@ void GameObject::AddChild(GameObject * s)
 	s->parent = this;
 }
 
-void GameObject::Update(float msec)
+void GameObject::AddComponent(BaseComponent* componentToAdd)
 {
-	if (parent)
+	components.push_back(componentToAdd);
+
+	if (componentToAdd->name == "GraphicsComponent")
 	{
-		//worldTransform = parent->worldTransform * transform;
-	}
-	else
-	{
-		//worldTransform = transform;
+		Graphics = static_cast<GraphicsComponent*>(componentToAdd);
 	}
 
-	for (std::vector<GameObject*>::iterator i = children.begin(); i != children.end(); ++i)
+	else if (componentToAdd->name == "TransformComponent")
 	{
-		(*i)->Update(msec);
+		Transform = static_cast<TransformComponent*>(componentToAdd);
 	}
+
+	else if (componentToAdd->name == "AudioComponent")
+	{
+		Audio = static_cast<AudioComponent*>(componentToAdd);
+	}
+}
+
+BaseComponent* GameObject::GetComponent(string componentToGet)
+{
+	BaseComponent* comp = NULL;
+
+	for (auto const& value : components) {
+		if (value->name == componentToGet)
+		{
+			comp = value;
+			break;
+		}
+
+	}
+	return comp;
+}
+
+void GameObject::Update(float msec)
+{
+	for (auto const& value : components) {
+		value->Update(msec);
+	}
+
+	//Graphics->Update(msec, Transform->GetTransform());
+
+	if (parent)
+	{
+		worldTransform = parent->worldTransform * Transform->GetTransform();
+	}
+
+	else
+	{
+		worldTransform = Transform->GetTransform();
+	}
+
+	for (auto const& value : children) {
+		value->Update(msec);
+	}
+
+	
 }

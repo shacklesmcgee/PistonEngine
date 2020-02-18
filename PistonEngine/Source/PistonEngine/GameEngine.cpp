@@ -2,7 +2,6 @@
 #include <thread>
 #include "GameEngine.h"
 
-
 using namespace std;
 
 static TCHAR szWindowClass[] = _T("Piston Engine");
@@ -20,10 +19,14 @@ GameEngine::~GameEngine()
 
 bool GameEngine::Initialize(sf::RenderWindow& _mainWindow)
 {
-	_gameState = GameState::Uninitialized;
 
-	//sf::RenderWindow _mainWindow(sf::VideoMode(1024, 768, 32), "Piston Engine");
-	_mainWindow.create(sf::VideoMode(1280, 720, 32), "Piston Engine");
+	sol::state lua;
+	lua.open_libraries(sol::lib::base);
+	lua.script_file("Milestone1/settings.lua");
+	bool isfullscreen = lua["config"]["fullscreen"];
+	int xRes = lua["config"]["resolution"]["x"];
+	int yRes = lua["config"]["resolution"]["y"];
+	_mainWindow.create(sf::VideoMode(xRes, yRes, 32), "Piston Engine");
 
 	SplashScreen _splash;
 	if (_splash.Show(_mainWindow) == false)
@@ -49,10 +52,10 @@ bool GameEngine::Initialize(sf::RenderWindow& _mainWindow)
 	//maybe change to check cpu speed
 	ReadCPUSpeed();
 	ReadCPUArch();
-	testDelegates();
+	startDelegates();
 	
 	//sleeping for 3 seconds to show off splash screen
-	std::this_thread::sleep_for(std::chrono::seconds(2));
+	//std::this_thread::sleep_for(std::chrono::seconds(2));
 	_gameState = GameState::Uninitialized;
 	
 	return true;
@@ -66,10 +69,28 @@ void GameEngine::Start(sf::RenderWindow& _mainWindow)
 		return;
 
 	_gameState = GameEngine::Playing;
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
 
-	GameObject testGameObject;
+	//Creating an object
+	_gameObjectManager.Create("ball");
+
+	//Create graphics component
+	_gameObjectManager.GetGameObject("ball")->AddComponent(new GraphicsComponent("../../Assets/ball.png"));
+	//Create transform component
+	_gameObjectManager.GetGameObject("ball")->AddComponent(new TransformComponent());
+	//Create audio component
+	_gameObjectManager.GetGameObject("ball")->AddComponent(new AudioComponent("Milestone1/bump.wav"));
+
+	//test the audio component
+	_gameObjectManager.GetGameObject("ball")->Audio->PlayAudio();
+
+	//Creating an 2nd object
+	_gameObjectManager.Create("ball2");
+	_gameObjectManager.GetGameObject("ball2")->SetParent(*_gameObjectManager.GetGameObject("ball"));
+
+	//Create graphics component
+	_gameObjectManager.GetGameObject("ball2")->AddComponent(new GraphicsComponent("../../Assets/ball2.png"));
+	//Create transform component
+	_gameObjectManager.GetGameObject("ball2")->AddComponent(new TransformComponent());
 
 	while (_mainWindow.isOpen())
 	{
@@ -78,11 +99,19 @@ void GameEngine::Start(sf::RenderWindow& _mainWindow)
 		{
 			if (event.type == sf::Event::Closed)
 				_mainWindow.close();
-		}
-		_mainWindow.clear();
-		_mainWindow.draw(shape);
-		_mainWindow.display();
 
+			if (event.type == sf::Event::MouseButtonPressed)
+			{
+				if (event.mouseButton.button == sf::Mouse::Left)
+					dispatcher.post(MouseEvent(true, 0));
+					//MouseEvent(true, 0);
+
+				else if (event.mouseButton.button == sf::Mouse::Right)
+					dispatcher.post(MouseEvent(true, 1));
+					//MouseEvent(true, 1);
+			}
+				
+		}
 		GameLoop(_mainWindow);
 	}
 }
@@ -90,15 +119,37 @@ void GameEngine::Start(sf::RenderWindow& _mainWindow)
 
 void GameEngine::GameLoop(sf::RenderWindow& _mainWindow)
 {
+	sf::Time dt = _clock.restart();
+	_mainWindow.clear();
+
+	for (auto const& value : _gameObjectManager.GetAllGameObjects()) {
+
+		//test the transform component and scene manager
+		if (value->name == "ball")
+			value->Transform->setLocation(0.01f, 0.01f);
+		else if (value->name == "ball2")
+		{
+			value->Graphics->setOrigin((sf::Vector2f)value->Graphics->GetSprite().getTexture()->getSize());
+			value->Transform->setRotation(0.01f, value->Graphics->getOrigin());
+		}
+
+		value->Update(dt.asMilliseconds());
+
+		if (value->Graphics)
+		{
+			//test the graphics component
+			_mainWindow.draw(value->Graphics->GetSprite(), value->GetWorldTransform());
+		}
+	}
+	_mainWindow.display();
 
 }
 
 
-void GameEngine::testDelegates()
+void GameEngine::startDelegates()
 {
 	ClassObserver classObserver;
 
-	//auto connection1 = dispatcher.subscribe(MouseEvent::descriptor, mouseObserver);
 	auto connection1 = dispatcher.subscribe(MouseEvent::descriptor,
 		std::bind(&ClassObserver::handle,
 			classObserver,

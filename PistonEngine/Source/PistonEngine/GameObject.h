@@ -2,7 +2,13 @@
 
 #include <SFML/Graphics/Transform.hpp>
 #include "BaseComponent.h"
+#include "GraphicsComponent.h"
+#include "RigidBodyComponent.h"
+#include "TransformComponent.h"
+#include "AudioComponent.h"
+
 #include <vector>
+using namespace std;
 
 class GameObject
 {
@@ -12,11 +18,29 @@ public:
 
 	virtual void Update(float msec);
 
+	void SetParent(GameObject &p) { parent = &p; p.AddChild(this); }
 	void AddChild(GameObject* s);
 
-protected:
-	GameObject* parent;
-	std::vector<GameObject*> children;
+	void AddComponent(BaseComponent* componentToAdd);
+	BaseComponent* GetComponent(string componentToGet);
+  
+	//void SetLocalTransform(const sf::Transform &matrix) { localTransform = matrix; };
+	//sf::Transform GetLocalTransform() { return localTransform; }
+	sf::Transform GetWorldTransform() { return worldTransform; }
 
-	BaseComponent components[];
+	GraphicsComponent* Graphics;
+	RigidBodyComponent* RigidBody;
+	TransformComponent* Transform;
+	AudioComponent* Audio;
+
+	string name;
+
+protected:
+
+	GameObject* parent;
+	vector<GameObject*> children;
+	vector<BaseComponent*> components;
+
+	//sf::Transform localTransform;
+	sf::Transform worldTransform;
 };

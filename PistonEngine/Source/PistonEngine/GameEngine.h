@@ -11,9 +11,16 @@
 #include "Dispatcher.h"
 #include "Connection.h"
 #include "SplashScreen.h"
+#include "GameObjectManager.h"
 #include "GameObject.h"
+#include "RigidBodyComponent.h"
+#include "GraphicsComponent.h"
+#include "TransformComponent.h"
+#include "AudioComponent.h"
 
-
+#include <lua.hpp>
+#define SOL_ALL_SAFETIES_ON 1
+#include <sol.hpp>
 
 
 
@@ -34,21 +41,22 @@ public:
 	GameState _gameState;
 
 	Dispatcher dispatcher;
+
+	GameObjectManager _gameObjectManager;
+	sf::Clock _clock;
+	
 private:
 	const float diskSpaceNeeded = 300;
 
 	static bool IsExiting();
-	static void GameLoop(sf::RenderWindow& _mainWindow);
+	void GameLoop(sf::RenderWindow& _mainWindow);
 
-
-	//Problem seems to be here, i dunno
-	//sf::RenderWindow& _mainWindow;
-
-	//void CreateGameWindow(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow);
 	bool checksPassed = true;
 	void ReadCPUSpeed();
 	void ReadCPUArch();
 	bool CheckStorage(const float diskSpaceNeeded);
 	bool CheckMemory(const DWORDLONG physNeed, const DWORDLONG virtNeed);
-	void testDelegates();
+	void startDelegates();
+
+	
 };
