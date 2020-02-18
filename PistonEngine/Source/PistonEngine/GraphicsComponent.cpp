@@ -5,6 +5,12 @@ GraphicsComponent::GraphicsComponent()
 	name = "GraphicsComponent";
 }
 
+GraphicsComponent::GraphicsComponent(string textureLocation)
+{
+	name = "GraphicsComponent";
+	SetTexture(textureLocation);
+}
+
 GraphicsComponent::~GraphicsComponent(void)
 {
 }
@@ -27,5 +33,5 @@ sf::Sprite GraphicsComponent::GetSprite()
 
 void GraphicsComponent::Update(float dt)
 {
-	_sprite.move(sf::Vector2f(0.1f, 0.1f));
+	//_sprite.setPosition(0.f, 0.f);
 }

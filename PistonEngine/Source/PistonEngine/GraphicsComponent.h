@@ -3,6 +3,7 @@
 #include "SFML/Graphics.hpp"
 
 using namespace std;
+class GameObject;
 
 class GraphicsComponent : public BaseComponent
 {
@@ -13,13 +14,15 @@ private:
 
 public:
 	GraphicsComponent();
+	GraphicsComponent(string textureLocation);
+
 	~GraphicsComponent(void);
 
 	void SetTexture(string textureLocation);
 
 	sf::Sprite GetSprite();
-	virtual void Update(float dt);
 
+	virtual void Update(float dt);
 };
 
 

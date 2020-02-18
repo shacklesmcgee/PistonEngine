@@ -1,8 +1,6 @@
 #include <chrono>
 #include <thread>
 #include "GameEngine.h"
-#include "TransformComponent.h"
-
 
 using namespace std;
 
@@ -24,7 +22,7 @@ bool GameEngine::Initialize(sf::RenderWindow& _mainWindow)
 
 	sol::state lua;
 	lua.open_libraries(sol::lib::base);
-	lua.script_file("Scripts/settings.lua");
+	lua.script_file("Milestone1/settings.lua");
 	bool isfullscreen = lua["config"]["fullscreen"];
 	int xRes = lua["config"]["resolution"]["x"];
 	int yRes = lua["config"]["resolution"]["y"];
@@ -74,8 +72,13 @@ void GameEngine::Start(sf::RenderWindow& _mainWindow)
 
 	//Creating an object
 	_gameObjectManager.Create("ball");
-	_gameObjectManager.GetGameObject("ball")->AddComponent(new GraphicsComponent());
-	_gameObjectManager.GetGameObject("ball")->Graphics->SetTexture("../../Assets/ball.png");
+	_gameObjectManager.GetGameObject("ball")->AddComponent(new GraphicsComponent("../../Assets/ball.png"));
+
+	_gameObjectManager.GetGameObject("ball")->AddComponent(new TransformComponent());
+
+	//test the audio component
+	_gameObjectManager.GetGameObject("ball")->AddComponent(new AudioComponent("Milestone1/bump.wav"));
+	_gameObjectManager.GetGameObject("ball")->Audio->PlayAudio();
 
 	while (_mainWindow.isOpen())
 	{
@@ -84,6 +87,16 @@ void GameEngine::Start(sf::RenderWindow& _mainWindow)
 		{
 			if (event.type == sf::Event::Closed)
 				_mainWindow.close();
+
+			if (event.type == sf::Event::MouseButtonPressed)
+			{
+				if (event.mouseButton.button == sf::Mouse::Left)
+					MouseEvent(true, 0);
+
+				else if (event.mouseButton.button == sf::Mouse::Right)
+					MouseEvent(true, 1);
+			}
+				
 		}
 		GameLoop(_mainWindow);
 	}
@@ -96,11 +109,18 @@ void GameEngine::GameLoop(sf::RenderWindow& _mainWindow)
 	_mainWindow.clear();
 
 	for (auto const& value : _gameObjectManager.GetAllGameObjects()) {
+
+		//test the transform component
+		//value->Transform->setScale(value->Transform->getScale() / 2.f);
+		//value->Transform->setRotation(0.1f);
+		value->Transform->setLocation(0.01f, 0.01f);
+
 		value->Update(dt.asMilliseconds());
 
 		if (value->Graphics)
 		{
-			_mainWindow.draw(value->Graphics->GetSprite());
+			//test the graphics component
+			_mainWindow.draw(value->Graphics->GetSprite(), value->Transform->GetTransform());
 		}
 	}
 	_mainWindow.display();

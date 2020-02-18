@@ -1,16 +1,34 @@
 #pragma once
 #include "BaseComponent.h"
+#include "SFML/Graphics/Transform.hpp"
+#include <SFML/System/Vector2.hpp>
 
-class TransformComponent : BaseComponent
+class TransformComponent : public BaseComponent
 {
 public:
 	TransformComponent();
 	~TransformComponent();
 
-protected:
-	std::vector <float> position;
+	virtual void Update(float dt);
 
-public:
-	std::vector<float> getPosition();
-	void setPosition(std::vector<float> newLocation);
+	sf::Vector2f getLocation() { return location; };
+	float getRotation() { return rotation; };
+	sf::Vector2f getScale() { return scale; };
+	sf::Transform GetTransform() { return transform; };
+
+	void setLocation(sf::Vector2f newLocation);
+	void setLocation(float x, float y);
+	void setRotation(float newRotation);
+	void setScale(sf::Vector2f newScale);
+	void setScale(float x, float y);
+	void setTransform(sf::Transform newTransform);
+
+protected:
+	sf::Vector2f location;
+	float rotation;
+	sf::Vector2f scale;
+	sf::Transform transform;
+
+
+
 };
