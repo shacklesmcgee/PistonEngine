@@ -18,10 +18,14 @@ public:
 
 	void setLocation(sf::Vector2f newLocation);
 	void setLocation(float x, float y);
-	void setRotation(float newRotation);
+	void setRotation(float newRotation, sf::Vector2f newOrigin);
 	void setScale(sf::Vector2f newScale);
 	void setScale(float x, float y);
+
 	void setTransform(sf::Transform newTransform);
+
+
+
 
 protected:
 	sf::Vector2f location;
@@ -29,6 +33,6 @@ protected:
 	sf::Vector2f scale;
 	sf::Transform transform;
 
-
+	sf::Vector2f origin;
 
 };

@@ -34,9 +34,10 @@ void TransformComponent::setLocation(float x, float y)
 	location.y = y;
 }
 
-void TransformComponent::setRotation(float newRotation)
+void TransformComponent::setRotation(float newRotation, sf::Vector2f newOrigin)
 {
 	rotation = newRotation;
+	origin = newOrigin;
 }
 
 void TransformComponent::setScale(sf::Vector2f newScale)
@@ -58,6 +59,7 @@ void TransformComponent::setTransform(sf::Transform newTransform)
 void TransformComponent::Update(float dt)
 {
 	transform.scale(scale);
-	transform.rotate(rotation, 0.0f, 0.0f);
+	transform.rotate(rotation, origin);
 	transform.translate(location);	
+
 }

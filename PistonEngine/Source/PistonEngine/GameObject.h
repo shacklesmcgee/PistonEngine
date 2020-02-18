@@ -18,7 +18,7 @@ public:
 
 	virtual void Update(float msec);
 
-	void SetParent(GameObject &p) { parent = &p; }
+	void SetParent(GameObject &p) { parent = &p; p.AddChild(this); }
 	void AddChild(GameObject* s);
 
 	void AddComponent(BaseComponent* componentToAdd);

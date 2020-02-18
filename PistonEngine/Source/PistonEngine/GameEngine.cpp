@@ -72,13 +72,25 @@ void GameEngine::Start(sf::RenderWindow& _mainWindow)
 
 	//Creating an object
 	_gameObjectManager.Create("ball");
-	_gameObjectManager.GetGameObject("ball")->AddComponent(new GraphicsComponent("../../Assets/ball.png"));
 
+	//Create graphics component
+	_gameObjectManager.GetGameObject("ball")->AddComponent(new GraphicsComponent("../../Assets/ball.png"));
+	//Create transform component
 	_gameObjectManager.GetGameObject("ball")->AddComponent(new TransformComponent());
+	//Create audio component
+	_gameObjectManager.GetGameObject("ball")->AddComponent(new AudioComponent("Milestone1/bump.wav"));
 
 	//test the audio component
-	_gameObjectManager.GetGameObject("ball")->AddComponent(new AudioComponent("Milestone1/bump.wav"));
 	_gameObjectManager.GetGameObject("ball")->Audio->PlayAudio();
+
+	//Creating an 2nd object
+	_gameObjectManager.Create("ball2");
+	_gameObjectManager.GetGameObject("ball2")->SetParent(*_gameObjectManager.GetGameObject("ball"));
+
+	//Create graphics component
+	_gameObjectManager.GetGameObject("ball2")->AddComponent(new GraphicsComponent("../../Assets/ball2.png"));
+	//Create transform component
+	_gameObjectManager.GetGameObject("ball2")->AddComponent(new TransformComponent());
 
 	while (_mainWindow.isOpen())
 	{
@@ -112,17 +124,21 @@ void GameEngine::GameLoop(sf::RenderWindow& _mainWindow)
 
 	for (auto const& value : _gameObjectManager.GetAllGameObjects()) {
 
-		//test the transform component
-		//value->Transform->setScale(value->Transform->getScale() / 2.f);
-		//value->Transform->setRotation(0.1f);
-		value->Transform->setLocation(0.01f, 0.01f);
+		//test the transform component and scene manager
+		if (value->name == "ball")
+			value->Transform->setLocation(0.01f, 0.01f);
+		else if (value->name == "ball2")
+		{
+			value->Graphics->setOrigin((sf::Vector2f)value->Graphics->GetSprite().getTexture()->getSize());
+			value->Transform->setRotation(0.01f, value->Graphics->getOrigin());
+		}
 
 		value->Update(dt.asMilliseconds());
 
 		if (value->Graphics)
 		{
 			//test the graphics component
-			_mainWindow.draw(value->Graphics->GetSprite(), value->Transform->GetTransform());
+			_mainWindow.draw(value->Graphics->GetSprite(), value->GetWorldTransform());
 		}
 	}
 	_mainWindow.display();
