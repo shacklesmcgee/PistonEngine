@@ -91,10 +91,12 @@ void GameEngine::Start(sf::RenderWindow& _mainWindow)
 			if (event.type == sf::Event::MouseButtonPressed)
 			{
 				if (event.mouseButton.button == sf::Mouse::Left)
-					MouseEvent(true, 0);
+					dispatcher.post(MouseEvent(true, 0));
+					//MouseEvent(true, 0);
 
 				else if (event.mouseButton.button == sf::Mouse::Right)
-					MouseEvent(true, 1);
+					dispatcher.post(MouseEvent(true, 1));
+					//MouseEvent(true, 1);
 			}
 				
 		}
