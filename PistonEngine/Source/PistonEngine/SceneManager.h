@@ -8,11 +8,11 @@
 
 using namespace std;
 
-class GameObjectManager
+class SceneManager
 {
 public:
-	GameObjectManager();
-	~GameObjectManager();
+	SceneManager();
+	~SceneManager();
 	GameObject* CreateDefault();
 	GameObject* Create(string _name);
 	virtual void Update(float msec);

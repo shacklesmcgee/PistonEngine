@@ -6,6 +6,7 @@
 #include "RigidBodyComponent.h"
 #include "TransformComponent.h"
 #include "AudioComponent.h"
+#include "ScriptComponent.h"
 
 #include <vector>
 using namespace std;
@@ -32,6 +33,7 @@ public:
 	RigidBodyComponent* RigidBody;
 	TransformComponent* Transform;
 	AudioComponent* Audio;
+	ScriptComponent* Script;
 
 	string GetName() { return name; };
 	void SetName(string _newName);

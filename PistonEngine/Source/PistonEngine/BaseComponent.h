@@ -14,5 +14,6 @@ public:
 	std::string name;
 
 	virtual void Update(float dt) {};
+	GameObject* owner;
 
 };

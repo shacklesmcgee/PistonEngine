@@ -16,6 +16,7 @@ void GameObject::AddChild(GameObject * s)
 
 void GameObject::AddComponent(BaseComponent* componentToAdd)
 {
+	componentToAdd->owner = this;
 	components.push_back(componentToAdd);
 
 	if (componentToAdd->name == "GraphicsComponent")
@@ -31,6 +32,11 @@ void GameObject::AddComponent(BaseComponent* componentToAdd)
 	else if (componentToAdd->name == "AudioComponent")
 	{
 		Audio = static_cast<AudioComponent*>(componentToAdd);
+	}
+
+	else if (componentToAdd->name == "ScriptComponent")
+	{
+		Script = static_cast<ScriptComponent*>(componentToAdd);
 	}
 }
 

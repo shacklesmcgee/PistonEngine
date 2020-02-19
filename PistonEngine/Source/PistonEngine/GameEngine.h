@@ -11,12 +11,13 @@
 #include "Dispatcher.h"
 #include "Connection.h"
 #include "SplashScreen.h"
-#include "GameObjectManager.h"
+#include "SceneManager.h"
 #include "GameObject.h"
 #include "RigidBodyComponent.h"
 #include "GraphicsComponent.h"
 #include "TransformComponent.h"
 #include "AudioComponent.h"
+#include "ScriptComponent.h"
 
 #include <lua.hpp>
 #define SOL_ALL_SAFETIES_ON 1
@@ -35,14 +36,15 @@ public:
 	~GameEngine();
 
 	bool Initialize(sf::RenderWindow& _mainWindow);
-	void Start(sf::RenderWindow& _mainWindow);
+	virtual void Start(sf::RenderWindow& _mainWindow);
+	virtual void Update(sf::RenderWindow& _mainWindow);
 
 	enum GameState { Uninitialized, ShowingSplash, Paused, ShowingMenu, Playing, Exiting };
 	GameState _gameState;
 
 	Dispatcher dispatcher;
 
-	GameObjectManager _gameObjectManager;
+	SceneManager _sceneManager;
 	sf::Clock _clock;
 	
 	sol::state lua;
@@ -51,9 +53,6 @@ public:
 private:
 	const float diskSpaceNeeded = 300;
 
-	static bool IsExiting();
-	void GameLoop(sf::RenderWindow& _mainWindow);
-
 	bool checksPassed = true;
 	void ReadCPUSpeed();
 	void ReadCPUArch();
@@ -61,5 +60,6 @@ private:
 	bool CheckMemory(const DWORDLONG physNeed, const DWORDLONG virtNeed);
 	void startDelegates();
 
+	//sf::RenderWindow mainWindow;
 	
 };

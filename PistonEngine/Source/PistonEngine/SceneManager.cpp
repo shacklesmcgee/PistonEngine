@@ -1,20 +1,20 @@
-#include "GameObjectManager.h"
+#include "SceneManager.h"
 
 
-GameObjectManager::GameObjectManager()
+SceneManager::SceneManager()
 {
 	//sol::state lua;
 
-	//lua.set("GameObjectManager", this);
-	//lua["CreateObject"] = &GameObjectManager::Create;
+	//lua.set("SceneManager", this);
+	//lua["CreateObject"] = &SceneManager::Create;
 	//lua.script_file("Assets/test.lua");
 }
 
-GameObjectManager::~GameObjectManager()
+SceneManager::~SceneManager()
 {
 }
 
-//GameObject* GameObjectManager::CreateDefault()
+//GameObject* SceneManager::CreateDefault()
 //{
 //	GameObject* _gameObject = new GameObject();
 //	_gameObjects.push_back(_gameObject);
@@ -22,7 +22,7 @@ GameObjectManager::~GameObjectManager()
 //	return _gameObject;
 //}
 
-GameObject* GameObjectManager::Create(string _newName)
+GameObject* SceneManager::Create(string _newName)
 {
 	GameObject* _gameObject = new GameObject();
 	_gameObject->SetName(_newName);
@@ -31,7 +31,7 @@ GameObject* GameObjectManager::Create(string _newName)
 	return _gameObject;
 }
 
-void GameObjectManager::Update(float msec)
+void SceneManager::Update(float msec)
 {
 	for (auto const& value : _gameObjects)
 	{
@@ -41,7 +41,7 @@ void GameObjectManager::Update(float msec)
 
 
 
-GameObject* GameObjectManager::GetGameObject(string _name)
+GameObject* SceneManager::GetGameObject(string _name)
 {
 	GameObject* obj = NULL;
 
@@ -56,7 +56,7 @@ GameObject* GameObjectManager::GetGameObject(string _name)
 	return obj;
 }
 
-vector<GameObject*> GameObjectManager::GetAllGameObjects()
+vector<GameObject*> SceneManager::GetAllGameObjects()
 {
 	return _gameObjects;
 }

@@ -73,35 +73,26 @@ void GameEngine::Start(sf::RenderWindow& _mainWindow)
 
 	_gameState = GameEngine::Playing;
 
-	//Creating an object
-	GameObject* ball = _gameObjectManager.Create("ball");
-	//Create graphics component
-	ball->AddComponent(new GraphicsComponent("Assets/ball.png"));
-	//Create transform component
-	ball->AddComponent(new TransformComponent());
-	//Create audio component
-	ball->AddComponent(new AudioComponent("Assets/bump.wav"));
-	//test the audio component
-	ball->Audio->PlayAudio();
-
-	//Creating an 2nd object
-	GameObject* ball2 = _gameObjectManager.Create("ball2");
-	ball2->SetParent(*_gameObjectManager.GetGameObject("ball"));
-	//Create graphics component
-	ball2->AddComponent(new GraphicsComponent("Assets/ball2.png"));
-	//Create transform component
-	ball2->AddComponent(new TransformComponent());
-	ball2->Graphics->setOrigin((sf::Vector2f)_gameObjectManager.GetGameObject("ball2")->Graphics->GetSprite().getTexture()->getSize());
-
+	//// //// CREATE YOUR GAME HERE //// ////
+	
+	//// //// PLACE YOUR GAME START FUNCTION HERE //// ////
 
 	lua.set("GameEngine", this);
 	lua["PrintInt"] = &GameEngine::PrintInt;
-	lua.script_file("Assets/ball3.lua");
 
-	lua.set("GameObjectManager", this);
-	lua["CreateObject"] = &GameObjectManager::Create;
-	lua.script_file("Assets/test.lua");
+	//Creating an object
+	GameObject* ball = _sceneManager.Create("ball");
+	ball->AddComponent(new TransformComponent(lua));
+	ball->AddComponent(new GraphicsComponent("Assets/ball.png", lua));
+	//ball->AddComponent(new AudioComponent("Assets/bump.wav"));
+	ball->AddComponent(new ScriptComponent("Assets/ball1.lua", lua));
 
+	//Creating an 2nd object
+	GameObject* ball2 = _sceneManager.Create("ball2");
+	ball2->SetParent(*ball);
+	ball2->AddComponent(new GraphicsComponent("Assets/ball2.png", lua));
+	ball2->AddComponent(new TransformComponent(lua));
+	ball2->AddComponent(new ScriptComponent("Assets/ball2.lua", lua));
 
 	while (_mainWindow.isOpen())
 	{
@@ -115,42 +106,27 @@ void GameEngine::Start(sf::RenderWindow& _mainWindow)
 			{
 				if (event.mouseButton.button == sf::Mouse::Left)
 					dispatcher.post(MouseEvent(true, 0));
-
-				else if (event.mouseButton.button == sf::Mouse::Right)
-					ball->Audio->PlayAudio();
-			}
-				
+			}		
 		}
-		GameLoop(_mainWindow);
+		Update(_mainWindow);
 	}
 }
 
 
-void GameEngine::GameLoop(sf::RenderWindow& _mainWindow)
+void GameEngine::Update(sf::RenderWindow& _mainWindow)
 {
 	sf::Time dt = _clock.restart();
 	_mainWindow.clear();
 
-	_gameObjectManager.Update(dt.asMilliseconds());
+	_sceneManager.Update(dt.asMilliseconds());
 
-	for (auto const& value : _gameObjectManager.GetAllGameObjects()) {
-
-		//test the transform component and scene manager
-		if (value->GetName() == "ball")
-			value->Transform->setLocation(0.01f, 0.01f);
-
-		else if (value->GetName() == "ball2")
-			value->Transform->setRotation(0.01f, value->Graphics->getOrigin());
-
+	for (auto const& value : _sceneManager.GetAllGameObjects()) {
 		if (value->Graphics)
 		{
-			//test the graphics component
 			_mainWindow.draw(value->Graphics->GetSprite(), value->GetWorldTransform());
 		}
 	}
-	
 	_mainWindow.display();
-
 }
 
 
