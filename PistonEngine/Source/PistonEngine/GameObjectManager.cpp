@@ -1,26 +1,52 @@
 #include "GameObjectManager.h"
 
-void GameObjectManager::Create(string _name)
+
+GameObjectManager::GameObjectManager()
+{
+	//sol::state lua;
+
+	//lua.set("GameObjectManager", this);
+	//lua["CreateObject"] = &GameObjectManager::Create;
+	//lua.script_file("Assets/test.lua");
+}
+
+GameObjectManager::~GameObjectManager()
+{
+}
+
+//GameObject* GameObjectManager::CreateDefault()
+//{
+//	GameObject* _gameObject = new GameObject();
+//	_gameObjects.push_back(_gameObject);
+//
+//	return _gameObject;
+//}
+
+GameObject* GameObjectManager::Create(string _newName)
 {
 	GameObject* _gameObject = new GameObject();
-	_gameObject->name = _name;
+	_gameObject->SetName(_newName);
 	_gameObjects.push_back(_gameObject);
+
+	return _gameObject;
 }
 
 void GameObjectManager::Update(float msec)
 {
-	for (std::vector<GameObject*>::iterator i = _gameObjects.begin(); i != _gameObjects.end(); ++i)
+	for (auto const& value : _gameObjects)
 	{
-		(*i)->Update(msec);
+		value->Update(msec);
 	}
 }
+
+
 
 GameObject* GameObjectManager::GetGameObject(string _name)
 {
 	GameObject* obj = NULL;
 
 	for (auto const& value : _gameObjects) {
-		if (value->name == _name)
+		if (value->GetName() == _name)
 		{
 			obj = value;
 			break;

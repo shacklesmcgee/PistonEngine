@@ -49,13 +49,17 @@ BaseComponent* GameObject::GetComponent(string componentToGet)
 	return comp;
 }
 
+void GameObject::SetName(string _newName)
+{
+	name = _newName;
+}
+
 void GameObject::Update(float msec)
 {
+	
 	for (auto const& value : components) {
 		value->Update(msec);
 	}
-
-	//Graphics->Update(msec, Transform->GetTransform());
 
 	if (parent)
 	{
@@ -67,9 +71,9 @@ void GameObject::Update(float msec)
 		worldTransform = Transform->GetTransform();
 	}
 
-	for (auto const& value : children) {
-		value->Update(msec);
-	}
+	//for (auto const& value : children) {
+	//	value->Update(msec);
+	//}
 
 	
 }

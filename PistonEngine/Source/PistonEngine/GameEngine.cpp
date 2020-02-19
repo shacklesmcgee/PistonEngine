@@ -19,13 +19,13 @@ GameEngine::~GameEngine()
 
 bool GameEngine::Initialize(sf::RenderWindow& _mainWindow)
 {
-
-	sol::state lua;
 	lua.open_libraries(sol::lib::base);
-	lua.script_file("Milestone1/settings.lua");
+
+	lua.script_file("Assets/settings.lua");
 	bool isfullscreen = lua["config"]["fullscreen"];
 	int xRes = lua["config"]["resolution"]["x"];
 	int yRes = lua["config"]["resolution"]["y"];
+
 	_mainWindow.create(sf::VideoMode(xRes, yRes, 32), "Piston Engine");
 
 	SplashScreen _splash;
@@ -54,7 +54,7 @@ bool GameEngine::Initialize(sf::RenderWindow& _mainWindow)
 	ReadCPUArch();
 	startDelegates();
 	
-	//sleeping for 3 seconds to show off splash screen
+	//sleeping for x seconds to show off splash screen
 	//std::this_thread::sleep_for(std::chrono::seconds(2));
 	_gameState = GameState::Uninitialized;
 	
@@ -62,6 +62,9 @@ bool GameEngine::Initialize(sf::RenderWindow& _mainWindow)
 
 }
 
+void GameEngine::PrintInt(int value) {
+	std::cout << "Something" << value << std::endl;
+}
 
 void GameEngine::Start(sf::RenderWindow& _mainWindow)
 {
@@ -71,26 +74,34 @@ void GameEngine::Start(sf::RenderWindow& _mainWindow)
 	_gameState = GameEngine::Playing;
 
 	//Creating an object
-	_gameObjectManager.Create("ball");
-
+	GameObject* ball = _gameObjectManager.Create("ball");
 	//Create graphics component
-	_gameObjectManager.GetGameObject("ball")->AddComponent(new GraphicsComponent("../../Assets/ball.png"));
+	ball->AddComponent(new GraphicsComponent("Assets/ball.png"));
 	//Create transform component
-	_gameObjectManager.GetGameObject("ball")->AddComponent(new TransformComponent());
+	ball->AddComponent(new TransformComponent());
 	//Create audio component
-	_gameObjectManager.GetGameObject("ball")->AddComponent(new AudioComponent("Milestone1/bump.wav"));
-
+	ball->AddComponent(new AudioComponent("Assets/bump.wav"));
 	//test the audio component
-	_gameObjectManager.GetGameObject("ball")->Audio->PlayAudio();
+	ball->Audio->PlayAudio();
 
 	//Creating an 2nd object
-	_gameObjectManager.Create("ball2");
-	_gameObjectManager.GetGameObject("ball2")->SetParent(*_gameObjectManager.GetGameObject("ball"));
-
+	GameObject* ball2 = _gameObjectManager.Create("ball2");
+	ball2->SetParent(*_gameObjectManager.GetGameObject("ball"));
 	//Create graphics component
-	_gameObjectManager.GetGameObject("ball2")->AddComponent(new GraphicsComponent("../../Assets/ball2.png"));
+	ball2->AddComponent(new GraphicsComponent("Assets/ball2.png"));
 	//Create transform component
-	_gameObjectManager.GetGameObject("ball2")->AddComponent(new TransformComponent());
+	ball2->AddComponent(new TransformComponent());
+	ball2->Graphics->setOrigin((sf::Vector2f)_gameObjectManager.GetGameObject("ball2")->Graphics->GetSprite().getTexture()->getSize());
+
+
+	lua.set("GameEngine", this);
+	lua["PrintInt"] = &GameEngine::PrintInt;
+	lua.script_file("Assets/ball3.lua");
+
+	lua.set("GameObjectManager", this);
+	lua["CreateObject"] = &GameObjectManager::Create;
+	lua.script_file("Assets/test.lua");
+
 
 	while (_mainWindow.isOpen())
 	{
@@ -104,11 +115,9 @@ void GameEngine::Start(sf::RenderWindow& _mainWindow)
 			{
 				if (event.mouseButton.button == sf::Mouse::Left)
 					dispatcher.post(MouseEvent(true, 0));
-					//MouseEvent(true, 0);
 
 				else if (event.mouseButton.button == sf::Mouse::Right)
-					dispatcher.post(MouseEvent(true, 1));
-					//MouseEvent(true, 1);
+					ball->Audio->PlayAudio();
 			}
 				
 		}
@@ -122,18 +131,16 @@ void GameEngine::GameLoop(sf::RenderWindow& _mainWindow)
 	sf::Time dt = _clock.restart();
 	_mainWindow.clear();
 
+	_gameObjectManager.Update(dt.asMilliseconds());
+
 	for (auto const& value : _gameObjectManager.GetAllGameObjects()) {
 
 		//test the transform component and scene manager
-		if (value->name == "ball")
+		if (value->GetName() == "ball")
 			value->Transform->setLocation(0.01f, 0.01f);
-		else if (value->name == "ball2")
-		{
-			value->Graphics->setOrigin((sf::Vector2f)value->Graphics->GetSprite().getTexture()->getSize());
-			value->Transform->setRotation(0.01f, value->Graphics->getOrigin());
-		}
 
-		value->Update(dt.asMilliseconds());
+		else if (value->GetName() == "ball2")
+			value->Transform->setRotation(0.01f, value->Graphics->getOrigin());
 
 		if (value->Graphics)
 		{
@@ -141,6 +148,7 @@ void GameEngine::GameLoop(sf::RenderWindow& _mainWindow)
 			_mainWindow.draw(value->Graphics->GetSprite(), value->GetWorldTransform());
 		}
 	}
+	
 	_mainWindow.display();
 
 }

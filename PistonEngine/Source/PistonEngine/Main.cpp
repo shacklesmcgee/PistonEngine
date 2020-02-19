@@ -13,9 +13,6 @@ int main()
 		//game engine start
 		gameEngine.Start(mainWindow);
 	}
-		gameEngine.Start(mainWindow);
-
-	//if (!gameEngine.Initialize(hInstance, hPrevInstance, lpCmdLine, nCmdShow))
 
 	return 0;
 }

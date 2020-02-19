@@ -45,6 +45,9 @@ public:
 	GameObjectManager _gameObjectManager;
 	sf::Clock _clock;
 	
+	sol::state lua;
+
+	void PrintInt(int value);
 private:
 	const float diskSpaceNeeded = 300;
 

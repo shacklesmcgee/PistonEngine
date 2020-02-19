@@ -33,7 +33,8 @@ public:
 	TransformComponent* Transform;
 	AudioComponent* Audio;
 
-	string name;
+	string GetName() { return name; };
+	void SetName(string _newName);
 
 protected:
 
@@ -43,4 +44,6 @@ protected:
 
 	//sf::Transform localTransform;
 	sf::Transform worldTransform;
+
+	string name;
 };

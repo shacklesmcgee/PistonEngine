@@ -15,8 +15,7 @@ TransformComponent::TransformComponent()
 	transform.rotate(rotation, 0.0f, 0.0f);
 	transform.scale(scale);
 
-	name = "TransformComponent";
-	owner = NULL;
+	name = "TransformComponent";	
 }
 
 TransformComponent::~TransformComponent()
