@@ -44,7 +44,7 @@
     <ClCompile Include="ScriptComponent.cpp">
       <Filter>PistonEngine\Components</Filter>
     </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
+    <ClCompile Include="GameObjectManager.cpp">
       <Filter>PistonEngine</Filter>
     </ClCompile>
   </ItemGroup>
@@ -95,7 +95,7 @@
     <ClInclude Include="ScriptComponent.h">
       <Filter>PistonEngine\Components</Filter>
     </ClInclude>
-    <ClInclude Include="SceneManager.h">
+    <ClInclude Include="GameObjectManager.h">
       <Filter>PistonEngine</Filter>
     </ClInclude>
   </ItemGroup>

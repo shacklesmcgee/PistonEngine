@@ -160,7 +160,7 @@
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="GraphicsComponent.cpp" />
     <ClCompile Include="InputComponentInterface.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -180,7 +180,7 @@
     <ClInclude Include="Event.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameObject.h" />
-    <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="GraphicsComponent.h" />
     <ClInclude Include="InputComponentInterface.h" />
     <ClInclude Include="MouseEvent.h" />

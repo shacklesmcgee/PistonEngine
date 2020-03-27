@@ -81,14 +81,14 @@ void GameEngine::Start(sf::RenderWindow& _mainWindow)
 	lua["PrintInt"] = &GameEngine::PrintInt;
 
 	//Creating an object
-	GameObject* ball = _sceneManager.Create("ball");
+	GameObject* ball = _gameObjectManager.Create("ball");
 	ball->AddComponent(new TransformComponent(lua));
 	ball->AddComponent(new GraphicsComponent("Assets/ball.png", lua));
 	//ball->AddComponent(new AudioComponent("Assets/bump.wav"));
 	ball->AddComponent(new ScriptComponent("Assets/ball1.lua", lua));
 
 	//Creating an 2nd object
-	GameObject* ball2 = _sceneManager.Create("ball2");
+	GameObject* ball2 = _gameObjectManager.Create("ball2");
 	ball2->SetParent(*ball);
 	ball2->AddComponent(new GraphicsComponent("Assets/ball2.png", lua));
 	ball2->AddComponent(new TransformComponent(lua));
@@ -118,9 +118,9 @@ void GameEngine::Update(sf::RenderWindow& _mainWindow)
 	sf::Time dt = _clock.restart();
 	_mainWindow.clear();
 
-	_sceneManager.Update(dt.asMilliseconds());
+	_gameObjectManager.Update(dt.asMilliseconds());
 
-	for (auto const& value : _sceneManager.GetAllGameObjects()) {
+	for (auto const& value : _gameObjectManager.GetAllGameObjects()) {
 		if (value->Graphics)
 		{
 			_mainWindow.draw(value->Graphics->GetSprite(), value->GetWorldTransform());

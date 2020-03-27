@@ -11,7 +11,7 @@
 #include "Dispatcher.h"
 #include "Connection.h"
 #include "SplashScreen.h"
-#include "SceneManager.h"
+#include "GameObjectManager.h"
 #include "GameObject.h"
 #include "RigidBodyComponent.h"
 #include "GraphicsComponent.h"
@@ -44,7 +44,7 @@ public:
 
 	Dispatcher dispatcher;
 
-	SceneManager _sceneManager;
+	GameObjectManager _gameObjectManager;
 	sf::Clock _clock;
 	
 	sol::state lua;
