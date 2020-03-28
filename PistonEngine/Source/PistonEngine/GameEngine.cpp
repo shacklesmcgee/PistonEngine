@@ -80,6 +80,8 @@ void GameEngine::Start(sf::RenderWindow& _mainWindow)
 	lua.set("GameEngine", this);
 	lua["PrintInt"] = &GameEngine::PrintInt;
 
+	_sceneManager.LoadScene();
+
 	//Creating an object
 	GameObject* ball = _gameObjectManager.Create("ball");
 	ball->AddComponent(new TransformComponent(lua));
