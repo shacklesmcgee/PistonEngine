@@ -44,10 +44,12 @@
     <ClCompile Include="ScriptComponent.cpp">
       <Filter>PistonEngine\Components</Filter>
     </ClCompile>
-    <ClCompile Include="GameObjectManager.cpp">
+    <ClCompile Include="SceneManager.cpp">
       <Filter>PistonEngine</Filter>
     </ClCompile>
-    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="InputEvent.cpp">
+      <Filter>PistonEngine\Event System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseComponent.h">
@@ -96,10 +98,12 @@
     <ClInclude Include="ScriptComponent.h">
       <Filter>PistonEngine\Components</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjectManager.h">
+    <ClInclude Include="SceneManager.h">
       <Filter>PistonEngine</Filter>
     </ClInclude>
-    <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="InputEvent.h">
+      <Filter>PistonEngine\Event System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="PistonEngine">

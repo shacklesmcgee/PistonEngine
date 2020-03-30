@@ -1,20 +1,18 @@
 #include "TransformComponent.h"
+#include "GameObject.h"
 
 TransformComponent::TransformComponent(sol::state &_lua)
 {
-	location.x = 0.f;
-	location.y = 0.f;
+	location = sf::Vector2f(0.0f, 0.0f);
 	
-	rotation = 0.0f;
+	rotationAngle = 0.0f;
+	rotationPoint = sf::Vector2f(0.0f, 0.0f);
 
-	scale.x = 1.f;
-	scale.y = 1.f;
 
-	origin.x = 0.0f;
-	origin.y = 0.0f;
+	scale = sf::Vector2f(1.0f, 1.0f);
 
 	transform.translate(location);
-	transform.rotate(rotation, 0.0f, 0.0f);
+	transform.rotate(rotationAngle, rotationPoint);
 	transform.scale(scale);
 
 	name = "TransformComponent";	
@@ -26,49 +24,55 @@ TransformComponent::TransformComponent(sol::state &_lua)
 	_lua["Move"] = &TransformComponent::MoveF;
 
 	_lua["GetRotation"] = &TransformComponent::GetRotation;
-	_lua["SetRotation"] = &TransformComponent::SetRotation;
+	_lua["SetRotation"] = &TransformComponent::SetRotationF;
 	_lua["Rotate"] = &TransformComponent::Rotate;
+	_lua["RotateAroundPoint"] = &TransformComponent::RotateAroundPoint;
 
 	_lua["GetScale"] = &TransformComponent::GetScale;
 	_lua["SetScale"] = &TransformComponent::SetScaleF;
-	_lua["Scale"] = &TransformComponent::Scale;
-
-	//_lua.set_function("SetLocation", &TransformComponent::SetLocationF, this);
-
-	////_lua.set_function("GetOrigin", &TransformComponent::GetOrigin, this);
-	//_lua["GetOriginX"] = &TransformComponent::GetOriginX;
-	//_lua["GetOriginY"] = &TransformComponent::GetOriginY;
-	////_lua["SetOrigin"] = &TransformComponent::SetOrigin;
-
-	////_lua.set_function("GetOriginX", &TransformComponent::GetOriginX, this);
-	////_lua.set_function("GetOriginY", &TransformComponent::GetOriginY, this);
-	////_lua.set_function("SetOrigin", &TransformComponent::SetOriginF, this);
-
+	_lua["Scale"] = &TransformComponent::ScaleF;
 }
 
 TransformComponent::~TransformComponent()
 {
 }
 
+sf::Vector2f TransformComponent::GetLocation()
+{
+	return location;
+}
+
+void TransformComponent::SetByParent()
+{
+	location = GetOwner()->GetParent()->Transform->GetLocation();
+}
+
 void TransformComponent::SetLocation(sf::Vector2f newLocation)
 {
+	transform.translate(newLocation);
 	location = newLocation;
 }
 
 void TransformComponent::SetLocationF(float x, float y)
 {
 	transform.translate(x, y);
+	location = sf::Vector2f(x, y);
 }
 
 void TransformComponent::Move(sf::Vector2f direction)
 {
-	location = direction;
+	move = direction;
 }
 
 void TransformComponent::MoveF(float x, float y)
 {
-	location.x = x / 1000.f;
-	location.y = y / 1000.f;
+	move.x = x / 1000.f;
+	move.y = y / 1000.f;
+}
+
+float TransformComponent::GetRotation()
+{
+	return rotationAngle;
 }
 
 void TransformComponent::SetRotation(float newRotation, sf::Vector2f newOrigin)
@@ -76,16 +80,29 @@ void TransformComponent::SetRotation(float newRotation, sf::Vector2f newOrigin)
 	transform.rotate(newRotation, newOrigin);
 }
 
+void TransformComponent::SetRotationF(float newRotation)
+{
+	transform.rotate(newRotation, 0.0f, 0.0f);
+}
+
 void TransformComponent::Rotate(float newRotation)
 {
-	rotation = newRotation / 1000.f;
+	rotationAngle = newRotation / 1000.f;
+	rotationPoint = sf::Vector2f(0.f, 0.f);
 }
-//
-//void TransformComponent::RotateAroundPoint(float newRotation, sf::Vector2f point)
-//{
-//	rotation = newRotation / 1000.f;
-//	origin = point;
-//}
+
+void TransformComponent::RotateAroundPoint(float newRotation, float x, float y)
+{
+	rotationAngle = newRotation / 1000.f;
+	rotationPoint.x = x;
+	rotationPoint.y = y;
+}
+
+sf::Vector2f TransformComponent::GetScale()
+{
+	return scale;
+}
+
 void TransformComponent::SetScale(sf::Vector2f newScale)
 {
 	transform.scale(scale);
@@ -96,26 +113,10 @@ void TransformComponent::SetScaleF(float x, float y)
 	transform.scale(x, y);
 }
 
-void TransformComponent::Scale(sf::Vector2f newScale)
-{
-	scale = newScale;
-}
-
 void TransformComponent::ScaleF(float x, float y)
 {
-	scale.x = x;
-	scale.y = y;
-}
-
-void TransformComponent::SetOrigin(sf::Vector2f newOrigin)
-{
-	origin = newOrigin;
-}
-
-void TransformComponent::SetOriginF(float x, float y)
-{
-	origin.x = x;
-	origin.y = y;
+	scale.x = x / 1.09999;
+	scale.y = y / 1.09999;
 }
 
 void TransformComponent::SetTransform(sf::Transform newTransform)
@@ -126,6 +127,7 @@ void TransformComponent::SetTransform(sf::Transform newTransform)
 void TransformComponent::Update(float dt)
 {
 	transform.scale(scale);
-	transform.rotate(rotation, origin);
-	transform.translate(location);	
+	transform.rotate(rotationAngle, rotationPoint);
+	transform.translate(move);	
+
 }

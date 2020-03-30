@@ -2,6 +2,8 @@
 #define EVENT_H__
 
 #include <string>
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
 
 /**
   @class Event

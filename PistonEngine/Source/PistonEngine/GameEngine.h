@@ -11,14 +11,13 @@
 #include "Dispatcher.h"
 #include "Connection.h"
 #include "SplashScreen.h"
-#include "GameObjectManager.h"
+#include "SceneManager.h"
 #include "GameObject.h"
 #include "RigidBodyComponent.h"
 #include "GraphicsComponent.h"
 #include "TransformComponent.h"
 #include "AudioComponent.h"
 #include "ScriptComponent.h"
-#include "SceneManager.h"
 
 #include <lua.hpp>
 #define SOL_ALL_SAFETIES_ON 1
@@ -46,7 +45,6 @@ public:
 	Dispatcher dispatcher;
 
 	SceneManager _sceneManager;
-	GameObjectManager _gameObjectManager;
 	sf::Clock _clock;
 	
 	sol::state lua;

@@ -1,14 +1,72 @@
 {
-    "hello": "world",
-    "t": true ,
-    "f": false,
-    "n": null,
-    "i": 123,
-    "pi": 3.1416,
-    "a": [1, 2, 3, 4],
+    "GameObjects": [
+        {"GameObject1": [
+            {
+                "name": "root",
+                "transformComp": true,
+                "graphicsComp": false,
+                "scriptComp": true,
+                "parent": null,
 
-    "customer": [
-            {"id": "12345"},
-            {"name": "ben"}
+                "texture": null,
+                "script": "Assets/root.lua",
+
+                "positionX": 256,
+                "positionY": 256,
+
+                "rotationAngle": 0,
+                "rotationX": 0,
+                "rotationY": 0,
+
+                "scaleX": 1.0,
+                "scaleY": 1.0
+            }
+        ]},
+
+        {"GameObject2": [
+            {
+                "name": "earth",
+                "transformComp": true,
+                "graphicsComp": true,
+                "scriptComp": true,
+                "parent": "root",
+
+                "texture": "Assets/ball3.png",
+                "script": "Assets/ball1.lua",
+
+                "positionX": 0,
+                "positionY": 0,
+
+                "rotationAngle": 0,
+                "rotationX": 0,
+                "rotationY": 0,
+
+                "scaleX": 1.0,
+                "scaleY": 1.0
+            }
+        ]},
+
+        {"GameObject3": [
+            {
+                "name": "moon",
+                "transformComp": true,
+                "graphicsComp": true,
+                "scriptComp": true,
+                "parent": "root",
+
+                "texture": "Assets/ball4.png",
+                "script": "Assets/ball2.lua",
+
+                "positionX": 0,
+                "positionY": 0,
+
+                "rotationAngle": 0,
+                "rotationX": 0,
+                "rotationY": 0,
+
+                "scaleX": 0.5,
+                "scaleY": 0.5
+            }
+        ]}
     ]
 }

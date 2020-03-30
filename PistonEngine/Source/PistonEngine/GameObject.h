@@ -7,6 +7,7 @@
 #include "TransformComponent.h"
 #include "AudioComponent.h"
 #include "ScriptComponent.h"
+#include "sol.hpp"
 
 #include <vector>
 using namespace std;
@@ -14,13 +15,16 @@ using namespace std;
 class GameObject
 {
 public:
-	GameObject() { parent = NULL; }
+	GameObject(sol::state &_lua);
 	~GameObject(void);
 
 	virtual void Update(float msec);
 
-	void SetParent(GameObject &p) { parent = &p; p.AddChild(this); }
+	void SetParent(GameObject &p);
+	GameObject* GetParent();
+
 	void AddChild(GameObject* s);
+	vector<GameObject*> GetAllChildren();
 
 	void AddComponent(BaseComponent* componentToAdd);
 	BaseComponent* GetComponent(string componentToGet);
@@ -35,9 +39,10 @@ public:
 	AudioComponent* Audio;
 	ScriptComponent* Script;
 
-	string GetName() { return name; };
+	string GetName();
 	void SetName(string _newName);
 
+	sf::Transform worldTransform;
 protected:
 
 	GameObject* parent;
@@ -45,7 +50,7 @@ protected:
 	vector<BaseComponent*> components;
 
 	//sf::Transform localTransform;
-	sf::Transform worldTransform;
+
 
 	string name;
 };

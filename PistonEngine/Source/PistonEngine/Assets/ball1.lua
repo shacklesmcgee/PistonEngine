@@ -1,4 +1,16 @@
+--SetOrigin(Graphics, "TopLeft")
+--SetOrigin(Graphics, "TopCenter")
+--SetOrigin(Graphics, "TopRight")
+--SetOrigin(Graphics, "MiddleLeft")
+SetOrigin(Graphics, "MiddleCenter")
+--SetOrigin(Graphics, "MiddleRight")
+--SetOrigin(Graphics, "BottomLeft")
+--SetOrigin(Graphics, "BottomCenter")
+--SetOrigin(Graphics, "BottomRight")
 
-CentreOrigin(Graphics)
-SetLocation(Transform, 250.0, 250.0)
-Rotate(Transform, 5.0)
+--Rotate(Transform, 25.0)
+
+
+function MoveUp()
+    print(GetName(GameObject))
+end

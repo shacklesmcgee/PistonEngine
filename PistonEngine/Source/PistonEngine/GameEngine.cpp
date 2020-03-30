@@ -10,7 +10,6 @@ static TCHAR szTitle[] = _T("Piston Engine tester window");
 
 GameEngine::GameEngine()
 {
-
 }
 
 GameEngine::~GameEngine()
@@ -78,37 +77,44 @@ void GameEngine::Start(sf::RenderWindow& _mainWindow)
 	//// //// PLACE YOUR GAME START FUNCTION HERE //// ////
 
 	lua.set("GameEngine", this);
-	lua["PrintInt"] = &GameEngine::PrintInt;
 
-	_sceneManager.LoadScene();
+	_sceneManager.LoadScene(lua);
 
-	//Creating an object
-	GameObject* ball = _gameObjectManager.Create("ball");
-	ball->AddComponent(new TransformComponent(lua));
-	ball->AddComponent(new GraphicsComponent("Assets/ball.png", lua));
-	//ball->AddComponent(new AudioComponent("Assets/bump.wav"));
-	ball->AddComponent(new ScriptComponent("Assets/ball1.lua", lua));
-
-	//Creating an 2nd object
-	GameObject* ball2 = _gameObjectManager.Create("ball2");
-	ball2->SetParent(*ball);
-	ball2->AddComponent(new GraphicsComponent("Assets/ball2.png", lua));
-	ball2->AddComponent(new TransformComponent(lua));
-	ball2->AddComponent(new ScriptComponent("Assets/ball2.lua", lua));
 
 	while (_mainWindow.isOpen())
 	{
 		sf::Event event;
 		while (_mainWindow.pollEvent(event))
 		{
-			if (event.type == sf::Event::Closed)
-				_mainWindow.close();
-
-			if (event.type == sf::Event::MouseButtonPressed)
+			switch (event.type)
 			{
-				if (event.mouseButton.button == sf::Mouse::Left)
-					dispatcher.post(MouseEvent(true, 0));
-			}		
+			case sf::Event::Closed:
+				_mainWindow.close();
+				break;
+
+			case sf::Event::KeyPressed:
+				dispatcher.post(InputEvent(true, event));
+				break;
+
+			case sf::Event::KeyReleased:
+				dispatcher.post(InputEvent(false, event));
+				break;
+
+			case sf::Event::MouseButtonPressed:
+				dispatcher.post(InputEvent(true, event));
+				break;
+
+			case sf::Event::MouseButtonReleased:
+				dispatcher.post(InputEvent(false, event));
+				break;
+
+			default:
+				break;
+
+			}
+			//if (event.type == sf::Event::MouseButtonPressed || event.type == sf::Event::KeyPressed)
+				//dispatcher.post(InputEvent(true, event));
+
 		}
 		Update(_mainWindow);
 	}
@@ -120,9 +126,9 @@ void GameEngine::Update(sf::RenderWindow& _mainWindow)
 	sf::Time dt = _clock.restart();
 	_mainWindow.clear();
 
-	_gameObjectManager.Update(dt.asMilliseconds());
+	_sceneManager.Update(dt.asMilliseconds());
 
-	for (auto const& value : _gameObjectManager.GetAllGameObjects()) {
+	for (auto const& value : _sceneManager.GetAllGameObjects()) {
 		if (value->Graphics)
 		{
 			_mainWindow.draw(value->Graphics->GetSprite(), value->GetWorldTransform());
@@ -136,10 +142,12 @@ void GameEngine::startDelegates()
 {
 	ClassObserver classObserver;
 
-	auto connection1 = dispatcher.subscribe(MouseEvent::descriptor,
+	/*auto connection1 = dispatcher.subscribe(InputEvent::descriptor,
 		std::bind(&ClassObserver::handle,
 			classObserver,
-			std::placeholders::_1));
+			std::placeholders::_1));*/
+
+	auto connection = dispatcher.subscribe(InputEvent::descriptor, std::bind(&SceneManager::Input, _sceneManager));
 }
 
 _diskfree_t populateStruct()

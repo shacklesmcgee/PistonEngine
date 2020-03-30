@@ -28,10 +28,9 @@ public:
 	sf::Vector2f GetOrigin() { return sprite.getOrigin(); };
 	float GetOriginX() { return sprite.getOrigin().x; };
 	float GetOriginY() { return sprite.getOrigin().y; };
-	void SetOrigin(sf::Vector2f newOrigin);
+	//void SetOrigin(sf::Vector2f newOrigin);
+	void SetOrigin(string newOrigin);
 	void SetOriginF(float x, float y);
-
-	void CentreOrigin();
 
 	float GetWidth() { return texture.getSize().x; };
 	float GetHeight() { return texture.getSize().y; };
