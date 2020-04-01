@@ -1,4 +1,5 @@
 #include "SceneManager.h"
+#include "InputEvent.h"
 
 using namespace rapidjson;
 
@@ -10,9 +11,9 @@ SceneManager::~SceneManager()
 {
 }
 
-GameObject* SceneManager::Create(string _newName, sol::state &_lua)
+GameObject* SceneManager::Create(string _newName)
 {
-	GameObject* _gameObject = new GameObject(_lua);
+	GameObject* _gameObject = new GameObject();
 	_gameObject->SetName(_newName);
 	_gameObjects.push_back(_gameObject);
 
@@ -48,7 +49,7 @@ vector<GameObject*> SceneManager::GetAllGameObjects()
 	return _gameObjects;
 }
 
-void SceneManager::LoadScene(sol::state &_lua)
+void SceneManager::LoadScene()
 {
 	FILE* fp = fopen("Scenes/scene1.json", "rb");
 
@@ -69,55 +70,60 @@ void SceneManager::LoadScene(sol::state &_lua)
 		string objString = "GameObject" + std::to_string(i + 1);
 		const char* objChar = objString.c_str();
 
-		Value& tempGameObject = gameObjects[i][objChar];
-		for (SizeType x = 0; x < tempGameObject.Size(); x++)
+		Value& tempJSONObject = gameObjects[i][objChar];
+		for (SizeType x = 0; x < tempJSONObject.Size(); x++)
 		{
-			string name = tempGameObject[x]["name"].GetString();
+			string name = tempJSONObject[x]["name"].GetString();
 			string texture = "";
 			string script = "";
 
-			if (!tempGameObject[x]["texture"].IsNull())
-				texture = tempGameObject[x]["texture"].GetString();
+			if (!tempJSONObject[x]["texture"].IsNull())
+				texture = tempJSONObject[x]["texture"].GetString();
 
-			if (!tempGameObject[x]["script"].IsNull())
-				script = tempGameObject[x]["script"].GetString();
-				
-			sf::Vector2f position(tempGameObject[x]["positionX"].GetInt(), tempGameObject[x]["positionY"].GetInt());
-			float rotationAngle = tempGameObject[x]["rotationAngle"].GetInt();
-			sf::Vector2f rotationOrigin(tempGameObject[x]["rotationX"].GetFloat(), tempGameObject[x]["rotationY"].GetFloat());
-			sf::Vector2f scale(tempGameObject[x]["scaleX"].GetFloat(), tempGameObject[x]["scaleY"].GetFloat());
+			if (!tempJSONObject[x]["script"].IsNull())
+				script = tempJSONObject[x]["script"].GetString();
 
-			Create(name, _lua);
+			sf::Vector2f position(tempJSONObject[x]["positionX"].GetInt(), tempJSONObject[x]["positionY"].GetInt());
+			float rotationAngle = tempJSONObject[x]["rotationAngle"].GetInt();
+			sf::Vector2f rotationOrigin(tempJSONObject[x]["rotationX"].GetFloat(), tempJSONObject[x]["rotationY"].GetFloat());
+			sf::Vector2f scale(tempJSONObject[x]["scaleX"].GetFloat(), tempJSONObject[x]["scaleY"].GetFloat());
 
-			if (tempGameObject[x]["transformComp"].GetBool())
+			GameObject* obj = Create(name);
+
+			if (tempJSONObject[x]["transformComp"].GetBool())
 			{
-				GetGameObject(name)->AddComponent(new TransformComponent(_lua));
-				GetGameObject(name)->Transform->SetLocationF(position.x, position.y);
-				GetGameObject(name)->Transform->SetRotation(rotationAngle, rotationOrigin);
-				GetGameObject(name)->Transform->SetScaleF(scale.x, scale.y);
+				obj->AddComponent(new TransformComponent(obj->Lua));
+				obj->Transform->SetLocationF(position.x, position.y);
+				obj->Transform->SetRotation(rotationAngle, rotationOrigin);
+				obj->Transform->SetScaleF(scale.x, scale.y);
 			}
 
-			if (!tempGameObject[x]["parent"].IsNull())
+			if (!tempJSONObject[x]["parent"].IsNull())
 			{
-				GameObject* parent = GetGameObject(tempGameObject[x]["parent"].GetString());
+				GameObject* parent = GetGameObject(tempJSONObject[x]["parent"].GetString());
 
-				GetGameObject(name)->SetParent(*parent);
+				obj->SetParent(*parent);
 				//_SceneManager.GetGameObject(name)->Transform->SetLocation(_SceneManager.GetGameObject();
 			}
 
-			if (tempGameObject[x]["graphicsComp"].GetBool())
+			if (tempJSONObject[x]["graphicsComp"].GetBool())
 			{
-				GetGameObject(name)->AddComponent(new GraphicsComponent(texture, _lua));
+				obj->AddComponent(new GraphicsComponent(texture, obj->Lua));
 			}
 
-			if (tempGameObject[x]["scriptComp"].GetBool())
+			if (tempJSONObject[x]["scriptComp"].GetBool())
 			{
-				GetGameObject(name)->AddComponent(new ScriptComponent(script, _lua));
+				obj->AddComponent(new ScriptComponent(script, obj->Lua));
 
-				sol::function MoveUp = _lua["MoveUp"];
+				if (obj->Lua["Start"].valid())
+				{
+					obj->Script->Start();
+				}
+			}
 
-				if (MoveUp.valid())
-					MoveUp();
+			if (tempJSONObject[x]["inputComp"].GetBool())
+			{
+				obj->AddComponent(new InputComponent(obj->Lua));
 			}
 		}
 	}
@@ -125,7 +131,18 @@ void SceneManager::LoadScene(sol::state &_lua)
 	fclose(fp);
 }
 
-void SceneManager::Input()
+void SceneManager::Input(const Event& e)
 {
-	cout << "works" << endl;
+	const InputEvent& inputEvent = static_cast<const InputEvent&>(e);
+
+	for (auto const& value : _gameObjects) {
+		if (value->Input && value->Lua["Input"].valid())
+		{
+			if (inputEvent.pressed)
+				value->Input->InputStarted(inputEvent.keyCode);
+
+			else if (inputEvent.released)
+				value->Input->InputEnded(inputEvent.keyCode);
+		}
+	}
 }

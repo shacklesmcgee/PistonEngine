@@ -6,8 +6,9 @@
 #include "rapidjson/stringbuffer.h"
 #include "rapidjson/filereadstream.h"
 #include <sol.hpp>
-
+#include "Event.h"
 #include <lua.hpp>
+
 #define SOL_ALL_SAFETIES_ON 1
 
 
@@ -19,15 +20,15 @@ public:
 	SceneManager();
 	~SceneManager();
 
-	GameObject* Create(string _name, sol::state &_lua);
+	GameObject* Create(string _name);
 	virtual void Update(float msec);
 
 	GameObject* GetGameObject(string _name);
 	vector<GameObject*> GetAllGameObjects();
 
-	void LoadScene(sol::state &_lua);
+	void LoadScene();
 
-	void Input();
+	void Input(const Event& e);
 
 private:
 	vector<GameObject*> _gameObjects; 

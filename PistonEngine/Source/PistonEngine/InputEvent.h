@@ -1,5 +1,5 @@
 #include "Event.h"
-#include "Windows.h"
+//#include "Windows.h"
 
 #undef max
 #undef min
@@ -15,6 +15,6 @@ public:
 
 	bool pressed;
 	bool released;
-	int Button;
+	sf::Keyboard::Key keyCode;
 
 };

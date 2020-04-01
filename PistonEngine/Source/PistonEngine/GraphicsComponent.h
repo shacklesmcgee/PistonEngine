@@ -1,7 +1,6 @@
 #pragma once
 #include "BaseComponent.h"
 #include "SFML/Graphics.hpp"
-#include "sol.hpp"
 
 using namespace std;
 class GameObject;

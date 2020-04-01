@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 #include <tchar.h>
-#include "InputComponentInterface.h"
+//#include "InputComponent.h"
 #include "ClassObserver.h"
 #include "Dispatcher.h"
 #include "Connection.h"
@@ -47,9 +47,8 @@ public:
 	SceneManager _sceneManager;
 	sf::Clock _clock;
 	
-	sol::state lua;
+	sol::state Lua;
 
-	void PrintInt(int value);
 private:
 	const float diskSpaceNeeded = 300;
 

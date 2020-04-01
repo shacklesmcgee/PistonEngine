@@ -6,6 +6,7 @@
                 "transformComp": true,
                 "graphicsComp": false,
                 "scriptComp": true,
+                "inputComp": false,
                 "parent": null,
 
                 "texture": null,
@@ -29,6 +30,7 @@
                 "transformComp": true,
                 "graphicsComp": true,
                 "scriptComp": true,
+                "inputComp": true,
                 "parent": "root",
 
                 "texture": "Assets/ball3.png",
@@ -52,7 +54,8 @@
                 "transformComp": true,
                 "graphicsComp": true,
                 "scriptComp": true,
-                "parent": "root",
+                "inputComp": false,
+                "parent": "earth",
 
                 "texture": "Assets/ball4.png",
                 "script": "Assets/ball2.lua",

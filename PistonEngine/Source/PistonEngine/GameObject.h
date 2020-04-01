@@ -7,6 +7,8 @@
 #include "TransformComponent.h"
 #include "AudioComponent.h"
 #include "ScriptComponent.h"
+#include "InputComponent.h"
+
 #include "sol.hpp"
 
 #include <vector>
@@ -15,7 +17,7 @@ using namespace std;
 class GameObject
 {
 public:
-	GameObject(sol::state &_lua);
+	GameObject();
 	~GameObject(void);
 
 	virtual void Update(float msec);
@@ -38,11 +40,14 @@ public:
 	TransformComponent* Transform;
 	AudioComponent* Audio;
 	ScriptComponent* Script;
+	InputComponent* Input;
+	sol::state Lua;
 
 	string GetName();
 	void SetName(string _newName);
 
 	sf::Transform worldTransform;
+
 protected:
 
 	GameObject* parent;
@@ -50,7 +55,6 @@ protected:
 	vector<BaseComponent*> components;
 
 	//sf::Transform localTransform;
-
 
 	string name;
 };

@@ -1,13 +1,14 @@
 #include "GameObject.h"
 
-GameObject::GameObject(sol::state &_lua)
+GameObject::GameObject()
 {
 	parent = NULL;
 
-	_lua.set("GameObject", this);
+	Lua.open_libraries(sol::lib::base);
+	Lua.set("GameObject", this);
 
-	_lua["GetParent"] = &GameObject::GetParent;
-	_lua["GetName"] = &GameObject::GetName;
+	Lua["GetParent"] = &GameObject::GetParent;
+	Lua["GetName"] = &GameObject::GetName;
 }
 
 GameObject::~GameObject(void)
@@ -75,6 +76,12 @@ void GameObject::AddComponent(BaseComponent* componentToAdd)
 	{
 		Script = static_cast<ScriptComponent*>(componentToAdd);
 		Script->owner = this;
+	}
+
+	else if (componentToAdd->name == "InputComponent")
+	{
+		Input = static_cast<InputComponent*>(componentToAdd);
+		Input->owner = this;
 	}
 }
 

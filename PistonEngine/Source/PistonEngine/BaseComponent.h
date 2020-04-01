@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include "sol.hpp"
 
 class GameObject;
 

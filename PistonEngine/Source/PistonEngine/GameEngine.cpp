@@ -18,12 +18,12 @@ GameEngine::~GameEngine()
 
 bool GameEngine::Initialize(sf::RenderWindow& _mainWindow)
 {
-	lua.open_libraries(sol::lib::base);
+	Lua.open_libraries(sol::lib::base);
 
-	lua.script_file("Assets/settings.lua");
-	bool isfullscreen = lua["config"]["fullscreen"];
-	int xRes = lua["config"]["resolution"]["x"];
-	int yRes = lua["config"]["resolution"]["y"];
+	Lua.script_file("Assets/settings.lua");
+	bool isfullscreen = Lua["config"]["fullscreen"];
+	int xRes = Lua["config"]["resolution"]["x"];
+	int yRes = Lua["config"]["resolution"]["y"];
 
 	_mainWindow.create(sf::VideoMode(xRes, yRes, 32), "Piston Engine");
 
@@ -51,7 +51,7 @@ bool GameEngine::Initialize(sf::RenderWindow& _mainWindow)
 	//maybe change to check cpu speed
 	ReadCPUSpeed();
 	ReadCPUArch();
-	startDelegates();
+
 	
 	//sleeping for x seconds to show off splash screen
 	//std::this_thread::sleep_for(std::chrono::seconds(2));
@@ -59,10 +59,6 @@ bool GameEngine::Initialize(sf::RenderWindow& _mainWindow)
 	
 	return true;
 
-}
-
-void GameEngine::PrintInt(int value) {
-	std::cout << "Something" << value << std::endl;
 }
 
 void GameEngine::Start(sf::RenderWindow& _mainWindow)
@@ -76,10 +72,10 @@ void GameEngine::Start(sf::RenderWindow& _mainWindow)
 	
 	//// //// PLACE YOUR GAME START FUNCTION HERE //// ////
 
-	lua.set("GameEngine", this);
+	Lua.set("GameEngine", this);
 
-	_sceneManager.LoadScene(lua);
-
+	_sceneManager.LoadScene();
+	startDelegates();
 
 	while (_mainWindow.isOpen())
 	{
@@ -147,7 +143,11 @@ void GameEngine::startDelegates()
 			classObserver,
 			std::placeholders::_1));*/
 
-	auto connection = dispatcher.subscribe(InputEvent::descriptor, std::bind(&SceneManager::Input, _sceneManager));
+	//auto connection = dispatcher.subscribe(InputEvent::descriptor, std::bind(&SceneManager::Input, _sceneManager));
+	auto connection = dispatcher.subscribe(InputEvent::descriptor, 
+		std::bind(&SceneManager::Input, 
+			_sceneManager,
+			std::placeholders::_1));
 }
 
 _diskfree_t populateStruct()

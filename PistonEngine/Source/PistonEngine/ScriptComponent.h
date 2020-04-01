@@ -1,6 +1,5 @@
 #pragma once
 #include "BaseComponent.h"
-#include "sol.hpp"
 
 using namespace std;
 
@@ -13,11 +12,12 @@ public:
 
 	virtual void Update(float dt);
 
-	void PrintInt(int value);
 	bool fileLoaded = false;
-	sol::state lua;
+
+	std::function<void()> Start;
+	std::function<void()> LuaUpdate;
 
 protected:
-	string name;
+
 };
 

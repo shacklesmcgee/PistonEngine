@@ -2,7 +2,6 @@
 #include "BaseComponent.h"
 #include "SFML/Graphics/Transform.hpp"
 #include <SFML/System/Vector2.hpp>
-#include "sol.hpp"
 
 class GameObject;
 
