@@ -8,11 +8,15 @@
 #include "AudioComponent.h"
 #include "ScriptComponent.h"
 #include "InputComponent.h"
+#include <string>
+#include <iostream>
 
 #include "sol.hpp"
 
 #include <vector>
 using namespace std;
+
+class SceneManager;
 
 class GameObject
 {
@@ -31,8 +35,6 @@ public:
 	void AddComponent(BaseComponent* componentToAdd);
 	BaseComponent* GetComponent(string componentToGet);
   
-	//void SetLocalTransform(const sf::Transform &matrix) { localTransform = matrix; };
-	//sf::Transform GetLocalTransform() { return localTransform; }
 	sf::Transform GetWorldTransform() { return worldTransform; }
 
 	GraphicsComponent* Graphics;
@@ -46,7 +48,12 @@ public:
 	string GetName();
 	void SetName(string _newName);
 
+	SceneManager* GetSceneManager();
+	void SetSceneManager(SceneManager* _newSceneManager);
+
 	sf::Transform worldTransform;
+
+	void LuaCreate(sol::table gameObject);
 
 protected:
 
@@ -57,4 +64,5 @@ protected:
 	//sf::Transform localTransform;
 
 	string name;
+	SceneManager* _sceneManager;
 };

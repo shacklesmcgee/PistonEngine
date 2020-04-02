@@ -15,6 +15,7 @@ GameObject* SceneManager::Create(string _newName)
 {
 	GameObject* _gameObject = new GameObject();
 	_gameObject->SetName(_newName);
+	_gameObject->SetSceneManager(this);
 	_gameObjects.push_back(_gameObject);
 
 	return _gameObject;
@@ -103,7 +104,6 @@ void SceneManager::LoadScene()
 				GameObject* parent = GetGameObject(tempJSONObject[x]["parent"].GetString());
 
 				obj->SetParent(*parent);
-				//_SceneManager.GetGameObject(name)->Transform->SetLocation(_SceneManager.GetGameObject();
 			}
 
 			if (tempJSONObject[x]["graphicsComp"].GetBool())
@@ -131,18 +131,28 @@ void SceneManager::LoadScene()
 	fclose(fp);
 }
 
-void SceneManager::Input(const Event& e)
+void SceneManager::InputTriggered(const Event& e)
 {
 	const InputEvent& inputEvent = static_cast<const InputEvent&>(e);
 
-	for (auto const& value : _gameObjects) {
-		if (value->Input && value->Lua["Input"].valid())
-		{
-			if (inputEvent.pressed)
-				value->Input->InputStarted(inputEvent.keyCode);
-
-			else if (inputEvent.released)
-				value->Input->InputEnded(inputEvent.keyCode);
+	if (inputEvent.isMouse)
+	{
+		for (auto const& value : _gameObjects) {
+			if (value->Input && value->Lua["MouseInput"].valid())
+			{
+				value->Input->MouseInput(inputEvent.pressed, inputEvent.keyCode);
+			}
 		}
 	}
+
+	else if (!inputEvent.isMouse)
+	{
+		for (auto const& value : _gameObjects) {
+			if (value->Input && value->Lua["KeyInput"].valid())
+			{
+				value->Input->KeyInput(inputEvent.pressed, inputEvent.keyCode);
+			}
+		}
+	}
+	
 }

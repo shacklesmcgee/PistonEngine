@@ -1,7 +1,10 @@
 movingUp = false
-movingDown = false;
-movingLeft = false;
-movingRight = false;
+movingDown = false
+movingLeft = false
+movingRight = false
+
+rotateLeft = false
+rotateRight = false
 
 function Start()
     --SetOrigin(Graphics, "TopLeft")
@@ -33,9 +36,17 @@ function Update()
     if (movingRight) then
         SetLocation(Transform, 0.25, 0.0)
     end
+
+    if (rotateLeft) then
+        SetRotation(Transform, -0.25, 0.0, 0.0)
+    end
+
+    if (rotateRight) then
+        SetRotation(Transform, 0.25, 0.0, 0.0)
+    end
 end
 
-function Input(state, keyCode)
+function KeyInput(state, keyCode)
     if (state == true) then
         if (keyCode == 73) then
             movingUp = true
@@ -44,8 +55,26 @@ function Input(state, keyCode)
         elseif (keyCode == 71) then
             movingLeft = true
         elseif (keyCode == 72) then
-            movingRight = true   
+            movingRight = true  
+
+        elseif (keyCode == 0) then
+            rotateLeft = true
+        elseif (keyCode == 3) then
+            rotateRight = true  
+
+        elseif (keyCode == 57) then
+            arrow = {
+                name = "test", 
+                position = {x=5.0, y=90.0}, 
+                rotation = {angle=0.0, x=0.0, y=0.0}, 
+                scale = {x=0.5, y=0.5}, 
+                graphics = "Assets/ball4.png", 
+                script = "Assets/ball2.lua"--, 
+                --input = ""
+        }
+            Create(GameObject, arrow)
         end     
+
     elseif (state == false) then
         if (keyCode == 73) then
             movingUp = false
@@ -55,12 +84,33 @@ function Input(state, keyCode)
             movingLeft = false
         elseif (keyCode == 72) then
             movingRight = false   
+        elseif (keyCode == 0) then
+            rotateLeft = false
+        elseif (keyCode == 3) then
+            rotateRight = false  
         end 
     end
 end
 
-function MoveUp()
-    SetLocation(Transform, 0.0, -2.5)
+function MouseInput(state, keyCode)
+    if (state == true) then
+        if (keyCode == 0) then
+            --rotateLeft = true
+        elseif (keyCode == 1) then
+            --rotateRight = true  
+        elseif (keyCode == 2) then
+            --rotateRight = true 
+        end     
+
+    elseif (state == false) then
+        if (keyCode == 0) then
+            --rotateLeft = false
+        elseif (keyCode == 1) then
+            --rotateRight = false  
+        elseif (keyCode == 2) then
+            --rotateRight = false  
+        end    
+    end
 end
 
 keyCodes = {

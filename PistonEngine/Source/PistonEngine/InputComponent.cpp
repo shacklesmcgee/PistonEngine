@@ -6,8 +6,11 @@ InputComponent::InputComponent(sol::state &_lua)
 {
 	name = "InputComponent";
 
-	if (_lua["Input"].valid())
-		Input = _lua["Input"];
+	if (_lua["MouseInput"].valid())
+		LuaMouseInput = _lua["MouseInput"];
+
+	if (_lua["KeyInput"].valid())
+		LuaKeyInput = _lua["KeyInput"];
 }
 
 
@@ -16,14 +19,14 @@ InputComponent::~InputComponent()
 
 }
 
-void InputComponent::InputStarted(sf::Keyboard::Key keyCode)
+void InputComponent::MouseInput(bool state, sf::Keyboard::Key keyCode)
 {
-	if (Input)
-		Input(true, keyCode);
+	if (LuaMouseInput)
+		LuaMouseInput(state, keyCode);
 }
 
-void InputComponent::InputEnded(sf::Keyboard::Key keyCode)
+void InputComponent::KeyInput(bool state, sf::Keyboard::Key keyCode)
 {
-	if (Input)
-		Input(false, keyCode);
+	if (LuaKeyInput)
+		LuaKeyInput(state, keyCode);
 }

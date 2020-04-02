@@ -6,7 +6,6 @@
 #include <string>
 #include <vector>
 #include <tchar.h>
-//#include "InputComponent.h"
 #include "ClassObserver.h"
 #include "Dispatcher.h"
 #include "Connection.h"

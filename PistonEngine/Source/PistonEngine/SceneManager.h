@@ -27,8 +27,7 @@ public:
 	vector<GameObject*> GetAllGameObjects();
 
 	void LoadScene();
-
-	void Input(const Event& e);
+	void InputTriggered(const Event& e);
 
 private:
 	vector<GameObject*> _gameObjects; 

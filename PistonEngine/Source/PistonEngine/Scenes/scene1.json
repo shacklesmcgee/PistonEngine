@@ -46,30 +46,6 @@
                 "scaleX": 1.0,
                 "scaleY": 1.0
             }
-        ]},
-
-        {"GameObject3": [
-            {
-                "name": "moon",
-                "transformComp": true,
-                "graphicsComp": true,
-                "scriptComp": true,
-                "inputComp": false,
-                "parent": "earth",
-
-                "texture": "Assets/ball4.png",
-                "script": "Assets/ball2.lua",
-
-                "positionX": 0,
-                "positionY": 0,
-
-                "rotationAngle": 0,
-                "rotationX": 0,
-                "rotationY": 0,
-
-                "scaleX": 0.5,
-                "scaleY": 0.5
-            }
         ]}
     ]
 }

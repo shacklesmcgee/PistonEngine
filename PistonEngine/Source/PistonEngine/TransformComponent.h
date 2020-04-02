@@ -23,7 +23,7 @@ public:
 
 	float GetRotation();
 	void SetRotation(float newRotation, sf::Vector2f newOrigin);
-	void SetRotationF(float newRotation);
+	void SetRotationF(float newRotation, float x, float y);
 
 	void Rotate(float newRotation);
 	void RotateAroundPoint(float newRotation, float x, float y);

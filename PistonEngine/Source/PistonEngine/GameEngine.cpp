@@ -145,7 +145,7 @@ void GameEngine::startDelegates()
 
 	//auto connection = dispatcher.subscribe(InputEvent::descriptor, std::bind(&SceneManager::Input, _sceneManager));
 	auto connection = dispatcher.subscribe(InputEvent::descriptor, 
-		std::bind(&SceneManager::Input, 
+		std::bind(&SceneManager::InputTriggered, 
 			_sceneManager,
 			std::placeholders::_1));
 }

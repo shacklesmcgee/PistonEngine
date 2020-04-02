@@ -1,5 +1,4 @@
 #include "Event.h"
-//#include "Windows.h"
 
 #undef max
 #undef min
@@ -17,4 +16,5 @@ public:
 	bool released;
 	sf::Keyboard::Key keyCode;
 
+	bool isMouse;
 };

@@ -8,9 +8,11 @@ public:
 	InputComponent(sol::state &_lua);
 	~InputComponent();
 
-	std::function<void(bool, int)> Input;
-	void InputStarted(sf::Keyboard::Key  keyCode);
-	void InputEnded(sf::Keyboard::Key  keyCode);
+	std::function<void(bool, int)> LuaMouseInput;
+	std::function<void(bool, int)> LuaKeyInput;
+
+	void MouseInput(bool state, sf::Keyboard::Key  keyCode);
+	void KeyInput(bool state, sf::Keyboard::Key  keyCode);
 
 private:
 

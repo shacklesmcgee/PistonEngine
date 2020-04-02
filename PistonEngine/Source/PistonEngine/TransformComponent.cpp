@@ -80,15 +80,16 @@ void TransformComponent::SetRotation(float newRotation, sf::Vector2f newOrigin)
 	transform.rotate(newRotation, newOrigin);
 }
 
-void TransformComponent::SetRotationF(float newRotation)
+void TransformComponent::SetRotationF(float newRotation, float x, float y)
 {
-	transform.rotate(newRotation, 0.0f, 0.0f);
+	transform.rotate(newRotation, x, y);
 }
 
 void TransformComponent::Rotate(float newRotation)
 {
-	rotationAngle = newRotation / 1000.f;
-	rotationPoint = sf::Vector2f(0.f, 0.f);
+	//rotationAngle = newRotation / 1000.f;
+	//rotationPoint = sf::Vector2f(0.f, 0.f);
+
 }
 
 void TransformComponent::RotateAroundPoint(float newRotation, float x, float y)
