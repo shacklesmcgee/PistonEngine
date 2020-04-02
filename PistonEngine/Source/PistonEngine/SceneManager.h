@@ -21,6 +21,8 @@ public:
 	~SceneManager();
 
 	GameObject* Create(string _name);
+	void Destroy(string _name);
+
 	virtual void Update(float msec);
 
 	GameObject* GetGameObject(string _name);

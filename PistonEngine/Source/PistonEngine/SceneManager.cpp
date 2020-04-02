@@ -21,6 +21,20 @@ GameObject* SceneManager::Create(string _newName)
 	return _gameObject;
 }
 
+void SceneManager::Destroy(string _name)
+{
+	int i = 0;
+	for (auto const& value : GetAllGameObjects())
+	{
+		if (value->GetName() == _name)
+		{
+			delete value;
+			_gameObjects.erase(_gameObjects.begin() + i);
+		}
+		i++;
+	}
+}
+
 void SceneManager::Update(float msec)
 {
 	for (auto const& value : _gameObjects)

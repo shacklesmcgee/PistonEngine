@@ -64,15 +64,18 @@ function KeyInput(state, keyCode)
 
         elseif (keyCode == 57) then
             arrow = {
-                name = "test", 
-                position = {x=5.0, y=90.0}, 
+                name = "arrow", 
+                position = {x=256.0, y=256.0}, 
                 rotation = {angle=0.0, x=0.0, y=0.0}, 
                 scale = {x=0.5, y=0.5}, 
                 graphics = "Assets/ball4.png", 
                 script = "Assets/ball2.lua"--, 
                 --input = ""
-        }
+                }
             Create(GameObject, arrow)
+
+        elseif (keyCode == 37) then
+            Destroy(GameObject, "arrow0")
         end     
 
     elseif (state == false) then

@@ -11,6 +11,7 @@ GameObject::GameObject()
 	Lua["GetParent"] = &GameObject::GetParent;
 	Lua["GetName"] = &GameObject::GetName;
 	Lua["Create"] = &GameObject::LuaCreate;
+	Lua["Destroy"] = &GameObject::LuaDestroy;
 }
 
 GameObject::~GameObject(void)
@@ -162,6 +163,12 @@ void GameObject::LuaCreate(sol::table gameObject)
 
 	if (gameObject["input"].valid())
 		temp->AddComponent(new InputComponent(temp->Lua));
+}
+
+void GameObject::LuaDestroy(string name)
+{
+	if (name != "")
+		GetSceneManager()->Destroy(name);
 }
 
 void GameObject::Update(float msec)

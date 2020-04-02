@@ -12,5 +12,5 @@ function Start()
 end
 
 function Update()
-    SetLocation(Transform, 0.0, -0.25)
+    --SetLocation(Transform, 0.0, -0.25)
 end

@@ -54,6 +54,7 @@ public:
 	sf::Transform worldTransform;
 
 	void LuaCreate(sol::table gameObject);
+	void LuaDestroy(string name);
 
 protected:
 
