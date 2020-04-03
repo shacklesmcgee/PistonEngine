@@ -122,7 +122,21 @@ void SceneManager::LoadScene()
 
 			if (tempJSONObject[x]["graphicsComp"].GetBool())
 			{
-				obj->AddComponent(new GraphicsComponent(texture, obj->Lua));
+				if (tempJSONObject[x]["animated"].GetBool())
+				{
+					sf::IntRect tempRect = sf::IntRect(tempJSONObject[x]["textureX"].GetInt(),
+														tempJSONObject[x]["textureY"].GetInt(),
+														tempJSONObject[x]["textureWidth"].GetInt(),
+														tempJSONObject[x]["textureHeight"].GetInt());
+
+					obj->AddComponent(new GraphicsComponent(tempJSONObject[x]["textureName"].GetString(),
+						texture, 
+						tempRect, 
+						tempJSONObject[x]["animated"].GetBool(), 
+						tempJSONObject[x]["frameTime"].GetFloat(), 
+						tempJSONObject[x]["looping"].GetBool(), 
+						obj->Lua));
+				}
 			}
 
 			if (tempJSONObject[x]["scriptComp"].GetBool())

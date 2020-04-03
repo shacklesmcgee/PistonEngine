@@ -17,32 +17,41 @@ function Start()
     --SetOrigin(Graphics, "BottomCenter")
     --SetOrigin(Graphics, "BottomRight")
 
-    --Rotate(Transform, 25.0)
+    animIdle = {name = "Idle"}
+    CreateAnim(Graphics, animIdle)
+
+    animDead = {name = "Dead", texture="Assets/player.png", animated = true, textureX = 0, textureY = 128, textureWidth = 32, textureHeight = 32, frameTime = 0.1, looping = false}
+    CreateAnim(Graphics, animDead)
+
+    animAttack = {name = "Attack", texture="Assets/player.png", animated = true, textureX = 0, textureY = 96, textureWidth = 32, textureHeight = 32, frameTime = 0.1, looping = true}
+    CreateAnim(Graphics, animAttack)
+
+    PlayAnim(Graphics, animIdle)
 end
 
 function Update()
     if (movingUp) then
-        SetLocation(Transform, 0.0, -0.25)
+        SetLocation(Transform, 0.0, -0.10)
     end
 
     if (movingDown) then
-        SetLocation(Transform, 0.0, 0.25)
+        SetLocation(Transform, 0.0, 0.10)
     end
 
     if (movingLeft) then
-        SetLocation(Transform, -0.25, 0.0)
+        SetLocation(Transform, -0.10, 0.0)
     end
 
     if (movingRight) then
-        SetLocation(Transform, 0.25, 0.0)
+        SetLocation(Transform, 0.10, 0.0)
     end
 
     if (rotateLeft) then
-        SetRotation(Transform, -0.25, 0.0, 0.0)
+        SetRotation(Transform, -0.10, 0.0, 0.0)
     end
 
     if (rotateRight) then
-        SetRotation(Transform, 0.25, 0.0, 0.0)
+        SetRotation(Transform, 0.10, 0.0, 0.0)
     end
 end
 
@@ -63,34 +72,32 @@ function KeyInput(state, keyCode)
             rotateRight = true  
 
         elseif (keyCode == 57) then
-            arrow = {
-                name = "arrow", 
-                position = {x=256.0, y=256.0}, 
-                rotation = {angle=0.0, x=0.0, y=0.0}, 
-                scale = {x=0.5, y=0.5}, 
-                graphics = "Assets/ball4.png", 
-                script = "Assets/ball2.lua"--, 
-                --input = ""
-                }
-            Create(GameObject, arrow)
+            PlayAnim(Graphics, animAttack)
 
         elseif (keyCode == 37) then
-            Destroy(GameObject, "arrow0")
+            PlayAnim(Graphics, animDead)
+
         end     
 
     elseif (state == false) then
         if (keyCode == 73) then
             movingUp = false
+
         elseif (keyCode == 74) then
             movingDown = false
+
         elseif (keyCode == 71) then
             movingLeft = false
+
         elseif (keyCode == 72) then
             movingRight = false   
+            
         elseif (keyCode == 0) then
             rotateLeft = false
+
         elseif (keyCode == 3) then
             rotateRight = false  
+
         end 
     end
 end
@@ -98,9 +105,19 @@ end
 function MouseInput(state, keyCode)
     if (state == true) then
         if (keyCode == 0) then
-            --rotateLeft = true
+            arrow = {
+                name = "arrow", 
+                position = {x=256.0, y=256.0}, 
+                rotation = {angle=0.0, x=0.0, y=0.0}, 
+                scale = {x=0.5, y=0.5}, 
+                graphics = {name = "Dead", texture="Assets/player.png", animated = true, textureX = 0, textureY = 128, textureWidth = 32, textureHeight = 32, frameTime = 0.1, looping = false}, 
+                script = "Assets/ball2.lua"
+                }
+            Create(GameObject, arrow)
+
         elseif (keyCode == 1) then
-            --rotateRight = true  
+            Destroy(GameObject, "arrow0")
+
         elseif (keyCode == 2) then
             --rotateRight = true 
         end     
@@ -108,10 +125,13 @@ function MouseInput(state, keyCode)
     elseif (state == false) then
         if (keyCode == 0) then
             --rotateLeft = false
+
         elseif (keyCode == 1) then
             --rotateRight = false  
+
         elseif (keyCode == 2) then
             --rotateRight = false  
+
         end    
     end
 end

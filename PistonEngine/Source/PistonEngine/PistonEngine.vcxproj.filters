@@ -50,6 +50,9 @@
     <ClCompile Include="InputComponent.cpp">
       <Filter>PistonEngine\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>PistonEngine\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseComponent.h">
@@ -102,6 +105,9 @@
       <Filter>PistonEngine\Event System</Filter>
     </ClInclude>
     <ClInclude Include="InputComponent.h">
+      <Filter>PistonEngine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
       <Filter>PistonEngine\Components</Filter>
     </ClInclude>
   </ItemGroup>

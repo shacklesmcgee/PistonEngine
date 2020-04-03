@@ -153,6 +153,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
     <ClCompile Include="ArcheryGame.cpp" />
     <ClCompile Include="AudioComponent.cpp" />
     <ClCompile Include="Connection.cpp" />
@@ -172,6 +173,7 @@
     <ClCompile Include="TransformComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.h" />
     <ClInclude Include="ArcheryGame.h" />
     <ClInclude Include="AudioComponent.h" />
     <ClInclude Include="BaseComponent.h" />

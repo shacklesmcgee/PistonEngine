@@ -10,6 +10,8 @@
                 "parent": null,
 
                 "texture": null,
+                "animated": false,
+
                 "script": "Assets/root.lua",
 
                 "positionX": 256,
@@ -33,7 +35,16 @@
                 "inputComp": true,
                 "parent": "root",
 
-                "texture": "Assets/ball3.png",
+                "textureName": "Idle",
+                "texture": "Assets/player.png",
+                "animated": true,
+                "frameTime": 0.1,
+                "looping": true,
+                "textureX": 0,
+                "textureY": 0,
+                "textureWidth": 32,
+                "textureHeight": 32,
+
                 "script": "Assets/ball1.lua",
 
                 "positionX": 0,
@@ -43,8 +54,8 @@
                 "rotationX": 0,
                 "rotationY": 0,
 
-                "scaleX": 1.0,
-                "scaleY": 1.0
+                "scaleX": 2.0,
+                "scaleY": 2.0
             }
         ]}
     ]

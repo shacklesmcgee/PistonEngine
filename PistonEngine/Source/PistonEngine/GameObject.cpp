@@ -122,12 +122,12 @@ void GameObject::LuaCreate(sol::table gameObject)
 	int i = 0;
 	string tempName = gameObject["name"];
 
-	for (auto const& value : _sceneManager->GetAllGameObjects()) 
+	for (auto const& value : _sceneManager->GetAllGameObjects())
 	{
 		if (value->name == (tempName + to_string(i)))
 			i++;
 	}
-	
+
 	tempName = tempName + to_string(i);
 	_sceneManager->Create(tempName);
 
@@ -135,26 +135,54 @@ void GameObject::LuaCreate(sol::table gameObject)
 
 	if (gameObject["position"].valid() || gameObject["rotation"].valid() || gameObject["scale"].valid())
 	{
-		temp->AddComponent(new TransformComponent(temp->Lua));	
+		temp->AddComponent(new TransformComponent(temp->Lua));
 	}
 
 	if (gameObject["position"].valid())
+	{
 		temp->Transform->SetLocationF(gameObject["position"]["x"], gameObject["position"]["y"]);
-	
+	}
+
 	if (gameObject["rotation"].valid())
+	{
 		temp->Transform->SetRotationF(gameObject["rotation"]["angle"], gameObject["rotation"]["x"], gameObject["rotation"]["y"]);
-	
+	}
+
 	if (gameObject["scale"].valid())
+	{
 		temp->Transform->SetScaleF(gameObject["scale"]["x"], gameObject["scale"]["y"]);
+	}
 
 	if (gameObject["parent"].valid())
+	{
 		temp->SetParent(*_sceneManager->GetGameObject(gameObject["parent"]));
+	}
 
 	if (gameObject["graphics"].valid())
-		temp->AddComponent(new GraphicsComponent(gameObject["graphics"], temp->Lua));
+	{
+		if (gameObject["graphics"]["texture"].valid() && gameObject["graphics"]["animated"].valid())
+		{
+			
+
+			sf::IntRect tempRect = sf::IntRect(gameObject["graphics"]["textureX"],
+												gameObject["graphics"]["textureY"],
+												gameObject["graphics"]["textureWidth"],
+												gameObject["graphics"]["textureHeight"]);
+
+			temp->AddComponent(new GraphicsComponent(gameObject["graphics"]["name"],
+													gameObject["graphics"]["texture"], 
+													tempRect, 
+													gameObject["graphics"]["animated"], 
+													gameObject["graphics"]["frameTime"], 
+													gameObject["graphics"]["looping"], 
+													temp->Lua));
+		}
+	}
 
 	if (gameObject["script"].valid())
+	{
 		temp->AddComponent(new ScriptComponent(gameObject["script"], temp->Lua));
+	}
 
 	if (temp->Lua["Start"].valid())
 	{
@@ -162,7 +190,9 @@ void GameObject::LuaCreate(sol::table gameObject)
 	}
 
 	if (gameObject["input"].valid())
+	{
 		temp->AddComponent(new InputComponent(temp->Lua));
+	}
 }
 
 void GameObject::LuaDestroy(string name)

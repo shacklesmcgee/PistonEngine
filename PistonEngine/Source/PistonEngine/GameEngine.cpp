@@ -136,14 +136,6 @@ void GameEngine::Update(sf::RenderWindow& _mainWindow)
 
 void GameEngine::startDelegates()
 {
-	ClassObserver classObserver;
-
-	/*auto connection1 = dispatcher.subscribe(InputEvent::descriptor,
-		std::bind(&ClassObserver::handle,
-			classObserver,
-			std::placeholders::_1));*/
-
-	//auto connection = dispatcher.subscribe(InputEvent::descriptor, std::bind(&SceneManager::Input, _sceneManager));
 	auto connection = dispatcher.subscribe(InputEvent::descriptor, 
 		std::bind(&SceneManager::InputTriggered, 
 			_sceneManager,

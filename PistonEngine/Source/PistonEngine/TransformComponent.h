@@ -42,6 +42,8 @@ protected:
 
 	float rotationAngle;
 	sf::Vector2f rotationPoint;
+	float rotateAngle;
+	sf::Vector2f rotatePoint;
 
 	sf::Vector2f scale;
 

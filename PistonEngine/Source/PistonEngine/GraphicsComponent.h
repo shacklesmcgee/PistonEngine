@@ -1,6 +1,7 @@
 #pragma once
 #include "BaseComponent.h"
 #include "SFML/Graphics.hpp"
+#include "Animation.h"
 
 using namespace std;
 class GameObject;
@@ -10,40 +11,42 @@ class GraphicsComponent : public BaseComponent
 
 public:
 	GraphicsComponent(sol::state &_lua);
-	GraphicsComponent(string textureLocation, sol::state &_lua);
+	GraphicsComponent(string textureName, string textureLocation, sf::IntRect textureRect, bool animated, float frameTime, bool looping, sol::state &_lua);
 
 	~GraphicsComponent(void);
 
 	sf::Texture GetTexture()
 	{ 
-		return texture; 
+		return currentAnim.Texture;
 	};
 
-	void SetTexture(string textureLocation);
+	void SetTexture(Animation &_animToSet);
 
 	sf::Sprite GetSprite();
 	void SetSprite(sf::Texture);
 	
-	sf::Vector2f GetOrigin() { return sprite.getOrigin(); };
-	float GetOriginX() { return sprite.getOrigin().x; };
-	float GetOriginY() { return sprite.getOrigin().y; };
-	//void SetOrigin(sf::Vector2f newOrigin);
+	sf::Vector2f GetOrigin() { return currentAnim.Sprite.getOrigin(); };
+	float GetOriginX() { return currentAnim.Sprite.getOrigin().x; };
+	float GetOriginY() { return currentAnim.Sprite.getOrigin().y; };
 	void SetOrigin(string newOrigin);
 	void SetOriginF(float x, float y);
 
-	float GetWidth() { return texture.getSize().x; };
-	float GetHeight() { return texture.getSize().y; };
+	float GetWidth() { return currentAnim.Texture.getSize().x; };
+	float GetHeight() { return currentAnim.Texture.getSize().y; };
 
 	virtual void Update(float dt);
 
-private:
-	sf::Texture texture;
-	sf::Sprite sprite;
+	void PlayAnim(sol::table newAnim);
+	void PauseAnim();
 
-	float width;
-	float height;
+	void CreateAnim(sol::table newAnim);
+
+private:
+
+	Animation currentAnim;
+	std::map<string, Animation> animations;
+
+	sf::Clock clock;
 
 
 };
-
-
