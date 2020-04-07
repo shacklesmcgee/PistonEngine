@@ -18,12 +18,14 @@ public:
 	bool GetObeysGravity();
 	sf::Vector2f GetGravity();
 	sf::Rect<float> GetBoundingBox();
+	sf::Vector2f GetVelocity();
 
 	void SetMass(float newMass);
 	void SetRestitution(float newRestitution);
 	void SetObeysGravity(bool newObeysGravity);
 	void SetGravity(sf::Vector2f newGravity);
 	void SetBoundingBox(sf::Rect<float> newBoundingBox);
+	void SetVelocity(sf::Vector2f newVelocity);
 
 
 protected:
@@ -31,7 +33,12 @@ protected:
 	float mass = 1.f;
 	float restitution = 1.f;
 	bool obeysGravity = false;
-	sf::Vector2f gravity = sf::Vector2f(0, -9.81);
+	sf::Vector2f gravity = sf::Vector2f(0, -3);
 	sf::Rect<float> boundingBox;
+
+
+	//should expose velocity to construction in lua
+	//should velocity be in transform or rigidbody?
+	sf::Vector2f velocity = sf::Vector2f(0, 0);
 };
 

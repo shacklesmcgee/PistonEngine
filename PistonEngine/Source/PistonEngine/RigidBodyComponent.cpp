@@ -50,6 +50,11 @@ sf::Rect<float> RigidBodyComponent::GetBoundingBox()
 	return boundingBox;
 }
 
+sf::Vector2f RigidBodyComponent::GetVelocity()
+{
+	return velocity;
+}
+
 void RigidBodyComponent::SetMass(float newMass)
 {
 	mass = newMass;
@@ -73,4 +78,9 @@ void RigidBodyComponent::SetGravity(sf::Vector2f newGravity)
 void RigidBodyComponent::SetBoundingBox(sf::Rect<float> newBoundingBox)
 {
 	boundingBox = newBoundingBox;
+}
+
+void RigidBodyComponent::SetVelocity(sf::Vector2f newVelocity)
+{
+	velocity = newVelocity;
 }

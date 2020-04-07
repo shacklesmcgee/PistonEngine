@@ -10,8 +10,13 @@
 #include "Dispatcher.h"
 #include "Connection.h"
 #include "SplashScreen.h"
-#include "SceneManager.h"
 #include "GameObject.h"
+
+//systems
+#include "SceneManager.h"
+#include "PhysicsSystem.h"
+
+//components
 #include "RigidBodyComponent.h"
 #include "GraphicsComponent.h"
 #include "TransformComponent.h"
