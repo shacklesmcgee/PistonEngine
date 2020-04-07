@@ -91,8 +91,8 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>false</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\Lib\lua\include\;$(SolutionDir)..\Lib\sol\;$(SolutionDir)..\Lib\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>SFML_STATIC;NOMINMAX;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\Lib\lua\include\;$(SolutionDir)..\Lib\sol\;$(SolutionDir)..\Lib\rapidjson;$(SolutionDir)..\Lib\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>SFML_STATIC;NOMINMAX;_CRT_SECURE_NO_WARNINGS;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
@@ -106,8 +106,8 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>false</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\Lib\lua\include\;$(SolutionDir)..\Lib\sol\;$(SolutionDir)..\Lib\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>SFML_STATIC;NOMINMAX;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\Lib\lua\include\;$(SolutionDir)..\Lib\sol\;$(SolutionDir)..\Lib\rapidjson;$(SolutionDir)..\Lib\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>SFML_STATIC;NOMINMAX;_CRT_SECURE_NO_WARNINGS;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
@@ -123,8 +123,8 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>false</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\Lib\lua\include\;$(SolutionDir)..\Lib\sol\;$(SolutionDir)..\Lib\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>SFML_STATIC;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\Lib\lua\include\;$(SolutionDir)..\Lib\sol\;$(SolutionDir)..\Lib\rapidjson;$(SolutionDir)..\Lib\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>SFML_STATIC;NOMINMAX;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
@@ -142,8 +142,8 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>false</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\Lib\lua\include\;$(SolutionDir)..\Lib\sol\;$(SolutionDir)..\Lib\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>SFML_STATIC;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\Lib\lua\include\;$(SolutionDir)..\Lib\sol\;$(SolutionDir)..\Lib\rapidjson;$(SolutionDir)..\Lib\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>SFML_STATIC;NOMINMAX;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
@@ -153,6 +153,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
     <ClCompile Include="ArcheryGame.cpp" />
     <ClCompile Include="AudioComponent.cpp" />
     <ClCompile Include="Connection.cpp" />
@@ -160,9 +161,10 @@
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="GameObjectManager.cpp" />
+    <ClCompile Include="InputEvent.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="GraphicsComponent.cpp" />
-    <ClCompile Include="InputComponentInterface.cpp" />
+    <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MouseEvent.cpp" />
     <ClCompile Include="RigidBodyComponent.cpp" />
@@ -171,6 +173,7 @@
     <ClCompile Include="TransformComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.h" />
     <ClInclude Include="ArcheryGame.h" />
     <ClInclude Include="AudioComponent.h" />
     <ClInclude Include="BaseComponent.h" />
@@ -180,9 +183,10 @@
     <ClInclude Include="Event.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameObject.h" />
-    <ClInclude Include="GameObjectManager.h" />
+    <ClInclude Include="InputEvent.h" />
+    <ClInclude Include="SceneManager.h" />
     <ClInclude Include="GraphicsComponent.h" />
-    <ClInclude Include="InputComponentInterface.h" />
+    <ClInclude Include="InputComponent.h" />
     <ClInclude Include="MouseEvent.h" />
     <ClInclude Include="RigidBodyComponent.h" />
     <ClInclude Include="ScriptComponent.h" />

@@ -16,9 +16,6 @@
     <ClCompile Include="Event.cpp">
       <Filter>PistonEngine\Event System</Filter>
     </ClCompile>
-    <ClCompile Include="InputComponentInterface.cpp">
-      <Filter>PistonEngine\Components</Filter>
-    </ClCompile>
     <ClCompile Include="MouseEvent.cpp">
       <Filter>PistonEngine\Event System</Filter>
     </ClCompile>
@@ -44,8 +41,17 @@
     <ClCompile Include="ScriptComponent.cpp">
       <Filter>PistonEngine\Components</Filter>
     </ClCompile>
-    <ClCompile Include="GameObjectManager.cpp">
+    <ClCompile Include="SceneManager.cpp">
       <Filter>PistonEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="InputEvent.cpp">
+      <Filter>PistonEngine\Event System</Filter>
+    </ClCompile>
+    <ClCompile Include="InputComponent.cpp">
+      <Filter>PistonEngine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>PistonEngine\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -70,9 +76,6 @@
     <ClInclude Include="Event.h">
       <Filter>PistonEngine\Event System</Filter>
     </ClInclude>
-    <ClInclude Include="InputComponentInterface.h">
-      <Filter>PistonEngine\Components</Filter>
-    </ClInclude>
     <ClInclude Include="MouseEvent.h">
       <Filter>PistonEngine\Event System</Filter>
     </ClInclude>
@@ -95,8 +98,17 @@
     <ClInclude Include="ScriptComponent.h">
       <Filter>PistonEngine\Components</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjectManager.h">
+    <ClInclude Include="SceneManager.h">
       <Filter>PistonEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="InputEvent.h">
+      <Filter>PistonEngine\Event System</Filter>
+    </ClInclude>
+    <ClInclude Include="InputComponent.h">
+      <Filter>PistonEngine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>PistonEngine\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

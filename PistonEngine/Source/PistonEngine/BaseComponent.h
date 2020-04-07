@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include "sol.hpp"
 
 class GameObject;
 
@@ -14,6 +15,7 @@ public:
 	std::string name;
 
 	virtual void Update(float dt) {};
+	GameObject* GetOwner() { return owner; };
 	GameObject* owner;
 
 };
