@@ -16,6 +16,7 @@ void GameObject::AddChild(GameObject * s)
 
 void GameObject::AddComponent(BaseComponent* componentToAdd)
 {
+	componentToAdd->owner = this;
 	components.push_back(componentToAdd);
 
 	if (componentToAdd->name == "GraphicsComponent")
@@ -31,6 +32,11 @@ void GameObject::AddComponent(BaseComponent* componentToAdd)
 	else if (componentToAdd->name == "AudioComponent")
 	{
 		Audio = static_cast<AudioComponent*>(componentToAdd);
+	}
+
+	else if (componentToAdd->name == "ScriptComponent")
+	{
+		Script = static_cast<ScriptComponent*>(componentToAdd);
 	}
 }
 
@@ -49,13 +55,17 @@ BaseComponent* GameObject::GetComponent(string componentToGet)
 	return comp;
 }
 
+void GameObject::SetName(string _newName)
+{
+	name = _newName;
+}
+
 void GameObject::Update(float msec)
 {
+	
 	for (auto const& value : components) {
 		value->Update(msec);
 	}
-
-	//Graphics->Update(msec, Transform->GetTransform());
 
 	if (parent)
 	{
@@ -67,9 +77,9 @@ void GameObject::Update(float msec)
 		worldTransform = Transform->GetTransform();
 	}
 
-	for (auto const& value : children) {
-		value->Update(msec);
-	}
+	//for (auto const& value : children) {
+	//	value->Update(msec);
+	//}
 
 	
 }

@@ -6,6 +6,7 @@
 #include "RigidBodyComponent.h"
 #include "TransformComponent.h"
 #include "AudioComponent.h"
+#include "ScriptComponent.h"
 
 #include <vector>
 using namespace std;
@@ -32,8 +33,10 @@ public:
 	RigidBodyComponent* RigidBody;
 	TransformComponent* Transform;
 	AudioComponent* Audio;
+	ScriptComponent* Script;
 
-	string name;
+	string GetName() { return name; };
+	void SetName(string _newName);
 
 protected:
 
@@ -43,4 +46,6 @@ protected:
 
 	//sf::Transform localTransform;
 	sf::Transform worldTransform;
+
+	string name;
 };

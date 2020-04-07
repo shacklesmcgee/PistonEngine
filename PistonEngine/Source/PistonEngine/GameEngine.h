@@ -17,6 +17,7 @@
 #include "GraphicsComponent.h"
 #include "TransformComponent.h"
 #include "AudioComponent.h"
+#include "ScriptComponent.h"
 
 #include <lua.hpp>
 #define SOL_ALL_SAFETIES_ON 1
@@ -35,7 +36,8 @@ public:
 	~GameEngine();
 
 	bool Initialize(sf::RenderWindow& _mainWindow);
-	void Start(sf::RenderWindow& _mainWindow);
+	virtual void Start(sf::RenderWindow& _mainWindow);
+	virtual void Update(sf::RenderWindow& _mainWindow);
 
 	enum GameState { Uninitialized, ShowingSplash, Paused, ShowingMenu, Playing, Exiting };
 	GameState _gameState;
@@ -45,11 +47,11 @@ public:
 	GameObjectManager _gameObjectManager;
 	sf::Clock _clock;
 	
+	sol::state lua;
+
+	void PrintInt(int value);
 private:
 	const float diskSpaceNeeded = 300;
-
-	static bool IsExiting();
-	void GameLoop(sf::RenderWindow& _mainWindow);
 
 	bool checksPassed = true;
 	void ReadCPUSpeed();
@@ -58,5 +60,6 @@ private:
 	bool CheckMemory(const DWORDLONG physNeed, const DWORDLONG virtNeed);
 	void startDelegates();
 
+	//sf::RenderWindow mainWindow;
 	
 };
