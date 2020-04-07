@@ -7,6 +7,7 @@
                 "graphicsComp": false,
                 "scriptComp": true,
                 "inputComp": false,
+		"rigidBodyComp": true,
                 "parent": null,
 
                 "texture": null,
@@ -22,7 +23,11 @@
                 "rotationY": 0,
 
                 "scaleX": 1.0,
-                "scaleY": 1.0
+                "scaleY": 1.0,
+
+		"mass": 1.0,
+		"restitution": 1.0,
+		"obeysGravity": true 
             }
         ]},
 
@@ -33,6 +38,7 @@
                 "graphicsComp": true,
                 "scriptComp": true,
                 "inputComp": true,
+		"rigidBodyComp": false,
                 "parent": "root",
 
                 "textureName": "Idle",
@@ -55,7 +61,11 @@
                 "rotationY": 0,
 
                 "scaleX": 2.0,
-                "scaleY": 2.0
+                "scaleY": 2.0,
+
+		"mass": 1.0,
+		"restitution": 1.0,
+		"obeysGravity": true 
             }
         ]}
     ]

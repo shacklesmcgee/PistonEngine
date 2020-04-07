@@ -10,6 +10,7 @@
 #include "InputComponent.h"
 #include <string>
 #include <iostream>
+#include "SFML/Graphics/Rect.hpp"
 
 #include "sol.hpp"
 
