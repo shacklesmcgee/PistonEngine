@@ -10,7 +10,7 @@ PhysicsSystem::~PhysicsSystem()
 
 void PhysicsSystem::runPhysics(vector<GameObject*> gameObjects)
 {
-	for (int i = 0; i < gameObjects.size; i++)
+	for (int i = 0; i < gameObjects.size(); i++)
 	{
 		if (gameObjects[i]->RigidBody->GetObeysGravity() == true)
 		{
@@ -19,7 +19,7 @@ void PhysicsSystem::runPhysics(vector<GameObject*> gameObjects)
 
 		if (gameObjects[i]->RigidBody)
 		{
-			for (int k = 0; k < gameObjects.size; k++)
+			for (int k = 0; k < gameObjects.size(); k++)
 			{
 				if (gameObjects[k]->RigidBody)
 				{
