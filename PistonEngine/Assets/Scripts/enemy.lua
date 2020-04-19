@@ -26,7 +26,7 @@ function Update(dt)
     moveAI()
 
     if (movingDown) then
-        SetLocation(Transform, 0.0, 0.001)
+        SetLocation(Transform, 0.0, 0.01)
     end
 
     if (movingLeft) then
@@ -44,14 +44,28 @@ function moveAI()
     if (GetLocationX(Transform) < 1) then
         movingRight = true
         movingLeft = false
-        movingDown = true
-        return
+        movingDown = false
 
     elseif (GetLocationX(Transform) > (512 - GetWidth(Graphics))) then
         movingRight = false
         movingLeft = true
-        movingDown = true
-        return
+        movingDown = false
     end
+
+    if (GetLocationX(Transform) < 1) then
+        movingDown = true
+    end
+    -- if (GetLocationX(Transform) < 1) then
+    --     movingRight = true
+    --     movingLeft = false
+    --     movingDown = true
+    --     return
+
+    -- elseif (GetLocationX(Transform) > (512 - GetWidth(Graphics))) then
+    --     movingRight = false
+    --     movingLeft = true
+    --     movingDown = true
+    --     return
+    -- end
 
 end
