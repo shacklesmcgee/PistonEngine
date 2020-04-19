@@ -19,14 +19,14 @@ InputComponent::~InputComponent()
 
 }
 
-void InputComponent::MouseInput(bool state, sf::Keyboard::Key keyCode)
+void InputComponent::MouseInput(bool state, sf::Keyboard::Key keyCode, sf::Vector2i mousePos)
 {
 	if (LuaMouseInput)
-		LuaMouseInput(state, keyCode);
+		LuaMouseInput(state, keyCode, mousePos.x, mousePos.y);
 }
 
-void InputComponent::KeyInput(bool state, sf::Keyboard::Key keyCode)
+void InputComponent::KeyInput(bool state, sf::Keyboard::Key keyCode, sf::Vector2i mousePos)
 {
 	if (LuaKeyInput)
-		LuaKeyInput(state, keyCode);
+		LuaKeyInput(state, keyCode, mousePos.x, mousePos.y);
 }

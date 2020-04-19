@@ -154,7 +154,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
-    <ClCompile Include="ArcheryGame.cpp" />
     <ClCompile Include="AudioComponent.cpp" />
     <ClCompile Include="Connection.cpp" />
     <ClCompile Include="Dispatcher.cpp" />
@@ -170,11 +169,11 @@
     <ClCompile Include="RigidBodyComponent.cpp" />
     <ClCompile Include="ScriptComponent.cpp" />
     <ClCompile Include="SplashScreen.cpp" />
+    <ClCompile Include="TextComponent.cpp" />
     <ClCompile Include="TransformComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
-    <ClInclude Include="ArcheryGame.h" />
     <ClInclude Include="AudioComponent.h" />
     <ClInclude Include="BaseComponent.h" />
     <ClInclude Include="ClassObserver.h" />
@@ -191,6 +190,7 @@
     <ClInclude Include="RigidBodyComponent.h" />
     <ClInclude Include="ScriptComponent.h" />
     <ClInclude Include="SplashScreen.h" />
+    <ClInclude Include="TextComponent.h" />
     <ClInclude Include="TransformComponent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

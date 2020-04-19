@@ -7,15 +7,15 @@ class ScriptComponent : public BaseComponent
 {
 public:
 	//ScriptComponent();
-	ScriptComponent(string _fileName, sol::state &_lua);
+	ScriptComponent(string fileName, sol::state &_lua);
 	~ScriptComponent(void);
 
 	virtual void Update(float dt);
 
 	bool fileLoaded = false;
 
-	std::function<void()> Start;
-	std::function<void()> LuaUpdate;
+	std::function<void(std::vector<string> args)> LuaStart;
+	std::function<void(float dt)> LuaUpdate;
 
 protected:
 

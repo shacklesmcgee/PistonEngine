@@ -20,6 +20,7 @@ public:
 	bool Animated = false;
 	bool Playing = false;
 	bool Looping = false;
+	bool Finished = true;
 
 	int StartX;
 	int StartY;

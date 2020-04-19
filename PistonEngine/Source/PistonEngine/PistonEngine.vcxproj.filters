@@ -37,7 +37,6 @@
     <ClCompile Include="SplashScreen.cpp">
       <Filter>PistonEngine</Filter>
     </ClCompile>
-    <ClCompile Include="ArcheryGame.cpp" />
     <ClCompile Include="ScriptComponent.cpp">
       <Filter>PistonEngine\Components</Filter>
     </ClCompile>
@@ -51,6 +50,9 @@
       <Filter>PistonEngine\Components</Filter>
     </ClCompile>
     <ClCompile Include="Animation.cpp">
+      <Filter>PistonEngine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="TextComponent.cpp">
       <Filter>PistonEngine\Components</Filter>
     </ClCompile>
   </ItemGroup>
@@ -94,7 +96,6 @@
     <ClInclude Include="SplashScreen.h">
       <Filter>PistonEngine</Filter>
     </ClInclude>
-    <ClInclude Include="ArcheryGame.h" />
     <ClInclude Include="ScriptComponent.h">
       <Filter>PistonEngine\Components</Filter>
     </ClInclude>
@@ -108,6 +109,9 @@
       <Filter>PistonEngine\Components</Filter>
     </ClInclude>
     <ClInclude Include="Animation.h">
+      <Filter>PistonEngine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="TextComponent.h">
       <Filter>PistonEngine\Components</Filter>
     </ClInclude>
   </ItemGroup>

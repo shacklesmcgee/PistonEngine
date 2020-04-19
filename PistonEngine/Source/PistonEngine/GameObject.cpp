@@ -5,7 +5,7 @@ GameObject::GameObject()
 {
 	parent = NULL;
 
-	Lua.open_libraries(sol::lib::base);
+	Lua.open_libraries(sol::lib::base, sol::lib::math);
 	Lua.set("GameObject", this);
 
 	Lua["GetParent"] = &GameObject::GetParent;
@@ -84,6 +84,12 @@ void GameObject::AddComponent(BaseComponent* componentToAdd)
 	{
 		Input = static_cast<InputComponent*>(componentToAdd);
 		Input->owner = this;
+	}
+
+	else if (componentToAdd->name == "TextComponent")
+	{
+		Text = static_cast<TextComponent*>(componentToAdd);
+		Text->owner = this;
 	}
 }
 
@@ -181,12 +187,27 @@ void GameObject::LuaCreate(sol::table gameObject)
 
 	if (gameObject["script"].valid())
 	{
-		temp->AddComponent(new ScriptComponent(gameObject["script"], temp->Lua));
+		temp->AddComponent(new ScriptComponent(gameObject["script"]["location"], temp->Lua));
 	}
 
 	if (temp->Lua["Start"].valid())
 	{
-		temp->Script->Start();
+		std::vector<string> args;
+
+		if (gameObject["script"]["args"])
+		{
+			int i = 1;
+			string loc = "arg" + std::to_string(i);
+			while (gameObject["script"]["args"][loc])
+			{
+				
+				args.push_back(gameObject["script"]["args"][loc]);
+				i++;
+				loc = "arg" + std::to_string(i);
+			}
+		}
+
+		temp->Script->LuaStart(args);
 	}
 
 	if (gameObject["input"].valid())

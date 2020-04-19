@@ -17,6 +17,7 @@
 #include "TransformComponent.h"
 #include "AudioComponent.h"
 #include "ScriptComponent.h"
+#include "TextComponent.h"
 
 #include <lua.hpp>
 #define SOL_ALL_SAFETIES_ON 1
@@ -59,5 +60,5 @@ private:
 	void startDelegates();
 
 	//sf::RenderWindow mainWindow;
-	
+	string sceneLocation;
 };

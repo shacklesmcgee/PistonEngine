@@ -1,5 +1,4 @@
 #include "GameEngine.h"
-#include "ArcheryGame.h"
 
 int main()
 {
@@ -13,17 +12,6 @@ int main()
 		//game engine start
 		gameEngine.Start(mainWindow);
 	}
-
-	////GameEngine gameEngine;
-	//static sf::RenderWindow mainWindow;
-
-	//ArcheryGame archeryGame;
-	//if (archeryGame.Initialize(mainWindow))
-	//{
-	//	//game engine start
-	//	archeryGame.Start(mainWindow);
-	//}
-
 	return 0;
 }
 
