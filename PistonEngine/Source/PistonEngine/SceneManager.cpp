@@ -188,6 +188,25 @@ void SceneManager::LoadScene(string location)
 				obj->RigidBody->SetRestitution(restitution);
 				obj->RigidBody->SetBoundingBox(boundingBox);
 			}
+
+			float mass = tempJSONObject[x]["mass"].GetFloat();
+			float restitution = tempJSONObject[x]["restitution"].GetFloat();
+			bool obeysGravity = tempJSONObject[x]["obeysGravity"].GetBool();
+
+			//currently setting the bounding box from the scale and position of object
+
+			sf::Rect<float> boundingBox(tempJSONObject[x]["positionX"].GetInt() - tempJSONObject[x]["scaleX"].GetFloat() / 2,
+				tempJSONObject[x]["positionY"].GetInt() - tempJSONObject[x]["scaleY"].GetFloat() / 2,
+				tempJSONObject[x]["scaleX"].GetFloat(), tempJSONObject[x]["scaleY"].GetFloat());
+
+			if (tempJSONObject[x]["rigidBodyComp"].GetBool())
+			{
+				obj->AddComponent(new RigidBodyComponent(obj->Lua));
+				obj->RigidBody->SetMass(mass);
+				obj->RigidBody->SetObeysGravity(obeysGravity);
+				obj->RigidBody->SetRestitution(restitution);
+				obj->RigidBody->SetBoundingBox(boundingBox);
+			}
 		}
 	}
 

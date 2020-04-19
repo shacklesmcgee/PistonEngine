@@ -27,13 +27,20 @@ public:
 	void SetBoundingBox(sf::Rect<float> newBoundingBox);
 	void SetVelocity(sf::Vector2f newVelocity);
 
+
 protected:
+
 	float mass = 1.f;
 	float restitution = 1.f;
 	bool obeysGravity = false;
 	sf::Vector2f gravity = sf::Vector2f(0, -3);
 	sf::Rect<float> boundingBox;
 
+
+	//should expose velocity to construction in lua
+	//should velocity be in transform or rigidbody?
+	sf::Vector2f velocity = sf::Vector2f(0, 0);
+};
 
 	//should expose velocity to construction in lua
 	//should velocity be in transform or rigidbody?
