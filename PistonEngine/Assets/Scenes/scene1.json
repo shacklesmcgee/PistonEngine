@@ -32,7 +32,7 @@
 
         {"GameObject2": [
             {
-                "name": "earth",
+                "name": "player",
                 "transformComp": true,
                 "graphicsComp": true,
                 "scriptComp": true,
@@ -46,7 +46,7 @@
                 "frameTime": 0.1,
                 "looping": true,
                 "textureX": 0,
-                "textureY": 0,
+                "textureY": 32,
                 "textureWidth": 32,
                 "textureHeight": 32,
 
@@ -57,6 +57,43 @@
                 
                 "positionX": 256,
                 "positionY": 256,
+
+                "rotationAngle": 0,
+                "rotationX": 0,
+                "rotationY": 0,
+
+                "scaleX": 1.0,
+                "scaleY": 1.0
+            }
+        ]},
+
+        {"GameObject3": [
+            {
+                "name": "enemy",
+                "transformComp": true,
+                "graphicsComp": true,
+                "scriptComp": true,
+                "inputComp": false,
+                "textComp": false,
+                "parent": null,
+
+                "textureName": "Idle",
+                "texture": "../../Assets/Textures/enemy.png",
+                "animated": true,
+                "frameTime": 0.1,
+                "looping": true,
+                "textureX": 0,
+                "textureY": 32,
+                "textureWidth": 32,
+                "textureHeight": 32,
+
+                "font": "../../Assets/LEMONMILK-Bold.ttf",
+                "text": "",
+                "script": "../../Assets/Scripts/enemy.lua",
+                "args": "",
+                
+                "positionX": 0,
+                "positionY": 32,
 
                 "rotationAngle": 0,
                 "rotationX": 0,
