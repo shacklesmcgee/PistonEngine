@@ -8,6 +8,7 @@
 #include <sol.hpp>
 #include "Event.h"
 #include <lua.hpp>
+#include "SFML/Graphics/Rect.hpp"
 
 #define SOL_ALL_SAFETIES_ON 1
 

@@ -91,6 +91,12 @@ void GameObject::AddComponent(BaseComponent* componentToAdd)
 		Text = static_cast<TextComponent*>(componentToAdd);
 		Text->owner = this;
 	}
+
+	else if (componentToAdd->name == "RigidBodyComponent")
+	{
+		RigidBody = static_cast<RigidBodyComponent*>(componentToAdd);
+		RigidBody->owner = this;
+	}
 }
 
 BaseComponent* GameObject::GetComponent(string componentToGet)
@@ -213,6 +219,22 @@ void GameObject::LuaCreate(sol::table gameObject)
 	if (gameObject["input"].valid())
 	{
 		temp->AddComponent(new InputComponent(temp->Lua));
+	}
+
+	if (gameObject["rigidBody"].valid())
+	{
+		temp->AddComponent(new RigidBodyComponent(temp->Lua));
+
+		int tempX = gameObject["position"]["x"];
+		int tempY = gameObject["position"]["y"];
+		int tempScaleX = gameObject["scale"]["x"];
+		int tempScaleY = gameObject["scale"]["y"];
+		//need to find a way to get the rect here. cannot perform operations on these vlaues directly.
+		//maybe just get each value in a temp variable
+		sf::Rect<float> tempRect(tempX - tempScaleX / 2,
+			tempY - tempScaleY / 2, tempScaleX, tempScaleY);
+
+		temp->RigidBody->SetBoundingBox(tempRect);
 	}
 }
 

@@ -161,6 +161,7 @@
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="InputEvent.cpp" />
+    <ClCompile Include="PhysicsSystem.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="GraphicsComponent.cpp" />
     <ClCompile Include="InputComponent.cpp" />
@@ -183,6 +184,7 @@
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="InputEvent.h" />
+    <ClInclude Include="PhysicsSystem.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="GraphicsComponent.h" />
     <ClInclude Include="InputComponent.h" />

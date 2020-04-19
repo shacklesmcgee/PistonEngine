@@ -10,6 +10,8 @@
 #include "InputComponent.h"
 #include "TextComponent.h"
 
+#include "SFML/Graphics/Rect.hpp"
+
 #include <string>
 #include <iostream>
 

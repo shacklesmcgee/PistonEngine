@@ -55,6 +55,9 @@
     <ClCompile Include="TextComponent.cpp">
       <Filter>PistonEngine\Components</Filter>
     </ClCompile>
+    <ClCompile Include="PhysicsSystem.cpp">
+      <Filter>PistonEngine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseComponent.h">
@@ -113,6 +116,9 @@
     </ClInclude>
     <ClInclude Include="TextComponent.h">
       <Filter>PistonEngine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsSystem.h">
+      <Filter>PistonEngine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
