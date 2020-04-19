@@ -7,6 +7,7 @@
                 "graphicsComp": false,
                 "scriptComp": true,
                 "inputComp": false,
+                "rigidBodyComp": false,
                 "textComp": true,
                 "parent": null,
 
@@ -26,7 +27,11 @@
                 "rotationY": 0,
 
                 "scaleX": 1.0,
-                "scaleY": 1.0
+                "scaleY": 1.0,
+
+                "mass": 0.0,
+                "restitution": 0.0,
+                "obeysGravity": false 
             }
         ]},
 
@@ -37,6 +42,7 @@
                 "graphicsComp": true,
                 "scriptComp": true,
                 "inputComp": true,
+                "rigidBodyComp": true,
                 "textComp": false,
                 "parent": null,
 
@@ -63,7 +69,11 @@
                 "rotationY": 0,
 
                 "scaleX": 1.0,
-                "scaleY": 1.0
+                "scaleY": 1.0,
+
+                "mass": 1.0,
+                "restitution": 1.0,
+                "obeysGravity": true 
             }
         ]},
 
@@ -74,6 +84,7 @@
                 "graphicsComp": true,
                 "scriptComp": true,
                 "inputComp": false,
+                "rigidBodyComp": true,
                 "textComp": false,
                 "parent": null,
 
@@ -100,7 +111,11 @@
                 "rotationY": 0,
 
                 "scaleX": 1.0,
-                "scaleY": 1.0
+                "scaleY": 1.0,
+
+                "mass": 1.0,
+                "restitution": 1.0,
+                "obeysGravity": true 
             }
         ]}
     ]
