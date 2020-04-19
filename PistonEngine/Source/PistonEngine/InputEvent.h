@@ -5,7 +5,7 @@
 class InputEvent : public Event
 {
 public:
-	InputEvent(bool keyPressed, sf::Event e);
+	InputEvent(bool keyPressed, sf::Event e, sf::Vector2i mousePosAtEvent);
 	virtual ~InputEvent();
 
 	static constexpr DescriptorType descriptor = "InputEvent";
@@ -17,4 +17,5 @@ public:
 	sf::Keyboard::Key keyCode;
 
 	bool isMouse;
+	sf::Vector2i mousePos;
 };

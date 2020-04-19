@@ -4,13 +4,14 @@ using namespace std;
 
 class BaseObject;
 
-ScriptComponent::ScriptComponent(string _fileName, sol::state &_lua)
+ScriptComponent::ScriptComponent(string fileName, sol::state &_lua)
 {
 	name = "ScriptComponent";
-	_lua.script_file(_fileName);
+
+	_lua.script_file(fileName);
 
 	if (_lua["Start"].valid())
-		Start = _lua["Start"];
+		LuaStart = _lua["Start"];
 	if (_lua["Update"].valid())
 		LuaUpdate = _lua["Update"];
 }
@@ -23,6 +24,6 @@ ScriptComponent::~ScriptComponent(void)
 void ScriptComponent::Update(float dt)
 {
 	if (LuaUpdate != NULL)
-		LuaUpdate();
+		LuaUpdate(dt);
 }
 

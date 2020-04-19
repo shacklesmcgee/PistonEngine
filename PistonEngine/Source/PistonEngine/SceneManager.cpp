@@ -64,9 +64,11 @@ vector<GameObject*> SceneManager::GetAllGameObjects()
 	return _gameObjects;
 }
 
-void SceneManager::LoadScene()
+void SceneManager::LoadScene(string location)
 {
-	FILE* fp = fopen("Scenes/scene1.json", "rb");
+	const char* c = location.c_str();
+
+	FILE* fp = fopen(c, "rb");
 
 	char readBuffer[65536];
 	FileReadStream is(fp, readBuffer, sizeof(readBuffer));
@@ -91,12 +93,21 @@ void SceneManager::LoadScene()
 			string name = tempJSONObject[x]["name"].GetString();
 			string texture = "";
 			string script = "";
+			string font = "";
+			string text = "";
+			std::vector<string> args;
 
 			if (!tempJSONObject[x]["texture"].IsNull())
 				texture = tempJSONObject[x]["texture"].GetString();
 
 			if (!tempJSONObject[x]["script"].IsNull())
 				script = tempJSONObject[x]["script"].GetString();
+
+			if (!tempJSONObject[x]["text"].IsNull())
+				text = tempJSONObject[x]["text"].GetString();
+
+			if (!tempJSONObject[x]["font"].IsNull())
+				font = tempJSONObject[x]["font"].GetString();
 
 			sf::Vector2f position(tempJSONObject[x]["positionX"].GetInt(), tempJSONObject[x]["positionY"].GetInt());
 			float rotationAngle = tempJSONObject[x]["rotationAngle"].GetInt();
@@ -139,20 +150,25 @@ void SceneManager::LoadScene()
 				}
 			}
 
+			if (tempJSONObject[x]["textComp"].GetBool())
+			{
+				obj->AddComponent(new TextComponent(font, text, 64, sf::Color::White, obj->Lua));
+
+			}
 			if (tempJSONObject[x]["scriptComp"].GetBool())
 			{
 				obj->AddComponent(new ScriptComponent(script, obj->Lua));
 
 				if (obj->Lua["Start"].valid())
 				{
-					obj->Script->Start();
+					obj->Script->LuaStart(args);
 				}
 			}
 
 			if (tempJSONObject[x]["inputComp"].GetBool())
 			{
 				obj->AddComponent(new InputComponent(obj->Lua));
-			}
+			}	
 		}
 	}
 
@@ -168,7 +184,7 @@ void SceneManager::InputTriggered(const Event& e)
 		for (auto const& value : _gameObjects) {
 			if (value->Input && value->Lua["MouseInput"].valid())
 			{
-				value->Input->MouseInput(inputEvent.pressed, inputEvent.keyCode);
+				value->Input->MouseInput(inputEvent.pressed, inputEvent.keyCode, inputEvent.mousePos);
 			}
 		}
 	}
@@ -178,7 +194,7 @@ void SceneManager::InputTriggered(const Event& e)
 		for (auto const& value : _gameObjects) {
 			if (value->Input && value->Lua["KeyInput"].valid())
 			{
-				value->Input->KeyInput(inputEvent.pressed, inputEvent.keyCode);
+				value->Input->KeyInput(inputEvent.pressed, inputEvent.keyCode, inputEvent.mousePos);
 			}
 		}
 	}

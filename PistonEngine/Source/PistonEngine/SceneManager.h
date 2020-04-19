@@ -28,7 +28,7 @@ public:
 	GameObject* GetGameObject(string _name);
 	vector<GameObject*> GetAllGameObjects();
 
-	void LoadScene();
+	void LoadScene(string location);
 	void InputTriggered(const Event& e);
 
 private:

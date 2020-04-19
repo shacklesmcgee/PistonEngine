@@ -20,6 +20,8 @@ TransformComponent::TransformComponent(sol::state &_lua)
 	_lua.set("Transform", this);
 
 	_lua["GetLocation"] = &TransformComponent::GetLocation;
+	_lua["GetLocationX"] = &TransformComponent::GetLocationX;
+	_lua["GetLocationY"] = &TransformComponent::GetLocationY;
 	_lua["SetLocation"] = &TransformComponent::SetLocationF;
 	_lua["Move"] = &TransformComponent::MoveF;
 
@@ -42,6 +44,16 @@ sf::Vector2f TransformComponent::GetLocation()
 	return location;
 }
 
+float TransformComponent::GetLocationX()
+{
+	return location.x;
+}
+
+float TransformComponent::GetLocationY()
+{
+	return location.y;
+}
+
 void TransformComponent::SetByParent()
 {
 	location = GetOwner()->GetParent()->Transform->GetLocation();
@@ -50,7 +62,7 @@ void TransformComponent::SetByParent()
 void TransformComponent::SetLocation(sf::Vector2f newLocation)
 {
 	transform.translate(newLocation);
-	location = newLocation;
+	location += newLocation;
 }
 
 void TransformComponent::SetLocationF(float x, float y)
@@ -60,7 +72,8 @@ void TransformComponent::SetLocationF(float x, float y)
 	transform = sf::Transform::Identity;
 	transform.translate(x, y);
 	transform = transform * temp;
-	location = sf::Vector2f(x, y);
+	location.x += x;
+	location.y += y;
 }
 
 void TransformComponent::Move(sf::Vector2f direction)
@@ -81,27 +94,27 @@ float TransformComponent::GetRotation()
 
 void TransformComponent::SetRotation(float newRotation, sf::Vector2f newOrigin)
 {
-	transform.rotate(newRotation, newOrigin);
-	rotationAngle = newRotation;
+	transform.rotate(-newRotation, newOrigin);
+	rotationAngle = -newRotation;
 	rotationPoint = newOrigin;
 }
 
 void TransformComponent::SetRotationF(float newRotation, float x, float y)
 {
-	transform.rotate(newRotation, x, y);
-	rotationAngle = newRotation;
+	transform.rotate(-newRotation, x, y);
+	rotationAngle = -newRotation;
 	rotationPoint = sf::Vector2f(x, y);
 }
 
 void TransformComponent::Rotate(float newRotation)
 {
-	rotateAngle = newRotation / 1000.f;
+	rotateAngle = -newRotation / 1000.f;
 	rotatePoint = sf::Vector2f(0.f, 0.f);
 }
 
 void TransformComponent::RotateAroundPoint(float newRotation, float x, float y)
 {
-	rotateAngle = newRotation / 1000.f;
+	rotateAngle = -newRotation / 1000.f;
 	rotatePoint.x = x;
 	rotatePoint.y = y;
 }

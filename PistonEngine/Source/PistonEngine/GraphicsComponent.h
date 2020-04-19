@@ -31,8 +31,8 @@ public:
 	void SetOrigin(string newOrigin);
 	void SetOriginF(float x, float y);
 
-	float GetWidth() { return currentAnim.Texture.getSize().x; };
-	float GetHeight() { return currentAnim.Texture.getSize().y; };
+	float GetWidth() { return currentAnim.SpriteRect.width; };
+	float GetHeight() { return currentAnim.SpriteRect.height; };
 
 	virtual void Update(float dt);
 
@@ -44,6 +44,7 @@ public:
 private:
 
 	Animation currentAnim;
+	Animation prevAnim;
 	std::map<string, Animation> animations;
 
 	sf::Clock clock;

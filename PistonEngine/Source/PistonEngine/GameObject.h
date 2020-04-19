@@ -8,6 +8,8 @@
 #include "AudioComponent.h"
 #include "ScriptComponent.h"
 #include "InputComponent.h"
+#include "TextComponent.h"
+
 #include <string>
 #include <iostream>
 
@@ -43,6 +45,8 @@ public:
 	AudioComponent* Audio;
 	ScriptComponent* Script;
 	InputComponent* Input;
+	TextComponent* Text;
+
 	sol::state Lua;
 
 	string GetName();

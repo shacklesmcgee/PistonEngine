@@ -18,12 +18,13 @@ GameEngine::~GameEngine()
 
 bool GameEngine::Initialize(sf::RenderWindow& _mainWindow)
 {
-	Lua.open_libraries(sol::lib::base);
+	Lua.open_libraries(sol::lib::base, sol::lib::math);
 
-	Lua.script_file("Assets/settings.lua");
+	Lua.script_file("../../Assets/Scripts/settings.lua");
 	bool isfullscreen = Lua["config"]["fullscreen"];
 	int xRes = Lua["config"]["resolution"]["x"];
 	int yRes = Lua["config"]["resolution"]["y"];
+	sceneLocation = Lua["config"]["sceneLocation"];
 
 	_mainWindow.create(sf::VideoMode(xRes, yRes, 32), "Piston Engine");
 
@@ -74,7 +75,8 @@ void GameEngine::Start(sf::RenderWindow& _mainWindow)
 
 	Lua.set("GameEngine", this);
 
-	_sceneManager.LoadScene();
+
+	_sceneManager.LoadScene(sceneLocation);
 	startDelegates();
 
 	while (_mainWindow.isOpen())
@@ -89,29 +91,27 @@ void GameEngine::Start(sf::RenderWindow& _mainWindow)
 				break;
 
 			case sf::Event::KeyPressed:
-				dispatcher.post(InputEvent(true, event));
+				dispatcher.post(InputEvent(true, event, sf::Mouse::getPosition(_mainWindow)));
 				break;
 
 			case sf::Event::KeyReleased:
-				dispatcher.post(InputEvent(false, event));
+				dispatcher.post(InputEvent(false, event, sf::Mouse::getPosition(_mainWindow)));
 				break;
 
 			case sf::Event::MouseButtonPressed:
-				dispatcher.post(InputEvent(true, event));
+				dispatcher.post(InputEvent(true, event, sf::Mouse::getPosition(_mainWindow)));
 				break;
 
 			case sf::Event::MouseButtonReleased:
-				dispatcher.post(InputEvent(false, event));
+				dispatcher.post(InputEvent(false, event, sf::Mouse::getPosition(_mainWindow)));
 				break;
 
 			default:
 				break;
 
 			}
-			//if (event.type == sf::Event::MouseButtonPressed || event.type == sf::Event::KeyPressed)
-				//dispatcher.post(InputEvent(true, event));
-
 		}
+
 		Update(_mainWindow);
 	}
 }
@@ -122,12 +122,16 @@ void GameEngine::Update(sf::RenderWindow& _mainWindow)
 	sf::Time dt = _clock.restart();
 	_mainWindow.clear();
 
-	_sceneManager.Update(dt.asMilliseconds());
+	_sceneManager.Update(dt.asSeconds());
 
 	for (auto const& value : _sceneManager.GetAllGameObjects()) {
 		if (value->Graphics)
 		{
 			_mainWindow.draw(value->Graphics->GetSprite(), value->GetWorldTransform());
+		}
+		if (value->Text)
+		{
+			_mainWindow.draw(value->Text->GetText(), value->GetWorldTransform());
 		}
 	}
 	_mainWindow.display();

@@ -22,6 +22,8 @@ GraphicsComponent::GraphicsComponent(string _name, string _location, sf::IntRect
 	_lua["GetHeight"] = &GraphicsComponent::GetHeight;
 
 	_lua["GetOrigin"] = &GraphicsComponent::GetOrigin;
+	_lua["GetOriginX"] = &GraphicsComponent::GetOriginX;
+	_lua["GetOriginY"] = &GraphicsComponent::GetOriginY;
 	_lua["SetOrigin"] = &GraphicsComponent::SetOrigin;
 
 	_lua["PlayAnim"] = &GraphicsComponent::PlayAnim;
@@ -81,7 +83,8 @@ void GraphicsComponent::SetOrigin(string newOrigin)
 
 	else if (newOrigin == "MiddleCenter")
 	{
-		currentAnim.Sprite.setOrigin(0.5f * currentAnim.Sprite.getTextureRect().width * currentAnim.Sprite.getScale().x, 0.5f * currentAnim.Sprite.getTextureRect().height * currentAnim.Sprite.getScale().y);
+		currentAnim.Sprite.setOrigin(0.5f * currentAnim.Sprite.getTextureRect().width, 0.5f * currentAnim.Sprite.getTextureRect().height);
+
 	}
 
 	else if (newOrigin == "MiddleRight")
@@ -116,19 +119,22 @@ void GraphicsComponent::Update(float dt)
 	{
 		if (clock.getElapsedTime().asSeconds() > currentAnim.FrameTime) 
 		{
-			if (currentAnim.SpriteRect.left == (currentAnim.Sprite.getTexture()->getSize().x - currentAnim.SpriteRect.width))
+			if (currentAnim.SpriteRect.left >= (currentAnim.Sprite.getTexture()->getSize().x - currentAnim.SpriteRect.width))
 			{
 				currentAnim.SpriteRect.left = currentAnim.StartX;
-
+				currentAnim.Finished = true;
 				if (!currentAnim.Looping)
 				{
 					currentAnim.Playing = false;
 					currentAnim.SpriteRect.left = (currentAnim.Sprite.getTexture()->getSize().x - currentAnim.SpriteRect.width);
+					currentAnim = prevAnim;
 				}	
 			}
 			else
+			{
 				currentAnim.SpriteRect.left += currentAnim.SpriteRect.width;
-
+				currentAnim.Finished = false;
+			}
 			currentAnim.Sprite.setTextureRect(currentAnim.SpriteRect);
 			clock.restart();
 		}
@@ -137,6 +143,7 @@ void GraphicsComponent::Update(float dt)
 
 void GraphicsComponent::PlayAnim(sol::table newAnim)
 {
+	prevAnim = currentAnim;
 	Animation playAnim = animations.at(newAnim["name"]);
 	if (currentAnim.Name != playAnim.Name)
 	{

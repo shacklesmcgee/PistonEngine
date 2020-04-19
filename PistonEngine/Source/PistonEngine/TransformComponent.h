@@ -16,6 +16,9 @@ public:
 	void SetByParent();
 
 	sf::Vector2f GetLocation();
+	float GetLocationX();
+	float GetLocationY();
+
 	void SetLocation(sf::Vector2f newLocation);
 	void SetLocationF(float x, float y);
 	void Move(sf::Vector2f direction);

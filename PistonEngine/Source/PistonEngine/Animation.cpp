@@ -14,6 +14,7 @@ Animation::Animation(string _name, string _location, sf::IntRect _rect, bool _an
 	FrameTime = _frameTime;
 	Playing = false;
 	Looping = _looping;
+	Finished = true;
 
 	StartX = _rect.left;
 	StartY = _rect.top;	
