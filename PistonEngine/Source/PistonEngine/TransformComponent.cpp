@@ -159,6 +159,5 @@ void TransformComponent::Update(float dt)
 {
 	transform.scale(scale);
 	transform.rotate(rotateAngle, rotatePoint);
-	//transform.translate(move);
 	transform.translate(velocity * dt);
 }

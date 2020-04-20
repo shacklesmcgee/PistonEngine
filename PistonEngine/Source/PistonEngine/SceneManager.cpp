@@ -21,15 +21,26 @@ GameObject* SceneManager::Create(string _newName)
 	return _gameObject;
 }
 
-void SceneManager::Destroy(string _name)
+void SceneManager::Destroy(GameObject* _objToDestroy)
+{
+	vector<GameObject*>::iterator itr = find(_gameObjects.begin(), _gameObjects.end(), _objToDestroy);
+	//lua_close(_objToDestroy->Lua);
+	//remove(_gameObjects.begin(), _gameObjects.end(), _objToDestroy);
+	_gameObjects.erase(itr);
+	delete _objToDestroy;
+}
+
+void SceneManager::DestroyByName(string _name)
 {
 	int i = 0;
 	for (auto const& value : GetAllGameObjects())
 	{
 		if (value->GetName() == _name)
 		{
-			delete value;
+			//lua_close(value->Lua);
 			_gameObjects.erase(_gameObjects.begin() + i);
+			delete value;
+			return;
 		}
 		i++;
 	}
@@ -44,11 +55,28 @@ void SceneManager::Update(float msec)
 }
 
 
+void SceneManager::SetVariables(float newWidth, float newHeight)
+{
+	screenWidth = newWidth;
+	screenHeight = newHeight;
+}
+
+float SceneManager::GetScreenWidth()
+{
+	return screenWidth;
+}
+
+float SceneManager::GetScreenHeight()
+{
+	return screenHeight;
+}
+
 GameObject* SceneManager::GetGameObject(string _name)
 {
 	GameObject* obj = NULL;
 
-	for (auto const& value : _gameObjects) {
+	for (auto const& value : _gameObjects) 
+	{
 		if (value->GetName() == _name)
 		{
 			obj = value;
@@ -65,6 +93,12 @@ vector<GameObject*> SceneManager::GetAllGameObjects()
 
 void SceneManager::LoadScene(string location)
 {
+	for (auto const& value : _gameObjects) 
+	{
+		delete value;
+	}
+
+	_gameObjects.clear();
 	const char* c = location.c_str();
 
 	FILE* fp = fopen(c, "rb");

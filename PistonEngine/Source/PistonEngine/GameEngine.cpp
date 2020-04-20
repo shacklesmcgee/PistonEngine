@@ -77,6 +77,7 @@ void GameEngine::Start(sf::RenderWindow& _mainWindow)
 
 
 	_sceneManager.LoadScene(sceneLocation);
+	_sceneManager.SetVariables(_mainWindow.getSize().x, _mainWindow.getSize().y);
 	startDelegates();
 
 	while (_mainWindow.isOpen())

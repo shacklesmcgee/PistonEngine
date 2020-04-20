@@ -22,7 +22,8 @@ public:
 	~SceneManager();
 
 	GameObject* Create(string _name);
-	void Destroy(string _name);
+	void Destroy(GameObject* _objToDestroy);
+	void DestroyByName(string _name);
 
 	virtual void Update(float msec);
 
@@ -32,9 +33,15 @@ public:
 	void LoadScene(string location);
 	void InputTriggered(const Event& e);
 
+	void SetVariables(float newWidth, float newHeight);
+	float GetScreenWidth();
+	float GetScreenHeight();
+
 private:
 	vector<GameObject*> _gameObjects; 
 
+	float screenWidth;
+	float screenHeight;
 
 };
 

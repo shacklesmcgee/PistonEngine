@@ -63,6 +63,8 @@ public:
 	void LuaCreate(sol::table gameObject);
 	void LuaDestroy(string name);
 
+	void LuaLoadScene(string name);
+
 protected:
 
 	GameObject* parent;

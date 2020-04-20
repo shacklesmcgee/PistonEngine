@@ -12,6 +12,7 @@ GameObject::GameObject()
 	Lua["GetName"] = &GameObject::GetName;
 	Lua["Create"] = &GameObject::LuaCreate;
 	Lua["Destroy"] = &GameObject::LuaDestroy;
+	Lua["LoadScene"] = &GameObject::LuaLoadScene;
 }
 
 GameObject::~GameObject(void)
@@ -223,16 +224,30 @@ void GameObject::LuaCreate(sol::table gameObject)
 
 	if (gameObject["rigidBody"].valid())
 	{
+
 		temp->AddComponent(new RigidBodyComponent(temp->Lua));
 
-		int tempX = gameObject["position"]["x"];
-		int tempY = gameObject["position"]["y"];
-		int tempScaleX = gameObject["scale"]["x"];
-		int tempScaleY = gameObject["scale"]["y"];
-		//need to find a way to get the rect here. cannot perform operations on these vlaues directly.
-		//maybe just get each value in a temp variable
-		sf::Rect<float> tempRect(tempX - tempScaleX / 2,
-			tempY - tempScaleY / 2, tempScaleX, tempScaleY);
+		if (gameObject["rigidBody"]["mass"].valid())
+		{
+			temp->RigidBody->SetMass(gameObject["rigidBody"]["mass"]);
+		}
+
+		if (gameObject["rigidBody"]["restitution"].valid())
+		{
+			temp->RigidBody->SetRestitution(gameObject["rigidBody"]["restitution"]);
+		}
+
+		if (gameObject["rigidBody"]["obeysGravity"].valid())
+		{
+			temp->RigidBody->SetObeysGravity(gameObject["rigidBody"]["obeysGravity"]);
+
+		}
+
+		float tempX = gameObject["position"]["x"];
+		float tempY = gameObject["position"]["y"];
+		float tempWidth = (float)gameObject["graphics"]["textureWidth"] * (float)gameObject["scale"]["x"];
+		float tempHeight = (float)gameObject["graphics"]["textureHeight"] * (float)gameObject["scale"]["y"];
+		sf::Rect<float> tempRect(tempX, tempY, tempWidth, tempHeight);
 
 		temp->RigidBody->SetBoundingBox(tempRect);
 	}
@@ -240,10 +255,14 @@ void GameObject::LuaCreate(sol::table gameObject)
 
 void GameObject::LuaDestroy(string name)
 {
-	if (name != "")
-		GetSceneManager()->Destroy(name);
+	if (name != "" && name != this->name)
+		GetSceneManager()->DestroyByName(name);
 }
 
+void GameObject::LuaLoadScene(string name)
+{
+	GetSceneManager()->LoadScene(name);
+}
 void GameObject::Update(float msec)
 {
 	
@@ -259,5 +278,13 @@ void GameObject::Update(float msec)
 	else
 	{
 		worldTransform = Transform->GetTransform();
+	}
+
+	if (Transform->GetLocationX() < 0 || 
+		Transform->GetLocationX() > GetSceneManager()->GetScreenWidth() || 
+		Transform->GetLocationY() < 0 ||
+		Transform->GetLocationY() > GetSceneManager()->GetScreenHeight())
+	{
+		GetSceneManager()->Destroy(this);
 	}
 }

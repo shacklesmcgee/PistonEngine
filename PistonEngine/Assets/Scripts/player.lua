@@ -5,8 +5,10 @@ movingRight = false
 
 rotateLeft = false
 rotateRight = false
-
+myName = ""
 function Start(args)
+    myName = GetName(GameObject)
+
     SetOrigin(Graphics, "MiddleCenter")
 
     animIdle = {name = "Idle"}
@@ -87,28 +89,28 @@ function MouseInput(state, keyCode, mousePosX, mousePosY)
             tempX = GetLocationX(Transform)
             tempY = GetLocationY(Transform)
 
-            print(tempX .. ", " .. tempY)
             arrow = {
                 name = "arrow", 
                 position = {x = tempX, y = tempY}, 
                 rotation = {angle = 0.0, x = 0.0, y = 0.0}, 
                 scale = {x = 1.0, y = 1.0}, 
                 graphics = {name = "arrow", texture="../../Assets/Textures/arrow.png", animated = true, textureX = 0, textureY = 0, textureWidth = 16, textureHeight = 64, frameTime = 0.1, looping = true}, 
-                script = {location = "../../Assets/Scripts/arrow.lua", args = {arg1 = mousePosX, arg2 = mousePosY}}
+                script = {location = "../../Assets/Scripts/arrow.lua", args = {arg1 = mousePosX, arg2 = mousePosY}},
+                rigidBody = {mass = 1.0, restitution = 1.0, obeysGravity = false}
                 }
 
             PlayAnim(Graphics, animAttack)
             Create(GameObject, arrow)
 
         elseif (keyCode == 1) then
-            Destroy(GameObject, "arrow0")
+            --Doesn't Work
+            LoadScene(GameObject, "../../Assets/Scenes/scene2.json")
 
         elseif (keyCode == 2) then
         end     
 
     elseif (state == false) then
         if (keyCode == 0) then
-            --PlayAnim(Graphics, animIdle)
         elseif (keyCode == 1) then
 
         elseif (keyCode == 2) then
@@ -118,7 +120,9 @@ function MouseInput(state, keyCode, mousePosX, mousePosY)
 end
 
 function Collision(obj1Name, obj2Name)
-    print(obj1Name .. " collided with " .. obj2Name)
+    if (obj2Name == "enemy") then
+        PlayAnim(Graphics, animDead)
+    end
 end
 
 keyCodes = {

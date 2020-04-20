@@ -55,17 +55,4 @@ function moveAI()
     if (GetLocationX(Transform) < 1) then
         movingDown = true
     end
-    -- if (GetLocationX(Transform) < 1) then
-    --     movingRight = true
-    --     movingLeft = false
-    --     movingDown = true
-    --     return
-
-    -- elseif (GetLocationX(Transform) > (512 - GetWidth(Graphics))) then
-    --     movingRight = false
-    --     movingLeft = true
-    --     movingDown = true
-    --     return
-    -- end
-
 end

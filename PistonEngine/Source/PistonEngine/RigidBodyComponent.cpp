@@ -24,7 +24,8 @@ RigidBodyComponent::RigidBodyComponent(sol::state &_lua)
 	_lua["SetObeysGravity"] = &RigidBodyComponent::SetObeysGravity;
 	_lua["SetGravity"] = &RigidBodyComponent::SetGravity;
 
-	LuaCollision = _lua["Collision"];
+	if (_lua["Collision"].valid())
+		LuaCollision = _lua["Collision"];
 }
 
 RigidBodyComponent::~RigidBodyComponent(void)
@@ -62,6 +63,18 @@ void RigidBodyComponent::Update(float dt)
 				}
 			}
 		}
+	}
+}
+
+void RigidBodyComponent::handleCollision(GameObject* object1, GameObject* object2)
+{
+	//calculate normals, add impulse away from each other
+	//cout << object1->GetName() << " collided with " << object2->GetName() << endl;
+	if (LuaCollision != NULL)
+	{
+		LuaCollision(object1->GetName(), object2->GetName());
+
+		//LuaCollision();
 	}
 }
 
@@ -113,11 +126,4 @@ void RigidBodyComponent::SetGravity(sf::Vector2f newGravity)
 void RigidBodyComponent::SetBoundingBox(sf::Rect<float> newBoundingBox)
 {
 	boundingBox = newBoundingBox;
-}
-
-void RigidBodyComponent::handleCollision(GameObject* object1, GameObject* object2)
-{
-	//calculate normals, add impulse away from each other
-	//cout << object1->GetName() << " collided with " << object2->GetName() << endl;
-	LuaCollision(object1->GetName(), object2->GetName());
 }

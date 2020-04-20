@@ -32,6 +32,7 @@ public:
 	void handleCollision(GameObject* object1, GameObject* object2);
 
 	std::function<void(string, string)> LuaCollision;
+	//std::function<void(float dt)> LuaCollision;
 
 protected:
 
