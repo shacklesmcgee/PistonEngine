@@ -34,9 +34,9 @@ void PhysicsSystem::ApplyGravity(GameObject* object)
 {
 	//this will accelerate every second, not apply gravity consistantly
 
-	sf::Vector2f tempVelo(object->RigidBody->GetVelocity());
+	sf::Vector2f tempVelo(object->Transform->GetVelocity());
 	sf::Vector2f tempGrav(object->RigidBody->GetGravity());
-	object->RigidBody->SetVelocity(tempGrav + tempVelo);
+	object->Transform->SetVelocity(tempGrav + tempVelo);
 }
 
 void PhysicsSystem::checkCollision(GameObject* object1, GameObject* object2)

@@ -117,6 +117,10 @@ function MouseInput(state, keyCode, mousePosX, mousePosY)
     end
 end
 
+function Collision(obj1Name, obj2Name)
+    print(obj1Name .. " collided with " .. obj2Name)
+end
+
 keyCodes = {
     "A", --0
     "B", --1

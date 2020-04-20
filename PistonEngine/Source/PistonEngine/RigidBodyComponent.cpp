@@ -1,8 +1,16 @@
 #include "RigidBodyComponent.h"
+#include "GameObject.h"
+#include "SceneManager.h"
 
 RigidBodyComponent::RigidBodyComponent(sol::state &_lua)
 {
 	name = "RigidBodyComponent";
+
+	mass = 0.f;
+	restitution = 0.f;
+	obeysGravity = false;
+	gravity = sf::Vector2f(0, 0.0098);
+	boundingBox = sf::Rect<float>(0,0,0,0);
 
 	_lua.set("RigidBody", this);
 
@@ -15,6 +23,8 @@ RigidBodyComponent::RigidBodyComponent(sol::state &_lua)
 	_lua["SetRestitution"] = &RigidBodyComponent::SetRestitution;
 	_lua["SetObeysGravity"] = &RigidBodyComponent::SetObeysGravity;
 	_lua["SetGravity"] = &RigidBodyComponent::SetGravity;
+
+	LuaCollision = _lua["Collision"];
 }
 
 RigidBodyComponent::~RigidBodyComponent(void)
@@ -23,6 +33,36 @@ RigidBodyComponent::~RigidBodyComponent(void)
 
 void RigidBodyComponent::Update(float dt)
 {
+	if (GetObeysGravity() == true)
+	{
+		sf::Vector2f tempVelo(GetOwner()->Transform->GetVelocity());
+		sf::Vector2f tempGrav(GetGravity());
+		GetOwner()->Transform->SetVelocity(tempGrav + tempVelo);
+	}
+
+	for (auto const& value : GetOwner()->GetSceneManager()->GetAllGameObjects())
+	{
+		if (value->RigidBody)
+		{
+			if (value->RigidBody == this)
+			{
+				SetBoundingBox(sf::Rect<float>(GetOwner()->Transform->GetLocationX(),
+					GetOwner()->Transform->GetLocationY(),
+					GetOwner()->Graphics->GetWidth(),
+					GetOwner()->Graphics->GetHeight()));
+
+				continue;
+			}
+
+			else
+			{
+				if (GetBoundingBox().intersects(value->RigidBody->GetBoundingBox()))
+				{
+					handleCollision(GetOwner(), value);
+				}
+			}
+		}
+	}
 }
 
 float RigidBodyComponent::GetMass()
@@ -50,11 +90,6 @@ sf::Rect<float> RigidBodyComponent::GetBoundingBox()
 	return boundingBox;
 }
 
-sf::Vector2f RigidBodyComponent::GetVelocity()
-{
-	return velocity;
-}
-
 void RigidBodyComponent::SetMass(float newMass)
 {
 	mass = newMass;
@@ -80,7 +115,9 @@ void RigidBodyComponent::SetBoundingBox(sf::Rect<float> newBoundingBox)
 	boundingBox = newBoundingBox;
 }
 
-void RigidBodyComponent::SetVelocity(sf::Vector2f newVelocity)
+void RigidBodyComponent::handleCollision(GameObject* object1, GameObject* object2)
 {
-	velocity = newVelocity;
+	//calculate normals, add impulse away from each other
+	//cout << object1->GetName() << " collided with " << object2->GetName() << endl;
+	LuaCollision(object1->GetName(), object2->GetName());
 }

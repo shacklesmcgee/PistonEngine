@@ -39,6 +39,9 @@ public:
 	sf::Transform GetTransform() { return transform; };
 	void SetTransform(sf::Transform newTransform);
 
+	sf::Vector2f GetVelocity();
+	void SetVelocity(sf::Vector2f newVelocity);
+
 protected:
 	sf::Vector2f location;
 	sf::Vector2f move;
@@ -52,4 +55,5 @@ protected:
 
 	sf::Transform transform;
 
+	sf::Vector2f velocity;
 };

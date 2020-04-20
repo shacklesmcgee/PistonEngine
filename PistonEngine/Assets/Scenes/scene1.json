@@ -73,7 +73,7 @@
 
                 "mass": 1.0,
                 "restitution": 1.0,
-                "obeysGravity": true 
+                "obeysGravity": false 
             }
         ]},
 
@@ -115,7 +115,7 @@
 
                 "mass": 1.0,
                 "restitution": 1.0,
-                "obeysGravity": true 
+                "obeysGravity": false 
             }
         ]}
     ]

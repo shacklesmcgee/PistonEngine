@@ -145,10 +145,20 @@ void TransformComponent::SetTransform(sf::Transform newTransform)
 	transform = newTransform;
 }
 
+sf::Vector2f TransformComponent::GetVelocity()
+{
+	return velocity;
+}
+
+void TransformComponent::SetVelocity(sf::Vector2f newVelocity)
+{
+	velocity = newVelocity;
+}
+
 void TransformComponent::Update(float dt)
 {
 	transform.scale(scale);
 	transform.rotate(rotateAngle, rotatePoint);
-	transform.translate(move);	
-
+	//transform.translate(move);
+	transform.translate(velocity * dt);
 }
