@@ -102,6 +102,7 @@ function MouseInput(state, keyCode, mousePosX, mousePosY)
 
             PlayAnim(Graphics, animAttack)
             Create(GameObject, arrow)
+	    return
 
         elseif (keyCode == 1) then
             --Doesn't Work
@@ -112,11 +113,11 @@ function MouseInput(state, keyCode, mousePosX, mousePosY)
             }
             SendData(GameObject, temp)
         elseif (keyCode == 2) then
-            
         end     
 
     elseif (state == false) then
         if (keyCode == 0) then
+	    return
         elseif (keyCode == 1) then
         elseif (keyCode == 2) then
         end    

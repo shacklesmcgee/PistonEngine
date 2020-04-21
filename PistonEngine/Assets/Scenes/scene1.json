@@ -102,6 +102,7 @@
                 "text": "",
                 "script": "../../Assets/Scripts/enemy.lua",
                 "args": null,
+
                 
                 "positionX": 0,
                 "positionY": 32,
