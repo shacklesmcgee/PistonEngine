@@ -101,20 +101,23 @@ function MouseInput(state, keyCode, mousePosX, mousePosY)
 
             PlayAnim(Graphics, animAttack)
             Create(GameObject, arrow)
+	    return
 
         elseif (keyCode == 1) then
             --Doesn't Work
             LoadScene(GameObject, "../../Assets/Scenes/scene2.json")
-
+	    return
         elseif (keyCode == 2) then
+	    return
         end     
 
     elseif (state == false) then
         if (keyCode == 0) then
+	    return
         elseif (keyCode == 1) then
-
+	    return
         elseif (keyCode == 2) then
-
+	    return
         end    
     end
 end
