@@ -4,8 +4,9 @@
 GameObject::GameObject()
 {
 	parent = NULL;
+	Lua = sol::state();
 
-	Lua.open_libraries(sol::lib::base, sol::lib::math);
+	Lua.open_libraries(sol::lib::base, sol::lib::math, sol::lib::string, sol::lib::io);
 	Lua.set("GameObject", this);
 
 	Lua["GetParent"] = &GameObject::GetParent;
@@ -13,15 +14,58 @@ GameObject::GameObject()
 	Lua["Create"] = &GameObject::LuaCreate;
 	Lua["Destroy"] = &GameObject::LuaDestroy;
 	Lua["LoadScene"] = &GameObject::LuaLoadScene;
+
+	Lua["PauseGame"] = &GameObject::LuaPauseGame;
+	Lua["ResumeGame"] = &GameObject::LuaResumeGame;
+
+	Lua["SendData"] = &GameObject::SendData;
 }
 
 GameObject::~GameObject(void)
 {
+	//lua_close(Lua);
 	for (unsigned int i = 0; i < children.size(); i++)
 	{
 		delete children[i];
 	}
+
+	for (unsigned int i = 0; i < components.size(); i++)
+	{
+		delete components[i];
+	}
+
+	
 }
+
+
+void GameObject::SendData(sol::table data)
+{
+	if (data["name"])
+	{
+		string tempName = data["name"];
+		vector<string> tempVar = vector<string>();
+		tempVar.push_back(data["var1"]);
+		tempVar.push_back("");
+		tempVar.push_back("");
+		tempVar.push_back("");
+		tempVar.push_back("");
+		GameObject* tempObj = GetSceneManager()->GetGameObject(tempName);
+
+
+		tempObj->Script->LuaReceive(tempVar);
+	}
+}
+
+void GameObject::LuaPauseGame()
+{
+	GetSceneManager()->PauseGame();
+}
+
+void GameObject::LuaResumeGame()
+{
+	GetSceneManager()->ResumeGame();
+}
+
 
 void GameObject::SetParent(GameObject & p)
 {

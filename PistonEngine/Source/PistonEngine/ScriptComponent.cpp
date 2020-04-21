@@ -9,10 +9,17 @@ ScriptComponent::ScriptComponent(string fileName, sol::state &_lua)
 	name = "ScriptComponent";
 
 	_lua.script_file(fileName);
+
 	if (_lua["Start"].valid())
 		LuaStart = _lua["Start"];
+
 	if (_lua["Update"].valid())
 		LuaUpdate = _lua["Update"];
+	/*if (_lua["ReceiveData"].valid())
+	LuaReceiveData = _lua["ReceiveData"];*/
+
+	if (_lua["Receives"].valid())
+		LuaReceive = _lua["Receive"];
 }
 
 ScriptComponent::~ScriptComponent(void)
