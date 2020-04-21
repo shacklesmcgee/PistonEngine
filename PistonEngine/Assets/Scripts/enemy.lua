@@ -8,7 +8,7 @@ timeUntilAttack = 0
 function Start(args)
     SetOrigin(Graphics, "MiddleCenter")
 
-    timeUntilAttack = args[1]
+    --timeUntilAttack = args[1]
 
     animIdle = {name = "Idle"}
     CreateAnim(Graphics, animIdle)
