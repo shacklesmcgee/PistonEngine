@@ -1,4 +1,4 @@
-gameTimer = 30
+gameTimer = 35
 screenWidth = 512
 screenHeight = 512
 alive = true
@@ -6,7 +6,7 @@ gameWon = false
 
 function Start(args)
     height = GetTextHeight(Text)
-    SetLocation(Transform, screenWidth/2, height/2)
+    SetLocation(Transform, screenWidth/2, 20)
     SetTextOrigin(Text, "MiddleCenter")
 end
 

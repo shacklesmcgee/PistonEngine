@@ -34,7 +34,7 @@ function Update(dt)
         if (125 - gameTimer > tonumber(timeUntilAttack)) then
 	    attacking = true
 	    alive = true
-	    SetLocation(Transform, 0.0, 42.0 * tonumber(timeUntilAttack))	
+	    SetLocation(Transform, 0.0, 50.0 * tonumber(timeUntilAttack)/10)	
 	    print("Enemy Log")
         end
     end

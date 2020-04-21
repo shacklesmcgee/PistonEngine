@@ -22,7 +22,7 @@ TransformComponent::TransformComponent(sol::state &_lua)
 	_lua["GetLocation"] = &TransformComponent::GetLocation;
 	_lua["GetLocationX"] = &TransformComponent::GetLocationX;
 	_lua["GetLocationY"] = &TransformComponent::GetLocationY;
-	_lua["LuaSetLocation"] = &TransformComponent::LuaSetLocationF;
+	_lua["SetLocation"] = &TransformComponent::LuaSetLocationF;
 	_lua["Move"] = &TransformComponent::MoveF;
 
 	_lua["GetRotation"] = &TransformComponent::GetRotation;
