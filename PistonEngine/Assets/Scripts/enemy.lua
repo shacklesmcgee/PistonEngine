@@ -1,14 +1,15 @@
 movingDown = false
 movingLeft = false
 movingRight = false
-alive = true
+alive = false
 gameTimer = 125
 timeUntilAttack = 0
+attacking = false
 
 function Start(args)
     SetOrigin(Graphics, "MiddleCenter")
 
-    --timeUntilAttack = args[1]
+    timeUntilAttack = args[1]
 
     animIdle = {name = "Idle"}
     CreateAnim(Graphics, animIdle)
@@ -29,8 +30,13 @@ end
 function Update(dt)
     gameTimer = gameTimer - (dt/1)
 
-    if (125 - gameTimer > timeUntilAttack) then
-	SetLocation(Transform, 1000, 1000)
+    if(attacking == false) then
+        if (125 - gameTimer > tonumber(timeUntilAttack)) then
+	    attacking = true
+	    alive = true
+	    SetLocation(Transform, 0.0, 42.0 * tonumber(timeUntilAttack))	
+	    print("Enemy Log")
+        end
     end
 
     if (alive) then
