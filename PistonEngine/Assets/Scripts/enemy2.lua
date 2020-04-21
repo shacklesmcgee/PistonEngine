@@ -1,15 +1,10 @@
 movingDown = false
 movingLeft = false
 movingRight = false
-alive = false
-gameTimer = 125
-timeUntilAttack = 0
-attacking = false
+alive = true
 
 function Start(args)
     SetOrigin(Graphics, "MiddleCenter")
-
-    timeUntilAttack = args[1]
 
     animIdle = {name = "Idle"}
     CreateAnim(Graphics, animIdle)
@@ -28,17 +23,6 @@ function Start(args)
 end
 
 function Update(dt)
-    gameTimer = gameTimer - (dt/1)
-
-    if(attacking == false) then
-        if (125 - gameTimer > tonumber(timeUntilAttack)) then
-	    attacking = true
-	    alive = true
-	    SetLocation(Transform, 0.0, 42.0 * tonumber(timeUntilAttack))	
-	    print("Enemy Log")
-        end
-    end
-
     if (alive) then
         moveAI()
 
@@ -76,8 +60,8 @@ end
 
 
 function Collision(obj1Name, obj2Name)
-    obj2Name = obj2Name:sub(1, -2)
-    if (obj2Name == "arrow") then
+    if (obj2Name ~= "enemy" and obj2Name ~= "player") then
+        --Destroy(GameObject, obj2Name)
         alive = false
         SetLocation(Transform, 1000, 1000)
     end

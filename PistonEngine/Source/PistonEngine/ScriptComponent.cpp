@@ -18,8 +18,8 @@ ScriptComponent::ScriptComponent(string fileName, sol::state &_lua)
 	/*if (_lua["ReceiveData"].valid())
 	LuaReceiveData = _lua["ReceiveData"];*/
 
-	if (_lua["Test"].valid())
-		LuaTest = _lua["Test"];
+	if (_lua["Receives"].valid())
+		LuaReceive = _lua["Receive"];
 }
 
 ScriptComponent::~ScriptComponent(void)

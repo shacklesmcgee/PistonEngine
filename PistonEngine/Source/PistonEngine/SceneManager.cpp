@@ -127,10 +127,6 @@ vector<GameObject*> SceneManager::GetAllGameObjects()
 
 void SceneManager::LoadScene(string location)
 {
-	for (auto const& value : _gameObjects) 
-	{
-		delete value;
-	}
 
 	_gameObjects.clear();
 	const char* c = location.c_str();

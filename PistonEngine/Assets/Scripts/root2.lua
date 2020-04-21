@@ -1,4 +1,4 @@
-gameTimer = 30
+gameTimer = 50
 screenWidth = 512
 screenHeight = 512
 alive = true
@@ -16,7 +16,6 @@ function Update(dt)
         gameTimer = gameTimer - (dt/1)
                 
         if (gameTimer <= 0) then
-            gameWon = true
             GameOver()
             return
         end
@@ -52,6 +51,10 @@ end
 
 function Receive(args)
     if (args[1] == "dead") then
+        GameOver()
+        
+    elseif (args[1] == "won") then
+        gameWon = true
         GameOver()
     end
 end
