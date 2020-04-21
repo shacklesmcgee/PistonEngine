@@ -1,6 +1,7 @@
 movingDown = false
 movingLeft = false
 movingRight = false
+alive = true
 
 function Start(args)
     SetOrigin(Graphics, "MiddleCenter")
@@ -22,21 +23,21 @@ function Start(args)
 end
 
 function Update(dt)
+    if (alive) then
+        moveAI()
 
-    moveAI()
+        if (movingDown) then
+            SetLocation(Transform, 0.0, 0.01)
+        end
 
-    if (movingDown) then
-        SetLocation(Transform, 0.0, 0.01)
+        if (movingLeft) then
+            SetLocation(Transform, -0.10, 0.0)
+        end
+
+        if (movingRight) then
+            SetLocation(Transform, 0.10, 0.0)
+        end
     end
-
-    if (movingLeft) then
-        SetLocation(Transform, -0.10, 0.0)
-    end
-
-    if (movingRight) then
-        SetLocation(Transform, 0.10, 0.0)
-    end
-
 end
 
 function moveAI()
@@ -54,5 +55,14 @@ function moveAI()
 
     if (GetLocationX(Transform) < 1) then
         movingDown = true
+    end
+end
+
+
+function Collision(obj1Name, obj2Name)
+    if (obj2Name ~= "player") then
+        --Destroy(GameObject, obj2Name)
+        alive = false
+        SetLocation(Transform, 1000, 1000)
     end
 end
