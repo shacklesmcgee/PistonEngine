@@ -1,16 +1,24 @@
 #include "AudioComponent.h"
 using namespace std;
 
-AudioComponent::AudioComponent()
+AudioComponent::AudioComponent(sol::state& _lua)
 {
 	name = "AudioComponent";
+
+	_lua.set("Audio", this);
+
+	_lua["PlaySound"] = &AudioComponent::PlayAudio;
 
 }
 
-AudioComponent::AudioComponent(string fileToSet)
+AudioComponent::AudioComponent(string fileToSet, sol::state& _lua)
 {
 	name = "AudioComponent";
 	setAudio(fileToSet);
+
+	_lua.set("Audio", this);
+
+	_lua["PlaySound"] = &AudioComponent::PlayAudio;
 }
 
 AudioComponent::~AudioComponent(void)

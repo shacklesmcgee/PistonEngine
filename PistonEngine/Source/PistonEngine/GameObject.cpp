@@ -262,6 +262,11 @@ void GameObject::LuaCreate(sol::table gameObject)
 		temp->AddComponent(new InputComponent(temp->Lua));
 	}
 
+	if (gameObject["audioComponent"].valid())
+	{
+		temp->AddComponent(new AudioComponent(temp->Lua));
+	}
+
 	if (gameObject["rigidBody"].valid())
 	{
 

@@ -21,6 +21,8 @@ function Update(dt)
             return
         end
 
+	--PlaySound()
+
         seconds = gameTimer % 60
         minutes = (gameTimer - seconds) / 60
 
