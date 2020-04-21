@@ -73,8 +73,6 @@ void RigidBodyComponent::handleCollision(GameObject* object1, GameObject* object
 	if (LuaCollision != NULL)
 	{
 		LuaCollision(object1->GetName(), object2->GetName());
-
-		//LuaCollision();
 	}
 }
 

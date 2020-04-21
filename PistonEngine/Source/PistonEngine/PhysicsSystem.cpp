@@ -43,7 +43,7 @@ void PhysicsSystem::checkCollision(GameObject* object1, GameObject* object2)
 {
 	if (object1->RigidBody->GetBoundingBox().intersects(object2->RigidBody->GetBoundingBox()))
 	{
-		handleCollision(object1, object2);
+		//handleCollision(object1, object2);
 	}
 }
 
