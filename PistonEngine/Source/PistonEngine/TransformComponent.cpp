@@ -46,12 +46,18 @@ sf::Vector2f TransformComponent::GetLocation()
 
 float TransformComponent::GetLocationX()
 {
-	return location.x;
+	if (this)
+	{
+		return location.x;
+	}
 }
 
 float TransformComponent::GetLocationY()
 {
-	return location.y;
+	if (this)
+	{
+		return location.y;
+	}
 }
 
 void TransformComponent::SetByParent()

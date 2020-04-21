@@ -9,11 +9,14 @@ function Start(args)
     
     arrowAnim = {name = "arrow"}
     PlayAnim(Graphics, arrowAnim);
-    print(GetLocationX(Transform))
-    print(GetLocationY(Transform))
-    
-    targetX = args[1] - (GetLocationX(Transform) + GetWidth(Graphics)/2)
-    targetY = args[2] - (GetLocationY(Transform) + GetHeight(Graphics)/2)
+
+    locX = GetLocationX(Transform)
+    locY = GetLocationY(Transform)
+    width = GetWidth(Graphics)
+    height = GetHeight(Graphics)
+
+    targetX = args[1] - (locX + width/2)
+    targetY = args[2] - (locY + height/2)
 
     norm = math.sqrt((targetX ^ 2) + (targetY ^ 2))
     targetX = targetX / norm
@@ -30,6 +33,6 @@ end
 
 function Collision(obj1Name, obj2Name)
     if (obj2Name ~= "player") then
-        Destroy(GameObject, obj2Name)
+        --Destroy(GameObject, obj2Name)
     end
 end
