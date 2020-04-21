@@ -2,6 +2,7 @@ targetX = 0
 targetY = 0
 speed = 0.25
 myName = ""
+alive = true
 
 function Start(args)
     myName = GetName(GameObject)
@@ -27,12 +28,28 @@ function Start(args)
 end
 
 function Update()
-    SetLocation(Transform, targetX * speed, targetY * speed)
+
+    if (alive) then
+        SetLocation(Transform, targetX * speed, targetY * speed)
+
+        if (GetLocationX(Transform) > 550) then
+            alive = false
+
+        elseif (GetLocationX(Transform) < -50) then
+            alive = false
+
+        elseif (GetLocationY(Transform) < -50) then
+            alive = false
+
+        elseif (GetLocationY(Transform) > 550) then
+            alive = false
+        end
+    end
 end
 
 
 -- function Collision(obj1Name, obj2Name)
---     --if (obj2Name ~= "player") then
---         --Destroy(GameObject, obj2Name)
---     --end
+--     if (obj2Name ~= "player") then
+--         Destroy(GameObject, obj2Name)
+--     end
 -- end

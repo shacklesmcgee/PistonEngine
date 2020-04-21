@@ -16,6 +16,8 @@ public:
 
 	std::function<void(std::vector<string> args)> LuaStart;
 	std::function<void(float dt)> LuaUpdate;
+	//std::function<void(std::vector<string> args)> LuaReceiveData;
+	std::function<void(std::vector<string> args)> LuaTest;
 
 protected:
 
