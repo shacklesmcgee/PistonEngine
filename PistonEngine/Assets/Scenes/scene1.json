@@ -101,7 +101,7 @@
                 "font": "../../Assets/LEMONMILK-Bold.ttf",
                 "text": "",
                 "script": "../../Assets/Scripts/enemy.lua",
-                "args": "",
+                "args": arg1 = 5,
                 
                 "positionX": 0,
                 "positionY": 32,

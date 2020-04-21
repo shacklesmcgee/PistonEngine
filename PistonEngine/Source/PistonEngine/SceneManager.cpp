@@ -145,6 +145,7 @@ void SceneManager::LoadScene(string location)
 			string font = "";
 			string text = "";
 			std::vector<string> args;
+			args.insert();
 
 			if (!tempJSONObject[x]["texture"].IsNull())
 				texture = tempJSONObject[x]["texture"].GetString();

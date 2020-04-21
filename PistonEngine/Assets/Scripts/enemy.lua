@@ -2,9 +2,13 @@ movingDown = false
 movingLeft = false
 movingRight = false
 alive = true
+gameTimer = 125
+timeUntilAttack = 0
 
 function Start(args)
     SetOrigin(Graphics, "MiddleCenter")
+
+    timeUntilAttack = args[1]
 
     animIdle = {name = "Idle"}
     CreateAnim(Graphics, animIdle)
@@ -23,6 +27,12 @@ function Start(args)
 end
 
 function Update(dt)
+    gameTimer = gameTimer - (dt/1)
+
+    if (125 - gameTimer > timeUntilAttack) then
+	SetLocation(Transform, 1000, 1000)
+    end
+
     if (alive) then
         moveAI()
 
