@@ -1,6 +1,7 @@
-gameTimer = 125
+gameTimer = 3
 screenWidth = 512
 screenHeight = 512
+alive = true
 
 function Start(args)
     height = GetTextHeight(Text)
@@ -10,15 +11,29 @@ end
 
 function Update(dt)
 
-    gameTimer = gameTimer - (dt/1)
-    
-    seconds = gameTimer % 60
-    minutes = (gameTimer - seconds) / 60
+    if (alive) then
+        gameTimer = gameTimer - (dt/1)
+                
+        if (gameTimer <= 0) then
+            GameOver()
+            return
+        end
 
-    minutes = math.floor(minutes+0.5)
-    seconds = math.floor(seconds+0.5)
+        seconds = gameTimer % 60
+        minutes = (gameTimer - seconds) / 60
 
-    temp = tostring(minutes) .. " : " .. tostring(seconds)
+        minutes = math.floor(minutes+0.5)
+        seconds = math.floor(seconds+0.5)
+
+        temp = tostring(minutes) .. " : " .. tostring(seconds)
+        SetText(Text, temp)
+        SetTextOrigin(Text, "MiddleCenter")
+    end
+end
+
+function GameOver()
+    temp = "YOU WON!"
     SetText(Text, temp)
     SetTextOrigin(Text, "MiddleCenter")
+    alive = false
 end
