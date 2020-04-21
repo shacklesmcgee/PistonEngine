@@ -31,8 +31,8 @@ function Update()
 end
 
 
-function Collision(obj1Name, obj2Name)
-    if (obj2Name ~= "player") then
-        --Destroy(GameObject, obj2Name)
-    end
-end
+-- function Collision(obj1Name, obj2Name)
+--     --if (obj2Name ~= "player") then
+--         --Destroy(GameObject, obj2Name)
+--     --end
+-- end

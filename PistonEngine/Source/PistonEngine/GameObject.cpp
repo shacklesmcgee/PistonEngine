@@ -282,11 +282,11 @@ void GameObject::Update(float msec)
 			worldTransform = Transform->GetTransform();
 		}
 	}
-	if (Transform->GetLocationX() < 0 || 
-		Transform->GetLocationX() > GetSceneManager()->GetScreenWidth() || 
-		Transform->GetLocationY() < 0 ||
-		Transform->GetLocationY() > GetSceneManager()->GetScreenHeight())
-	{
-		GetSceneManager()->Destroy(this);
-	}
+	//if (Transform->GetLocationX() < 0 || 
+	//	Transform->GetLocationX() > GetSceneManager()->GetScreenWidth() || 
+	//	Transform->GetLocationY() < 0 ||
+	//	Transform->GetLocationY() > GetSceneManager()->GetScreenHeight())
+	//{
+	//	GetSceneManager()->Destroy(this);
+	//}
 }
