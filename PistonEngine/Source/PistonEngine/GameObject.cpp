@@ -270,16 +270,18 @@ void GameObject::Update(float msec)
 		value->Update(msec);
 	}
 
-	if (parent)
+	if (Transform)
 	{
-		worldTransform = parent->worldTransform * Transform->GetTransform();
-	}
+		if (parent)
+		{
+			worldTransform = parent->worldTransform * Transform->GetTransform();
+		}
 
-	else
-	{
-		worldTransform = Transform->GetTransform();
+		else
+		{
+			worldTransform = Transform->GetTransform();
+		}
 	}
-
 	if (Transform->GetLocationX() < 0 || 
 		Transform->GetLocationX() > GetSceneManager()->GetScreenWidth() || 
 		Transform->GetLocationY() < 0 ||
