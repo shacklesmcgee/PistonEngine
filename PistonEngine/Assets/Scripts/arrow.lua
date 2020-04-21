@@ -47,9 +47,12 @@ function Update()
     end
 end
 
-
 -- function Collision(obj1Name, obj2Name)
 --     if (obj2Name ~= "player") then
---         Destroy(GameObject, obj2Name)
+--         temp = {
+--             name = "root",
+--             var1 = "won"
+--         }
+--         SendData(GameObject, temp)
 --     end
 -- end

@@ -60,8 +60,8 @@ end
 
 
 function Collision(obj1Name, obj2Name)
-    obj2Name = obj2Name:sub(1, -2)
-    if (obj2Name == "arrow") then
+    if (obj2Name ~= "enemy" and obj2Name ~= "player") then
+        --Destroy(GameObject, obj2Name)
         alive = false
         SetLocation(Transform, 1000, 1000)
     end

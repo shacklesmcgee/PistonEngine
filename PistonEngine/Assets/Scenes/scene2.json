@@ -16,8 +16,8 @@
 
                 "font": "../../Assets/LEMONMILK-Bold.ttf",
                 "text": "test",
-                "script": "../../Assets/Scripts/root.lua",
-                "args": "",
+                "script": "../../Assets/Scripts/root2.lua",
+                "args": {"arg1": "test1", "arg2": "ben", "arg3": "", "arg4": "", "arg5": ""},
 
                 "positionX": 0,
                 "positionY": 0,
@@ -59,10 +59,10 @@
                 "font": "../../Assets/LEMONMILK-Bold.ttf",
                 "text": "BEN",
                 "script": "../../Assets/Scripts/player.lua",
-                "args": "",
+                "args": null,
                 
-                "positionX": 400,
-                "positionY": 400,
+                "positionX": 256,
+                "positionY": 256,
 
                 "rotationAngle": 0,
                 "rotationX": 0,
@@ -100,8 +100,8 @@
 
                 "font": "../../Assets/LEMONMILK-Bold.ttf",
                 "text": "",
-                "script": "../../Assets/Scripts/enemy.lua",
-                "args": "",
+                "script": "../../Assets/Scripts/enemy2.lua",
+                "args": null,
                 
                 "positionX": 0,
                 "positionY": 32,
@@ -121,7 +121,7 @@
 
         {"GameObject4": [
             {
-                "name": "enemy2",
+                "name": "enemy1",
                 "transformComp": true,
                 "graphicsComp": true,
                 "scriptComp": true,
@@ -142,11 +142,11 @@
 
                 "font": "../../Assets/LEMONMILK-Bold.ttf",
                 "text": "",
-                "script": "../../Assets/Scripts/enemy.lua",
-                "args": "",
+                "script": "../../Assets/Scripts/enemy2.lua",
+                "args": null,
                 
-                "positionX": 32,
-                "positionY": 64,
+                "positionX": 64,
+                "positionY": 32,
 
                 "rotationAngle": 0,
                 "rotationX": 0,

@@ -35,32 +35,33 @@ function Start(args)
     CreateAnim(Graphics, animAttack)
 
     PlayAnim(Graphics, animIdle)
-
-    SetLocation(Transform, 0, 0)
 end
 
 function Update(dt)
     if (alive) then
         if (movingUp) then
-            SetLocation(Transform, 0.0, -0.10)
+            LuaSetLocation(Transform, 0.0, -0.10)
+            --SetLocation(Transform, 0.0, -0.10)
         end
 
         if (movingDown) then
-            SetLocation(Transform, 0.0, 0.10)
+            LuaSetLocation(Transform, 0.0, 0.10)
+            --SetLocation(Transform, 0.0, 0.10)
         end
 
         if (movingLeft) then
-            SetLocation(Transform, -0.10, 0.0)
+            LuaSetLocation(Transform, -0.10, 0.0)
+            --SetLocation(Transform, -0.10, 0.0)
         end
 
         if (movingRight) then
-            SetLocation(Transform, 0.10, 0.0)
+            LuaSetLocation(Transform, 0.10, 0.0)
+            --SetLocation(Transform, 0.10, 0.0)
         end
     end
 end
 
 function KeyInput(state, keyCode, mousePosX, mousePosY)
-
     if (state == true) then
         if (keyCode == 73 or keyCode == 22) then
             movingUp = true
@@ -111,9 +112,10 @@ function MouseInput(state, keyCode, mousePosX, mousePosY)
             end
 
         elseif (keyCode == 1) then
-        elseif (keyCode == 2) then
             --Doesn't Work
-            LoadScene(GameObject, "../../Assets/Scenes/scene2.json")
+            --LoadScene(GameObject, "../../Assets/Scenes/scene2.json")
+        elseif (keyCode == 2) then
+            
         end     
 
     elseif (state == false) then
@@ -134,15 +136,14 @@ function Pause()
 end
 
 function Collision(obj1Name, obj2Name)
-    obj2Name = obj2Name:sub(1, -2)
-    if (obj2Name == "enem" or obj2Name == "enemy") then
+    if (obj2Name == "enemy") then
         PlayAnim(Graphics, animDead)
 
         temp = {
             name = "root",
             var1 = "dead"
         }
-        --SendData(GameObject, temp)
+        SendData(GameObject, temp)
         Pause()
         alive = false
     end
