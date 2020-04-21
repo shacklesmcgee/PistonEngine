@@ -264,6 +264,13 @@ void SceneManager::LoadScene(string location)
 			obj->RigidBody->SetRestitution(restitution);
 			obj->RigidBody->SetBoundingBox(boundingBox);
 			}
+
+			if (tempJSONObject[x]["audioComp"].GetBool())
+			{
+				string temp = tempJSONObject[x]["audioToSet"].GetString();
+				obj->AddComponent(new AudioComponent(temp, obj->Lua));
+				obj->Audio->PlayAudio();
+			}
 		}
 	}
 

@@ -9,6 +9,7 @@
                 "inputComp": false,
                 "rigidBodyComp": false,
                 "textComp": true,
+		"audioComp": true,
                 "parent": null,
 
                 "texture": null,
@@ -31,7 +32,9 @@
 
                 "mass": 0.0,
                 "restitution": 0.0,
-                "obeysGravity": false 
+                "obeysGravity": false,
+
+		"audioToSet": "../../Assets/SFX/bump.wav"
             }
         ]},
 
@@ -44,6 +47,7 @@
                 "inputComp": true,
                 "rigidBodyComp": true,
                 "textComp": false,
+		"audioComp": false,
                 "parent": null,
 
                 "textureName": "Idle",
@@ -86,6 +90,7 @@
                 "inputComp": false,
                 "rigidBodyComp": true,
                 "textComp": false,
+		"audioComp": false,
                 "parent": null,
 
                 "textureName": "Idle",
@@ -129,6 +134,7 @@
                 "inputComp": false,
                 "rigidBodyComp": true,
                 "textComp": false,
+		"audioComp": false,
                 "parent": null,
 
                 "textureName": "Idle",
@@ -172,6 +178,7 @@
                 "inputComp": false,
                 "rigidBodyComp": true,
                 "textComp": false,
+		"audioComp": false,
                 "parent": null,
 
                 "textureName": "Idle",
@@ -215,6 +222,7 @@
                 "inputComp": false,
                 "rigidBodyComp": true,
                 "textComp": false,
+		"audioComp": false,
                 "parent": null,
 
                 "textureName": "Idle",
@@ -258,6 +266,7 @@
                 "inputComp": false,
                 "rigidBodyComp": true,
                 "textComp": false,
+		"audioComp": false,
                 "parent": null,
 
                 "textureName": "Idle",
@@ -301,6 +310,7 @@
                 "inputComp": false,
                 "rigidBodyComp": true,
                 "textComp": false,
+		"audioComp": false,
                 "parent": null,
 
                 "textureName": "Idle",
@@ -344,6 +354,7 @@
                 "inputComp": false,
                 "rigidBodyComp": true,
                 "textComp": false,
+		"audioComp": false,
                 "parent": null,
 
                 "textureName": "Idle",
@@ -387,6 +398,7 @@
                 "inputComp": false,
                 "rigidBodyComp": true,
                 "textComp": false,
+		"audioComp": false,
                 "parent": null,
 
                 "textureName": "Idle",
@@ -430,6 +442,7 @@
                 "inputComp": false,
                 "rigidBodyComp": true,
                 "textComp": false,
+		"audioComp": false,
                 "parent": null,
 
                 "textureName": "Idle",
@@ -473,6 +486,7 @@
                 "inputComp": false,
                 "rigidBodyComp": true,
                 "textComp": false,
+		"audioComp": false,
                 "parent": null,
 
                 "textureName": "Idle",
@@ -516,6 +530,7 @@
                 "inputComp": false,
                 "rigidBodyComp": true,
                 "textComp": false,
+		"audioComp": false,
                 "parent": null,
 
                 "textureName": "Idle",
@@ -559,6 +574,7 @@
                 "inputComp": false,
                 "rigidBodyComp": true,
                 "textComp": false,
+		"audioComp": false,
                 "parent": null,
 
                 "textureName": "Idle",
@@ -603,6 +619,7 @@
                 "inputComp": false,
                 "rigidBodyComp": true,
                 "textComp": false,
+		"audioComp": false,
                 "parent": null,
 
                 "textureName": "Idle",
@@ -646,6 +663,7 @@
                 "inputComp": false,
                 "rigidBodyComp": true,
                 "textComp": false,
+		"audioComp": false,
                 "parent": null,
 
                 "textureName": "Idle",
@@ -690,6 +708,7 @@
                 "inputComp": false,
                 "rigidBodyComp": true,
                 "textComp": false,
+		"audioComp": false,
                 "parent": null,
 
                 "textureName": "Idle",

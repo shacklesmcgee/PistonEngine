@@ -9,8 +9,8 @@ using namespace std;
 class AudioComponent : public BaseComponent
 {
 public:
-	AudioComponent();
-	AudioComponent(string fileToSet);
+	AudioComponent(sol::state& _lua);
+	AudioComponent(string fileToSet, sol::state& _lua);
 
 	~AudioComponent(void);
 
