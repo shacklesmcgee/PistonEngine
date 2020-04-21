@@ -237,6 +237,12 @@ void GameObject::LuaCreate(sol::table gameObject)
 		temp->AddComponent(new ScriptComponent(gameObject["script"]["location"], temp->Lua));
 	}
 
+	if (gameObject["audio"].valid())
+	{
+		string tempString = gameObject["audio"]["name"];
+		temp->AddComponent(new AudioComponent(tempString, temp->Lua));
+
+	}
 	if (temp->Lua["Start"].valid())
 	{
 		std::vector<string> args;
@@ -260,11 +266,6 @@ void GameObject::LuaCreate(sol::table gameObject)
 	if (gameObject["input"].valid())
 	{
 		temp->AddComponent(new InputComponent(temp->Lua));
-	}
-
-	if (gameObject["audioComponent"].valid())
-	{
-		temp->AddComponent(new AudioComponent(temp->Lua));
 	}
 
 	if (gameObject["rigidBody"].valid())

@@ -102,7 +102,8 @@ function MouseInput(state, keyCode, mousePosX, mousePosY)
                 scale = {x = 1.0, y = 1.0}, 
                 graphics = {name = "arrow", texture="../../Assets/Textures/arrow.png", animated = true, textureX = 0, textureY = 0, textureWidth = 16, textureHeight = 64, frameTime = 0.1, looping = true}, 
                 script = {location = "../../Assets/Scripts/arrow.lua", args = {arg1 = mousePosX, arg2 = mousePosY}},
-                rigidBody = {mass = 1.0, restitution = 1.0, obeysGravity = false}
+                rigidBody = {mass = 1.0, restitution = 1.0, obeysGravity = false},
+                audio = {name = "../../Assets/SFX/arrow.wav"}
                 }
 
             if (alive) then

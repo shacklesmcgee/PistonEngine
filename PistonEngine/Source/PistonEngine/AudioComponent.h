@@ -16,8 +16,10 @@ public:
 
 	virtual void Update(float dt);
 
-	void setAudio(string fileToSet);
+	void setAudio(string fileLoc);
 	void PlayAudio();
+	void PlayAudioFile(string fileLoc);
+	void Test();
 
 	bool fileLoaded = false;
 

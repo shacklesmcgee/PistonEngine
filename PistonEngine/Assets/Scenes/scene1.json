@@ -9,7 +9,7 @@
                 "inputComp": false,
                 "rigidBodyComp": false,
                 "textComp": true,
-		"audioComp": true,
+		        "audioComp": true,
                 "parent": null,
 
                 "texture": null,
@@ -34,7 +34,7 @@
                 "restitution": 0.0,
                 "obeysGravity": false,
 
-		"audioToSet": "../../Assets/SFX/bump.wav"
+                "audioToSet": "../../Assets/SFX/music.wav"
             }
         ]},
 
@@ -47,7 +47,7 @@
                 "inputComp": true,
                 "rigidBodyComp": true,
                 "textComp": false,
-		"audioComp": false,
+		        "audioComp": true,
                 "parent": null,
 
                 "textureName": "Idle",
@@ -77,7 +77,9 @@
 
                 "mass": 1.0,
                 "restitution": 1.0,
-                "obeysGravity": false 
+                "obeysGravity": false,
+
+                "audioToSet": "../../Assets/SFX/bump.wav"
             }
         ]},
 
@@ -90,7 +92,7 @@
                 "inputComp": false,
                 "rigidBodyComp": true,
                 "textComp": false,
-		"audioComp": false,
+		        "audioComp": true,
                 "parent": null,
 
                 "textureName": "Idle",
@@ -121,7 +123,9 @@
 
                 "mass": 1.0,
                 "restitution": 1.0,
-                "obeysGravity": false 
+                "obeysGravity": false,
+
+                "audioToSet": "../../Assets/SFX/enemy_death.wav"
             }
         ]}, 
 
@@ -134,7 +138,7 @@
                 "inputComp": false,
                 "rigidBodyComp": true,
                 "textComp": false,
-		"audioComp": false,
+		        "audioComp": true,
                 "parent": null,
 
                 "textureName": "Idle",
@@ -165,7 +169,9 @@
 
                 "mass": 1.0,
                 "restitution": 1.0,
-                "obeysGravity": false 
+                "obeysGravity": false,
+
+                "audioToSet": "../../Assets/SFX/enemy_death.wav"
             }
         ]},
 
@@ -178,7 +184,7 @@
                 "inputComp": false,
                 "rigidBodyComp": true,
                 "textComp": false,
-		"audioComp": false,
+		        "audioComp": true,
                 "parent": null,
 
                 "textureName": "Idle",
@@ -209,7 +215,9 @@
 
                 "mass": 1.0,
                 "restitution": 1.0,
-                "obeysGravity": false 
+                "obeysGravity": false,
+
+                "audioToSet": "../../Assets/SFX/enemy_death.wav"
             }
         ]},
 
@@ -222,7 +230,7 @@
                 "inputComp": false,
                 "rigidBodyComp": true,
                 "textComp": false,
-		"audioComp": false,
+		        "audioComp": true,
                 "parent": null,
 
                 "textureName": "Idle",
@@ -253,7 +261,9 @@
 
                 "mass": 1.0,
                 "restitution": 1.0,
-                "obeysGravity": false 
+                "obeysGravity": false,
+
+                "audioToSet": "../../Assets/SFX/enemy_death.wav" 
             }
         ]},
 
@@ -266,7 +276,7 @@
                 "inputComp": false,
                 "rigidBodyComp": true,
                 "textComp": false,
-		"audioComp": false,
+		        "audioComp": true,
                 "parent": null,
 
                 "textureName": "Idle",
@@ -297,7 +307,9 @@
 
                 "mass": 1.0,
                 "restitution": 1.0,
-                "obeysGravity": false 
+                "obeysGravity": false,
+
+                "audioToSet": "../../Assets/SFX/enemy_death.wav" 
             }
         ]},
 
@@ -310,7 +322,7 @@
                 "inputComp": false,
                 "rigidBodyComp": true,
                 "textComp": false,
-		"audioComp": false,
+		        "audioComp": true,
                 "parent": null,
 
                 "textureName": "Idle",
@@ -341,7 +353,9 @@
 
                 "mass": 1.0,
                 "restitution": 1.0,
-                "obeysGravity": false 
+                "obeysGravity": false,
+
+                "audioToSet": "../../Assets/SFX/enemy_death.wav" 
             }
         ]},
 
@@ -354,7 +368,7 @@
                 "inputComp": false,
                 "rigidBodyComp": true,
                 "textComp": false,
-		"audioComp": false,
+		        "audioComp": true,
                 "parent": null,
 
                 "textureName": "Idle",
@@ -385,7 +399,9 @@
 
                 "mass": 1.0,
                 "restitution": 1.0,
-                "obeysGravity": false 
+                "obeysGravity": false,
+
+                "audioToSet": "../../Assets/SFX/enemy_death.wav" 
             }
         ]},
 
@@ -398,7 +414,7 @@
                 "inputComp": false,
                 "rigidBodyComp": true,
                 "textComp": false,
-		"audioComp": false,
+		        "audioComp": true,
                 "parent": null,
 
                 "textureName": "Idle",
@@ -429,7 +445,9 @@
 
                 "mass": 1.0,
                 "restitution": 1.0,
-                "obeysGravity": false 
+                "obeysGravity": false,
+
+                "audioToSet": "../../Assets/SFX/enemy_death.wav" 
             }
         ]},
 
@@ -442,7 +460,7 @@
                 "inputComp": false,
                 "rigidBodyComp": true,
                 "textComp": false,
-		"audioComp": false,
+		        "audioComp": true,
                 "parent": null,
 
                 "textureName": "Idle",
@@ -473,7 +491,9 @@
 
                 "mass": 1.0,
                 "restitution": 1.0,
-                "obeysGravity": false 
+                "obeysGravity": false,
+
+                "audioToSet": "../../Assets/SFX/enemy_death.wav" 
             }
         ]},
 
@@ -486,7 +506,7 @@
                 "inputComp": false,
                 "rigidBodyComp": true,
                 "textComp": false,
-		"audioComp": false,
+		        "audioComp": true,
                 "parent": null,
 
                 "textureName": "Idle",
@@ -517,7 +537,9 @@
 
                 "mass": 1.0,
                 "restitution": 1.0,
-                "obeysGravity": false 
+                "obeysGravity": false,
+
+                "audioToSet": "../../Assets/SFX/enemy_death.wav" 
             }
         ]},
 
@@ -530,7 +552,7 @@
                 "inputComp": false,
                 "rigidBodyComp": true,
                 "textComp": false,
-		"audioComp": false,
+		        "audioComp": true,
                 "parent": null,
 
                 "textureName": "Idle",
@@ -561,7 +583,9 @@
 
                 "mass": 1.0,
                 "restitution": 1.0,
-                "obeysGravity": false 
+                "obeysGravity": false,
+
+                "audioToSet": "../../Assets/SFX/enemy_death.wav" 
             }
         ]},
 
@@ -574,7 +598,7 @@
                 "inputComp": false,
                 "rigidBodyComp": true,
                 "textComp": false,
-		"audioComp": false,
+		        "audioComp": true,
                 "parent": null,
 
                 "textureName": "Idle",
@@ -605,7 +629,9 @@
 
                 "mass": 1.0,
                 "restitution": 1.0,
-                "obeysGravity": false 
+                "obeysGravity": false,
+
+                "audioToSet": "../../Assets/SFX/enemy_death.wav" 
             }
         ]},
 
@@ -619,7 +645,7 @@
                 "inputComp": false,
                 "rigidBodyComp": true,
                 "textComp": false,
-		"audioComp": false,
+		        "audioComp": true,
                 "parent": null,
 
                 "textureName": "Idle",
@@ -650,7 +676,9 @@
 
                 "mass": 1.0,
                 "restitution": 1.0,
-                "obeysGravity": false 
+                "obeysGravity": false,
+
+                "audioToSet": "../../Assets/SFX/enemy_death.wav" 
             }
         ]},
 
@@ -663,7 +691,7 @@
                 "inputComp": false,
                 "rigidBodyComp": true,
                 "textComp": false,
-		"audioComp": false,
+		        "audioComp": true,
                 "parent": null,
 
                 "textureName": "Idle",
@@ -694,7 +722,9 @@
 
                 "mass": 1.0,
                 "restitution": 1.0,
-                "obeysGravity": false 
+                "obeysGravity": false,
+
+                "audioToSet": "../../Assets/SFX/enemy_death.wav" 
             }
         ]},
 
@@ -708,7 +738,7 @@
                 "inputComp": false,
                 "rigidBodyComp": true,
                 "textComp": false,
-		"audioComp": false,
+		        "audioComp": true,
                 "parent": null,
 
                 "textureName": "Idle",
@@ -739,7 +769,9 @@
 
                 "mass": 1.0,
                 "restitution": 1.0,
-                "obeysGravity": false 
+                "obeysGravity": false,
+
+                "audioToSet": "../../Assets/SFX/enemy_death.wav" 
             }
         ]}
     ]

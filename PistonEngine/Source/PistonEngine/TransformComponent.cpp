@@ -33,12 +33,19 @@ TransformComponent::TransformComponent(sol::state &_lua)
 	_lua["GetScale"] = &TransformComponent::GetScale;
 	_lua["SetScale"] = &TransformComponent::SetScaleF;
 	_lua["Scale"] = &TransformComponent::ScaleF;
+
+	_lua["Test"] = &TransformComponent::Test;
 }
 
 TransformComponent::~TransformComponent()
 {
 }
 
+void TransformComponent::Test()
+{
+	cout << "test" << endl;
+
+}
 sf::Vector2f TransformComponent::GetLocation()
 {
 	return location;

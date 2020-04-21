@@ -7,6 +7,7 @@ timeUntilAttack = 0
 attacking = false
 
 function Start(args)
+
     SetOrigin(Graphics, "MiddleCenter")
 
     timeUntilAttack = args[1]
@@ -78,6 +79,7 @@ end
 function Collision(obj1Name, obj2Name)
     obj2Name = obj2Name:sub(1, -2)
     if (obj2Name == "arrow") then
+        PlaySound(Audio)
         alive = false
         SetLocation(Transform, 1000, 1000)
     end

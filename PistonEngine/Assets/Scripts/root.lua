@@ -5,6 +5,7 @@ alive = true
 gameWon = false
 
 function Start(args)
+    PlaySound(Audio)
     height = GetTextHeight(Text)
     SetLocation(Transform, screenWidth/2, 20)
     SetTextOrigin(Text, "MiddleCenter")
@@ -14,14 +15,12 @@ function Update(dt)
 
     if (alive) then
         gameTimer = gameTimer - (dt/1)
-                
+        
         if (gameTimer <= 0) then
             gameWon = true
             GameOver()
             return
         end
-
-	--PlaySound()
 
         seconds = gameTimer % 60
         minutes = (gameTimer - seconds) / 60
@@ -37,13 +36,14 @@ end
 
 function GameOver()
     if (gameWon) then
+        PlaySoundFile(Audio, "../../Assets/SFX/win.wav")
         temp = "YOU WON!"
         SetText(Text, temp)
         SetTextOrigin(Text, "MiddleCenter")
         alive = false
-
     else
         temp = "YOU DIED!"
+        PlaySoundFile(Audio, "../../Assets/SFX/lose.wav")
         SetText(Text, temp)
         SetTextOrigin(Text, "MiddleCenter")
         alive = false

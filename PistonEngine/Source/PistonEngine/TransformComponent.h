@@ -43,6 +43,8 @@ public:
 	sf::Vector2f GetVelocity();
 	void SetVelocity(sf::Vector2f newVelocity);
 
+	void Test();
+
 protected:
 	sf::Vector2f location;
 	sf::Vector2f move;

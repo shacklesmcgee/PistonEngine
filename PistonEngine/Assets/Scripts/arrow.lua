@@ -5,6 +5,8 @@ myName = ""
 alive = true
 
 function Start(args)
+    PlaySound(Audio)
+    
     myName = GetName(GameObject)
     SetOrigin(Graphics, "MiddleCenter")
     

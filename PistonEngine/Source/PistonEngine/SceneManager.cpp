@@ -217,6 +217,14 @@ void SceneManager::LoadScene(string location)
 				obj->AddComponent(new TextComponent(font, text, 64, sf::Color::White, obj->Lua));
 
 			}
+
+			if (tempJSONObject[x]["audioComp"].GetBool())
+			{
+				string temp = tempJSONObject[x]["audioToSet"].GetString();
+				obj->AddComponent(new AudioComponent(temp, obj->Lua));
+				//obj->Audio->PlayAudio();
+			}
+
 			if (tempJSONObject[x]["scriptComp"].GetBool())
 			{
 				obj->AddComponent(new ScriptComponent(script, obj->Lua));
@@ -263,13 +271,6 @@ void SceneManager::LoadScene(string location)
 			obj->RigidBody->SetObeysGravity(obeysGravity);
 			obj->RigidBody->SetRestitution(restitution);
 			obj->RigidBody->SetBoundingBox(boundingBox);
-			}
-
-			if (tempJSONObject[x]["audioComp"].GetBool())
-			{
-				string temp = tempJSONObject[x]["audioToSet"].GetString();
-				obj->AddComponent(new AudioComponent(temp, obj->Lua));
-				obj->Audio->PlayAudio();
 			}
 		}
 	}

@@ -15,8 +15,6 @@ ScriptComponent::ScriptComponent(string fileName, sol::state &_lua)
 
 	if (_lua["Update"].valid())
 		LuaUpdate = _lua["Update"];
-	/*if (_lua["ReceiveData"].valid())
-	LuaReceiveData = _lua["ReceiveData"];*/
 
 	if (_lua["Receive"].valid())
 		LuaReceive = _lua["Receive"];
