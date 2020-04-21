@@ -45,10 +45,6 @@ void GameObject::SendData(sol::table data)
 		string tempName = data["name"];
 		vector<string> tempVar = vector<string>();
 		tempVar.push_back(data["var1"]);
-		tempVar.push_back("");
-		tempVar.push_back("");
-		tempVar.push_back("");
-		tempVar.push_back("");
 		GameObject* tempObj = GetSceneManager()->GetGameObject(tempName);
 
 

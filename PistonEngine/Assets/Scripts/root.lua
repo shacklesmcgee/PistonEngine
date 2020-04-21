@@ -49,7 +49,6 @@ function GameOver()
     PauseGame(GameObject)
 end
 
-
 function Receive(args)
     if (args[1] == "dead") then
         GameOver()

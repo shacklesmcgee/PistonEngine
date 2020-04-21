@@ -143,7 +143,7 @@ function Collision(obj1Name, obj2Name)
             name = "root",
             var1 = "dead"
         }
-        --SendData(GameObject, temp)
+        SendData(GameObject, temp)
         Pause()
         alive = false
     end
