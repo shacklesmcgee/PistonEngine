@@ -5,7 +5,7 @@ GameObject::GameObject()
 {
 	parent = NULL;
 
-	Lua.open_libraries(sol::lib::base, sol::lib::math);
+	Lua.open_libraries(sol::lib::base, sol::lib::math, sol::lib::string, sol::lib::io);
 	Lua.set("GameObject", this);
 
 	Lua["GetParent"] = &GameObject::GetParent;

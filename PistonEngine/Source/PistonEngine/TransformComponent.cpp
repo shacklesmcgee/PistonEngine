@@ -23,6 +23,7 @@ TransformComponent::TransformComponent(sol::state &_lua)
 	_lua["GetLocationX"] = &TransformComponent::GetLocationX;
 	_lua["GetLocationY"] = &TransformComponent::GetLocationY;
 	_lua["SetLocation"] = &TransformComponent::SetLocationF;
+	_lua["SetLocationSolid"] = &TransformComponent::SetLocationSolid;
 	_lua["Move"] = &TransformComponent::MoveF;
 
 	_lua["GetRotation"] = &TransformComponent::GetRotation;
@@ -80,6 +81,12 @@ void TransformComponent::SetLocationF(float x, float y)
 	transform = transform * temp;
 	location.x += x;
 	location.y += y;
+}
+
+void TransformComponent::SetLocationSolid(float x, float y)
+{
+	location.x = x;
+	location.y = y;
 }
 
 void TransformComponent::Move(sf::Vector2f direction)

@@ -21,6 +21,7 @@ public:
 
 	void SetLocation(sf::Vector2f newLocation);
 	void SetLocationF(float x, float y);
+	void SetLocationSolid(float x, float y);
 	void Move(sf::Vector2f direction);
 	void MoveF(float x, float y);
 

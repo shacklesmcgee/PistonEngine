@@ -101,11 +101,701 @@
                 "font": "../../Assets/LEMONMILK-Bold.ttf",
                 "text": "",
                 "script": "../../Assets/Scripts/enemy.lua",
-                "args": null,
+                 "args": {"arg1": "1", "arg2": "", "arg3": "", "arg4": "", "arg5": ""},
 
                 
                 "positionX": 0,
-                "positionY": 32,
+                "positionY": -10,
+
+                "rotationAngle": 0,
+                "rotationX": 0,
+                "rotationY": 0,
+
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+
+                "mass": 1.0,
+                "restitution": 1.0,
+                "obeysGravity": false 
+            }
+        ]}, 
+
+	{"GameObject4": [
+            {
+                "name": "enemy",
+                "transformComp": true,
+                "graphicsComp": true,
+                "scriptComp": true,
+                "inputComp": false,
+                "rigidBodyComp": true,
+                "textComp": false,
+                "parent": null,
+
+                "textureName": "Idle",
+                "texture": "../../Assets/Textures/enemy.png",
+                "animated": true,
+                "frameTime": 0.1,
+                "looping": true,
+                "textureX": 0,
+                "textureY": 32,
+                "textureWidth": 32,
+                "textureHeight": 32,
+
+                "font": "../../Assets/LEMONMILK-Bold.ttf",
+                "text": "",
+                "script": "../../Assets/Scripts/enemy.lua",
+                 "args": {"arg1": "10", "arg2": "", "arg3": "", "arg4": "", "arg5": ""},
+
+                
+                "positionX": 0,
+                "positionY": -410,
+
+                "rotationAngle": 0,
+                "rotationX": 0,
+                "rotationY": 0,
+
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+
+                "mass": 1.0,
+                "restitution": 1.0,
+                "obeysGravity": false 
+            }
+        ]},
+
+	{"GameObject5": [
+            {
+                "name": "enemy",
+                "transformComp": true,
+                "graphicsComp": true,
+                "scriptComp": true,
+                "inputComp": false,
+                "rigidBodyComp": true,
+                "textComp": false,
+                "parent": null,
+
+                "textureName": "Idle",
+                "texture": "../../Assets/Textures/enemy.png",
+                "animated": true,
+                "frameTime": 0.1,
+                "looping": true,
+                "textureX": 0,
+                "textureY": 32,
+                "textureWidth": 32,
+                "textureHeight": 32,
+
+                "font": "../../Assets/LEMONMILK-Bold.ttf",
+                "text": "",
+                "script": "../../Assets/Scripts/enemy.lua",
+                 "args": {"arg1": "20", "arg2": "", "arg3": "", "arg4": "", "arg5": ""},
+
+                
+                "positionX": 0,
+                "positionY": -830,
+
+                "rotationAngle": 0,
+                "rotationX": 0,
+                "rotationY": 0,
+
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+
+                "mass": 1.0,
+                "restitution": 1.0,
+                "obeysGravity": false 
+            }
+        ]},
+
+	{"GameObject6": [
+            {
+                "name": "enemy",
+                "transformComp": true,
+                "graphicsComp": true,
+                "scriptComp": true,
+                "inputComp": false,
+                "rigidBodyComp": true,
+                "textComp": false,
+                "parent": null,
+
+                "textureName": "Idle",
+                "texture": "../../Assets/Textures/enemy.png",
+                "animated": true,
+                "frameTime": 0.1,
+                "looping": true,
+                "textureX": 0,
+                "textureY": 32,
+                "textureWidth": 32,
+                "textureHeight": 32,
+
+                "font": "../../Assets/LEMONMILK-Bold.ttf",
+                "text": "",
+                "script": "../../Assets/Scripts/enemy.lua",
+                 "args": {"arg1": "22", "arg2": "", "arg3": "", "arg4": "", "arg5": ""},
+
+                
+                "positionX": 0,
+                "positionY": -914,
+
+                "rotationAngle": 0,
+                "rotationX": 0,
+                "rotationY": 0,
+
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+
+                "mass": 1.0,
+                "restitution": 1.0,
+                "obeysGravity": false 
+            }
+        ]},
+
+	{"GameObject7": [
+            {
+                "name": "enemy",
+                "transformComp": true,
+                "graphicsComp": true,
+                "scriptComp": true,
+                "inputComp": false,
+                "rigidBodyComp": true,
+                "textComp": false,
+                "parent": null,
+
+                "textureName": "Idle",
+                "texture": "../../Assets/Textures/enemy.png",
+                "animated": true,
+                "frameTime": 0.1,
+                "looping": true,
+                "textureX": 0,
+                "textureY": 32,
+                "textureWidth": 32,
+                "textureHeight": 32,
+
+                "font": "../../Assets/LEMONMILK-Bold.ttf",
+                "text": "",
+                "script": "../../Assets/Scripts/enemy.lua",
+                 "args": {"arg1": "30", "arg2": "", "arg3": "", "arg4": "", "arg5": ""},
+
+                
+                "positionX": 0,
+                "positionY": -1260,
+
+                "rotationAngle": 0,
+                "rotationX": 0,
+                "rotationY": 0,
+
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+
+                "mass": 1.0,
+                "restitution": 1.0,
+                "obeysGravity": false 
+            }
+        ]},
+
+	{"GameObject8": [
+            {
+                "name": "enemy",
+                "transformComp": true,
+                "graphicsComp": true,
+                "scriptComp": true,
+                "inputComp": false,
+                "rigidBodyComp": true,
+                "textComp": false,
+                "parent": null,
+
+                "textureName": "Idle",
+                "texture": "../../Assets/Textures/enemy.png",
+                "animated": true,
+                "frameTime": 0.1,
+                "looping": true,
+                "textureX": 0,
+                "textureY": 32,
+                "textureWidth": 32,
+                "textureHeight": 32,
+
+                "font": "../../Assets/LEMONMILK-Bold.ttf",
+                "text": "",
+                "script": "../../Assets/Scripts/enemy.lua",
+                 "args": {"arg1": "32", "arg2": "", "arg3": "", "arg4": "", "arg5": ""},
+
+                
+                "positionX": 0,
+                "positionY": -1344,
+
+                "rotationAngle": 0,
+                "rotationX": 0,
+                "rotationY": 0,
+
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+
+                "mass": 1.0,
+                "restitution": 1.0,
+                "obeysGravity": false 
+            }
+        ]},
+
+{"GameObject9": [
+            {
+                "name": "enemy",
+                "transformComp": true,
+                "graphicsComp": true,
+                "scriptComp": true,
+                "inputComp": false,
+                "rigidBodyComp": true,
+                "textComp": false,
+                "parent": null,
+
+                "textureName": "Idle",
+                "texture": "../../Assets/Textures/enemy.png",
+                "animated": true,
+                "frameTime": 0.1,
+                "looping": true,
+                "textureX": 0,
+                "textureY": 32,
+                "textureWidth": 32,
+                "textureHeight": 32,
+
+                "font": "../../Assets/LEMONMILK-Bold.ttf",
+                "text": "",
+                "script": "../../Assets/Scripts/enemy.lua",
+                 "args": {"arg1": "40", "arg2": "", "arg3": "", "arg4": "", "arg5": ""},
+
+                
+                "positionX": 0,
+                "positionY": -1680,
+
+                "rotationAngle": 0,
+                "rotationX": 0,
+                "rotationY": 0,
+
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+
+                "mass": 1.0,
+                "restitution": 1.0,
+                "obeysGravity": false 
+            }
+        ]},
+
+	{"GameObject10": [
+            {
+                "name": "enemy",
+                "transformComp": true,
+                "graphicsComp": true,
+                "scriptComp": true,
+                "inputComp": false,
+                "rigidBodyComp": true,
+                "textComp": false,
+                "parent": null,
+
+                "textureName": "Idle",
+                "texture": "../../Assets/Textures/enemy.png",
+                "animated": true,
+                "frameTime": 0.1,
+                "looping": true,
+                "textureX": 0,
+                "textureY": 32,
+                "textureWidth": 32,
+                "textureHeight": 32,
+
+                "font": "../../Assets/LEMONMILK-Bold.ttf",
+                "text": "",
+                "script": "../../Assets/Scripts/enemy.lua",
+                 "args": {"arg1": "42", "arg2": "", "arg3": "", "arg4": "", "arg5": ""},
+
+                
+                "positionX": 0,
+                "positionY": -1764,
+
+                "rotationAngle": 0,
+                "rotationX": 0,
+                "rotationY": 0,
+
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+
+                "mass": 1.0,
+                "restitution": 1.0,
+                "obeysGravity": false 
+            }
+        ]},
+
+	{"GameObject11": [
+            {
+                "name": "enemy",
+                "transformComp": true,
+                "graphicsComp": true,
+                "scriptComp": true,
+                "inputComp": false,
+                "rigidBodyComp": true,
+                "textComp": false,
+                "parent": null,
+
+                "textureName": "Idle",
+                "texture": "../../Assets/Textures/enemy.png",
+                "animated": true,
+                "frameTime": 0.1,
+                "looping": true,
+                "textureX": 0,
+                "textureY": 32,
+                "textureWidth": 32,
+                "textureHeight": 32,
+
+                "font": "../../Assets/LEMONMILK-Bold.ttf",
+                "text": "",
+                "script": "../../Assets/Scripts/enemy.lua",
+                 "args": {"arg1": "46", "arg2": "", "arg3": "", "arg4": "", "arg5": ""},
+
+                
+                "positionX": 0,
+                "positionY": -1932,
+
+                "rotationAngle": 0,
+                "rotationX": 0,
+                "rotationY": 0,
+
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+
+                "mass": 1.0,
+                "restitution": 1.0,
+                "obeysGravity": false 
+            }
+        ]},
+
+{"GameObject12": [
+            {
+                "name": "enemy",
+                "transformComp": true,
+                "graphicsComp": true,
+                "scriptComp": true,
+                "inputComp": false,
+                "rigidBodyComp": true,
+                "textComp": false,
+                "parent": null,
+
+                "textureName": "Idle",
+                "texture": "../../Assets/Textures/enemy.png",
+                "animated": true,
+                "frameTime": 0.1,
+                "looping": true,
+                "textureX": 0,
+                "textureY": 32,
+                "textureWidth": 32,
+                "textureHeight": 32,
+
+                "font": "../../Assets/LEMONMILK-Bold.ttf",
+                "text": "",
+                "script": "../../Assets/Scripts/enemy.lua",
+                 "args": {"arg1": "60", "arg2": "", "arg3": "", "arg4": "", "arg5": ""},
+
+                
+                "positionX": 0,
+                "positionY": -2562,
+
+                "rotationAngle": 0,
+                "rotationX": 0,
+                "rotationY": 0,
+
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+
+                "mass": 1.0,
+                "restitution": 1.0,
+                "obeysGravity": false 
+            }
+        ]},
+
+{"GameObject13": [
+            {
+                "name": "enemy",
+                "transformComp": true,
+                "graphicsComp": true,
+                "scriptComp": true,
+                "inputComp": false,
+                "rigidBodyComp": true,
+                "textComp": false,
+                "parent": null,
+
+                "textureName": "Idle",
+                "texture": "../../Assets/Textures/enemy.png",
+                "animated": true,
+                "frameTime": 0.1,
+                "looping": true,
+                "textureX": 0,
+                "textureY": 32,
+                "textureWidth": 32,
+                "textureHeight": 32,
+
+                "font": "../../Assets/LEMONMILK-Bold.ttf",
+                "text": "",
+                "script": "../../Assets/Scripts/enemy.lua",
+                 "args": {"arg1": "62", "arg2": "", "arg3": "", "arg4": "", "arg5": ""},
+
+                
+                "positionX": 0,
+                "positionY": -2646,
+
+                "rotationAngle": 0,
+                "rotationX": 0,
+                "rotationY": 0,
+
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+
+                "mass": 1.0,
+                "restitution": 1.0,
+                "obeysGravity": false 
+            }
+        ]},
+
+{"GameObject14": [
+            {
+                "name": "enemy",
+                "transformComp": true,
+                "graphicsComp": true,
+                "scriptComp": true,
+                "inputComp": false,
+                "rigidBodyComp": true,
+                "textComp": false,
+                "parent": null,
+
+                "textureName": "Idle",
+                "texture": "../../Assets/Textures/enemy.png",
+                "animated": true,
+                "frameTime": 0.1,
+                "looping": true,
+                "textureX": 0,
+                "textureY": 32,
+                "textureWidth": 32,
+                "textureHeight": 32,
+
+                "font": "../../Assets/LEMONMILK-Bold.ttf",
+                "text": "",
+                "script": "../../Assets/Scripts/enemy.lua",
+                 "args": {"arg1": "64", "arg2": "", "arg3": "", "arg4": "", "arg5": ""},
+
+                
+                "positionX": 0,
+                "positionY": -2730,
+
+                "rotationAngle": 0,
+                "rotationX": 0,
+                "rotationY": 0,
+
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+
+                "mass": 1.0,
+                "restitution": 1.0,
+                "obeysGravity": false 
+            }
+        ]},
+
+
+{"GameObject15": [
+            {
+                "name": "enemy",
+                "transformComp": true,
+                "graphicsComp": true,
+                "scriptComp": true,
+                "inputComp": false,
+                "rigidBodyComp": true,
+                "textComp": false,
+                "parent": null,
+
+                "textureName": "Idle",
+                "texture": "../../Assets/Textures/enemy.png",
+                "animated": true,
+                "frameTime": 0.1,
+                "looping": true,
+                "textureX": 0,
+                "textureY": 32,
+                "textureWidth": 32,
+                "textureHeight": 32,
+
+                "font": "../../Assets/LEMONMILK-Bold.ttf",
+                "text": "",
+                "script": "../../Assets/Scripts/enemy.lua",
+                 "args": {"arg1": "90", "arg2": "", "arg3": "", "arg4": "", "arg5": ""},
+
+                
+                "positionX": 0,
+                "positionY": -3780,
+
+                "rotationAngle": 0,
+                "rotationX": 0,
+                "rotationY": 0,
+
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+
+                "mass": 1.0,
+                "restitution": 1.0,
+                "obeysGravity": false 
+            }
+        ]},
+
+{"GameObject16": [
+            {
+                "name": "enemy",
+                "transformComp": true,
+                "graphicsComp": true,
+                "scriptComp": true,
+                "inputComp": false,
+                "rigidBodyComp": true,
+                "textComp": false,
+                "parent": null,
+
+                "textureName": "Idle",
+                "texture": "../../Assets/Textures/enemy.png",
+                "animated": true,
+                "frameTime": 0.1,
+                "looping": true,
+                "textureX": 0,
+                "textureY": 32,
+                "textureWidth": 32,
+                "textureHeight": 32,
+
+                "font": "../../Assets/LEMONMILK-Bold.ttf",
+                "text": "",
+                "script": "../../Assets/Scripts/enemy.lua",
+                 "args": {"arg1": "92", "arg2": "", "arg3": "", "arg4": "", "arg5": ""},
+
+                
+                "positionX": 0,
+                "positionY": -3864,
+
+                "rotationAngle": 0,
+                "rotationX": 0,
+                "rotationY": 0,
+
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+
+                "mass": 1.0,
+                "restitution": 1.0,
+                "obeysGravity": false 
+            }
+        ]},
+
+
+{"GameObject17": [
+            {
+                "name": "enemy",
+                "transformComp": true,
+                "graphicsComp": true,
+                "scriptComp": true,
+                "inputComp": false,
+                "rigidBodyComp": true,
+                "textComp": false,
+                "parent": null,
+
+                "textureName": "Idle",
+                "texture": "../../Assets/Textures/enemy.png",
+                "animated": true,
+                "frameTime": 0.1,
+                "looping": true,
+                "textureX": 0,
+                "textureY": 32,
+                "textureWidth": 32,
+                "textureHeight": 32,
+
+                "font": "../../Assets/LEMONMILK-Bold.ttf",
+                "text": "",
+                "script": "../../Assets/Scripts/enemy.lua",
+                 "args": {"arg1": "94", "arg2": "", "arg3": "", "arg4": "", "arg5": ""},
+
+                
+                "positionX": 0,
+                "positionY": -3948,
+
+                "rotationAngle": 0,
+                "rotationX": 0,
+                "rotationY": 0,
+
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+
+                "mass": 1.0,
+                "restitution": 1.0,
+                "obeysGravity": false 
+            }
+        ]},
+
+{"GameObject18": [
+            {
+                "name": "enemy",
+                "transformComp": true,
+                "graphicsComp": true,
+                "scriptComp": true,
+                "inputComp": false,
+                "rigidBodyComp": true,
+                "textComp": false,
+                "parent": null,
+
+                "textureName": "Idle",
+                "texture": "../../Assets/Textures/enemy.png",
+                "animated": true,
+                "frameTime": 0.1,
+                "looping": true,
+                "textureX": 0,
+                "textureY": 32,
+                "textureWidth": 32,
+                "textureHeight": 32,
+
+                "font": "../../Assets/LEMONMILK-Bold.ttf",
+                "text": "",
+                "script": "../../Assets/Scripts/enemy.lua",
+                 "args": {"arg1": "96", "arg2": "", "arg3": "", "arg4": "", "arg5": ""},
+
+                
+                "positionX": 0,
+                "positionY": -4032,
+
+                "rotationAngle": 0,
+                "rotationX": 0,
+                "rotationY": 0,
+
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+
+                "mass": 1.0,
+                "restitution": 1.0,
+                "obeysGravity": false 
+            }
+        ]},
+
+{"GameObject19": [
+            {
+                "name": "enemy",
+                "transformComp": true,
+                "graphicsComp": true,
+                "scriptComp": true,
+                "inputComp": false,
+                "rigidBodyComp": true,
+                "textComp": false,
+                "parent": null,
+
+                "textureName": "Idle",
+                "texture": "../../Assets/Textures/enemy.png",
+                "animated": true,
+                "frameTime": 0.1,
+                "looping": true,
+                "textureX": 0,
+                "textureY": 32,
+                "textureWidth": 32,
+                "textureHeight": 32,
+
+                "font": "../../Assets/LEMONMILK-Bold.ttf",
+                "text": "",
+                "script": "../../Assets/Scripts/enemy.lua",
+                 "args": {"arg1": "98", "arg2": "", "arg3": "", "arg4": "", "arg5": ""},
+
+                
+                "positionX": 0,
+                "positionY": -4116,
 
                 "rotationAngle": 0,
                 "rotationX": 0,
@@ -119,5 +809,10 @@
                 "obeysGravity": false 
             }
         ]}
+
+
+
+
+
     ]
 }
