@@ -23,26 +23,42 @@ GameObject* SceneManager::Create(string _newName)
 
 void SceneManager::Destroy(GameObject* _objToDestroy)
 {
-	vector<GameObject*>::iterator itr = find(_gameObjects.begin(), _gameObjects.end(), _objToDestroy);
-	//lua_close(_objToDestroy->Lua);
-	//remove(_gameObjects.begin(), _gameObjects.end(), _objToDestroy);
-	_gameObjects.erase(itr);
-	delete _objToDestroy;
+	vector<GameObject*>::iterator itr;
+	vector<GameObject*>::iterator itr2;
+
+	for (itr = _gameObjects.begin(); itr != _gameObjects.end();)
+	{
+		if((*itr) == _objToDestroy)
+		{
+			itr2 = _gameObjects.erase(itr);
+			delete _objToDestroy;
+			return;
+		}
+		else
+		{
+			itr++;
+		}
+	}
 }
 
 void SceneManager::DestroyByName(string _name)
 {
-	int i = 0;
-	for (auto const& value : GetAllGameObjects())
+	vector<GameObject*>::iterator itr;
+	vector<GameObject*>::iterator itr2;
+
+	for (itr = _gameObjects.begin(); itr != _gameObjects.end();)
 	{
-		if (value->GetName() == _name)
+		if ((*itr)->GetName() == _name)
 		{
-			//lua_close(value->Lua);
-			_gameObjects.erase(_gameObjects.begin() + i);
-			delete value;
+			GameObject* temp = *itr;
+			itr2 = _gameObjects.erase(itr);
+			delete temp;
 			return;
 		}
-		i++;
+		else
+		{
+			itr++;
+		}
 	}
 }
 
