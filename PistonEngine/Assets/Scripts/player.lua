@@ -118,6 +118,7 @@ function MouseInput(state, keyCode, mousePosX, mousePosY)
 
     elseif (state == false) then
         if (keyCode == 0) then
+	    return
         elseif (keyCode == 1) then
         elseif (keyCode == 2) then
         end    
