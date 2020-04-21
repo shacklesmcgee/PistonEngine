@@ -37,11 +37,15 @@ public:
 	float GetScreenWidth();
 	float GetScreenHeight();
 
+	void PauseGame();
+	void ResumeGame();
+
 private:
 	vector<GameObject*> _gameObjects; 
 
 	float screenWidth;
 	float screenHeight;
 
+	bool isPaused;
 };
 

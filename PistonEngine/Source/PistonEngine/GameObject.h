@@ -65,6 +65,11 @@ public:
 
 	void LuaLoadScene(string name);
 
+	void LuaPauseGame();
+	void LuaResumeGame();
+
+	void SendData(sol::table data);
+
 protected:
 
 	GameObject* parent;

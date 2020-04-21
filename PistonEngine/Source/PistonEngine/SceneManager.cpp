@@ -5,6 +5,9 @@ using namespace rapidjson;
 
 SceneManager::SceneManager()
 {
+	screenWidth = 0;
+	screenHeight = 0;
+	isPaused = false;
 }
 
 SceneManager::~SceneManager()
@@ -64,9 +67,12 @@ void SceneManager::DestroyByName(string _name)
 
 void SceneManager::Update(float msec)
 {
-	for (auto const& value : _gameObjects)
+	if (!isPaused)
 	{
-		value->Update(msec);
+		for (auto const& value : _gameObjects)
+		{
+			value->Update(msec);
+		}
 	}
 }
 
@@ -87,13 +93,25 @@ float SceneManager::GetScreenHeight()
 	return screenHeight;
 }
 
+
+void SceneManager::PauseGame()
+{
+	isPaused = true;
+}
+
+void SceneManager::ResumeGame()
+{
+	isPaused = false;
+}
+
+
 GameObject* SceneManager::GetGameObject(string _name)
 {
 	GameObject* obj = NULL;
 
 	for (auto const& value : _gameObjects) 
 	{
-		if (value->GetName() == _name)
+		if (value && value->GetName() == _name)
 		{
 			obj = value;
 			break;
@@ -144,7 +162,6 @@ void SceneManager::LoadScene(string location)
 			string script = "";
 			string font = "";
 			string text = "";
-			std::vector<string> args;
 
 			if (!tempJSONObject[x]["texture"].IsNull())
 				texture = tempJSONObject[x]["texture"].GetString();
@@ -210,6 +227,19 @@ void SceneManager::LoadScene(string location)
 
 				if (obj->Lua["Start"].valid())
 				{
+					
+					std::vector<string> args;
+					if (tempJSONObject[x]["args"].IsObject())
+					{
+						int i = 1;
+						string loc = "arg" + std::to_string(i);
+						while (i < 5)
+						{
+							args.push_back(tempJSONObject[x]["args"][loc.c_str()].GetString());
+							i++;
+							loc = "arg" + std::to_string(i);
+						}
+					}
 					obj->Script->LuaStart(args);
 				}
 			}
@@ -251,7 +281,7 @@ void SceneManager::InputTriggered(const Event& e)
 	if (inputEvent.isMouse)
 	{
 		for (auto const& value : _gameObjects) {
-			if (value->Input && value->Lua["MouseInput"].valid())
+			if (value && value->Input && value->Lua["MouseInput"].valid())
 			{
 				value->Input->MouseInput(inputEvent.pressed, inputEvent.keyCode, inputEvent.mousePos);
 			}
@@ -261,7 +291,7 @@ void SceneManager::InputTriggered(const Event& e)
 	else if (!inputEvent.isMouse)
 	{
 		for (auto const& value : _gameObjects) {
-			if (value->Input && value->Lua["KeyInput"].valid())
+			if (value && value->Input && value->Lua["KeyInput"].valid())
 			{
 				value->Input->KeyInput(inputEvent.pressed, inputEvent.keyCode, inputEvent.mousePos);
 			}

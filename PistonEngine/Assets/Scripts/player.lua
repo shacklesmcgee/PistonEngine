@@ -6,6 +6,8 @@ movingRight = false
 rotateLeft = false
 rotateRight = false
 myName = ""
+paused = false
+alive = true
 function Start(args)
     myName = GetName(GameObject)
 
@@ -25,32 +27,35 @@ function Start(args)
 end
 
 function Update(dt)
-    if (movingUp) then
-        SetLocation(Transform, 0.0, -0.10)
-    end
+    if (alive) then
+        if (movingUp) then
+            SetLocation(Transform, 0.0, -0.10)
+        end
 
-    if (movingDown) then
-        SetLocation(Transform, 0.0, 0.10)
-    end
+        if (movingDown) then
+            SetLocation(Transform, 0.0, 0.10)
+        end
 
-    if (movingLeft) then
-        SetLocation(Transform, -0.10, 0.0)
-    end
+        if (movingLeft) then
+            SetLocation(Transform, -0.10, 0.0)
+        end
 
-    if (movingRight) then
-        SetLocation(Transform, 0.10, 0.0)
-    end
+        if (movingRight) then
+            SetLocation(Transform, 0.10, 0.0)
+        end
 
-    if (rotateLeft) then
-        SetRotation(Transform, -0.10, 0.0, 0.0)
-    end
+        if (rotateLeft) then
+            SetRotation(Transform, -0.10, 0.0, 0.0)
+        end
 
-    if (rotateRight) then
-        SetRotation(Transform, 0.10, 0.0, 0.0)
+        if (rotateRight) then
+            SetRotation(Transform, 0.10, 0.0, 0.0)
+        end
     end
 end
 
 function KeyInput(state, keyCode, mousePosX, mousePosY)
+
     if (state == true) then
         if (keyCode == 73 or keyCode == 22) then
             movingUp = true
@@ -61,12 +66,8 @@ function KeyInput(state, keyCode, mousePosX, mousePosY)
         elseif (keyCode == 72 or keyCode == 3) then
             movingRight = true  
 
-        elseif (keyCode == 57) then
-            PlayAnim(Graphics, animAttack)
-
-        elseif (keyCode == 37) then
-            PlayAnim(Graphics, animDead)
-
+        elseif (keyCode == 16) then
+            Pause()
         end     
 
     elseif (state == false) then
@@ -104,25 +105,43 @@ function MouseInput(state, keyCode, mousePosX, mousePosY)
 
         elseif (keyCode == 1) then
             --Doesn't Work
-            LoadScene(GameObject, "../../Assets/Scenes/scene2.json")
-
+            --LoadScene(GameObject, "../../Assets/Scenes/scene2.json")
+            temp = {
+                name = "root",
+                var1 = 0
+            }
+            SendData(GameObject, temp)
         elseif (keyCode == 2) then
+            
         end     
 
     elseif (state == false) then
         if (keyCode == 0) then
         elseif (keyCode == 1) then
-
         elseif (keyCode == 2) then
-
         end    
     end
+end
+
+function Pause()
+    if (not paused) then
+        PauseGame(GameObject)
+    else
+        ResumeGame(GameObject)
+    end
+    paused = not paused
 end
 
 function Collision(obj1Name, obj2Name)
     if (obj2Name == "enemy") then
         PlayAnim(Graphics, animDead)
+        alive = false
     end
+end
+
+
+function ReceiveData(args)
+    print("Received " .. args[0])
 end
 
 keyCodes = {

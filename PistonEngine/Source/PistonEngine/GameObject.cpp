@@ -13,6 +13,12 @@ GameObject::GameObject()
 	Lua["Create"] = &GameObject::LuaCreate;
 	Lua["Destroy"] = &GameObject::LuaDestroy;
 	Lua["LoadScene"] = &GameObject::LuaLoadScene;
+
+	//Lua["SendData"] = &GameObject::LuaLoadScene;
+	Lua["PauseGame"] = &GameObject::LuaPauseGame;
+	Lua["ResumeGame"] = &GameObject::LuaResumeGame;
+
+	Lua["SendData"] = &GameObject::SendData;
 }
 
 GameObject::~GameObject(void)
@@ -22,6 +28,32 @@ GameObject::~GameObject(void)
 		delete children[i];
 	}
 }
+
+
+void GameObject::SendData(sol::table data)
+{
+	if (data["name"])
+	{
+		string tempName = data["name"];
+		vector<string> tempVar = vector<string>();
+		tempVar.push_back(data["var1"]);
+
+		GameObject* tempObj = GetSceneManager()->GetGameObject(tempName);
+
+		tempObj->Script->LuaTest(tempVar);
+	}
+}
+
+void GameObject::LuaPauseGame()
+{
+	GetSceneManager()->PauseGame();
+}
+
+void GameObject::LuaResumeGame()
+{
+	GetSceneManager()->ResumeGame();
+}
+
 
 void GameObject::SetParent(GameObject & p)
 {
