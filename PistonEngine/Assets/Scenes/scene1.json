@@ -105,7 +105,7 @@
 
                 
                 "positionX": 0,
-                "positionY": -30,
+                "positionY": -10,
 
                 "rotationAngle": 0,
                 "rotationX": 0,
@@ -148,7 +148,7 @@
 
                 
                 "positionX": 0,
-                "positionY": -30,
+                "positionY": -210,
 
                 "rotationAngle": 0,
                 "rotationX": 0,
@@ -191,7 +191,7 @@
 
                 
                 "positionX": 0,
-                "positionY": -30,
+                "positionY": -420,
 
                 "rotationAngle": 0,
                 "rotationX": 0,
@@ -234,7 +234,7 @@
 
                 
                 "positionX": 0,
-                "positionY": -30,
+                "positionY": -462,
 
                 "rotationAngle": 0,
                 "rotationX": 0,
@@ -277,7 +277,7 @@
 
                 
                 "positionX": 0,
-                "positionY": -30,
+                "positionY": -630,
 
                 "rotationAngle": 0,
                 "rotationX": 0,
@@ -320,7 +320,7 @@
 
                 
                 "positionX": 0,
-                "positionY": -60,
+                "positionY": -672,
 
                 "rotationAngle": 0,
                 "rotationX": 0,
@@ -363,7 +363,7 @@
 
                 
                 "positionX": 0,
-                "positionY": -60,
+                "positionY": -714,
 
                 "rotationAngle": 0,
                 "rotationX": 0,
@@ -402,11 +402,11 @@
                 "font": "../../Assets/LEMONMILK-Bold.ttf",
                 "text": "",
                 "script": "../../Assets/Scripts/enemy.lua",
-                 "args": {"arg1": "22", "arg2": "", "arg3": "", "arg4": "", "arg5": ""},
+                 "args": {"arg1": "23", "arg2": "", "arg3": "", "arg4": "", "arg5": ""},
 
                 
                 "positionX": 0,
-                "positionY": -60,
+                "positionY": -966,
 
                 "rotationAngle": 0,
                 "rotationX": 0,
@@ -445,11 +445,11 @@
                 "font": "../../Assets/LEMONMILK-Bold.ttf",
                 "text": "",
                 "script": "../../Assets/Scripts/enemy.lua",
-                 "args": {"arg1": "23", "arg2": "", "arg3": "", "arg4": "", "arg5": ""},
+                 "args": {"arg1": "24", "arg2": "", "arg3": "", "arg4": "", "arg5": ""},
 
                 
                 "positionX": 0,
-                "positionY": -60,
+                "positionY": -1008,
 
                 "rotationAngle": 0,
                 "rotationX": 0,
@@ -488,11 +488,11 @@
                 "font": "../../Assets/LEMONMILK-Bold.ttf",
                 "text": "",
                 "script": "../../Assets/Scripts/enemy.lua",
-                 "args": {"arg1": "24", "arg2": "", "arg3": "", "arg4": "", "arg5": ""},
+                 "args": {"arg1": "25", "arg2": "", "arg3": "", "arg4": "", "arg5": ""},
 
                 
                 "positionX": 0,
-                "positionY": -90,
+                "positionY": -1050,
 
                 "rotationAngle": 0,
                 "rotationX": 0,
@@ -531,11 +531,11 @@
                 "font": "../../Assets/LEMONMILK-Bold.ttf",
                 "text": "",
                 "script": "../../Assets/Scripts/enemy.lua",
-                 "args": {"arg1": "25", "arg2": "", "arg3": "", "arg4": "", "arg5": ""},
+                 "args": {"arg1": "26", "arg2": "", "arg3": "", "arg4": "", "arg5": ""},
 
                 
                 "positionX": 0,
-                "positionY": -90,
+                "positionY": -1092,
 
                 "rotationAngle": 0,
                 "rotationX": 0,
@@ -574,11 +574,11 @@
                 "font": "../../Assets/LEMONMILK-Bold.ttf",
                 "text": "",
                 "script": "../../Assets/Scripts/enemy.lua",
-                 "args": {"arg1": "26", "arg2": "", "arg3": "", "arg4": "", "arg5": ""},
+                 "args": {"arg1": "27", "arg2": "", "arg3": "", "arg4": "", "arg5": ""},
 
                 
                 "positionX": 0,
-                "positionY": -90,
+                "positionY": -1134,
 
                 "rotationAngle": 0,
                 "rotationX": 0,
@@ -618,11 +618,11 @@
                 "font": "../../Assets/LEMONMILK-Bold.ttf",
                 "text": "",
                 "script": "../../Assets/Scripts/enemy.lua",
-                 "args": {"arg1": "27", "arg2": "", "arg3": "", "arg4": "", "arg5": ""},
+                 "args": {"arg1": "28", "arg2": "", "arg3": "", "arg4": "", "arg5": ""},
 
                 
                 "positionX": 0,
-                "positionY": -90,
+                "positionY": -1176,
 
                 "rotationAngle": 0,
                 "rotationX": 0,
@@ -661,11 +661,11 @@
                 "font": "../../Assets/LEMONMILK-Bold.ttf",
                 "text": "",
                 "script": "../../Assets/Scripts/enemy.lua",
-                 "args": {"arg1": "28", "arg2": "", "arg3": "", "arg4": "", "arg5": ""},
+                 "args": {"arg1": "29", "arg2": "", "arg3": "", "arg4": "", "arg5": ""},
 
                 
                 "positionX": 0,
-                "positionY": -120,
+                "positionY": -1218,
 
                 "rotationAngle": 0,
                 "rotationX": 0,
@@ -705,54 +705,11 @@
                 "font": "../../Assets/LEMONMILK-Bold.ttf",
                 "text": "",
                 "script": "../../Assets/Scripts/enemy.lua",
-                 "args": {"arg1": "29", "arg2": "", "arg3": "", "arg4": "", "arg5": ""},
-
-                
-                "positionX": 0,
-                "positionY": -120,
-
-                "rotationAngle": 0,
-                "rotationX": 0,
-                "rotationY": 0,
-
-                "scaleX": 1.0,
-                "scaleY": 1.0,
-
-                "mass": 1.0,
-                "restitution": 1.0,
-                "obeysGravity": false 
-            }
-        ]},
-
-{"GameObject18": [
-            {
-                "name": "enemy",
-                "transformComp": true,
-                "graphicsComp": true,
-                "scriptComp": true,
-                "inputComp": false,
-                "rigidBodyComp": true,
-                "textComp": false,
-                "parent": null,
-
-                "textureName": "Idle",
-                "texture": "../../Assets/Textures/enemy.png",
-                "animated": true,
-                "frameTime": 0.1,
-                "looping": true,
-                "textureX": 0,
-                "textureY": 32,
-                "textureWidth": 32,
-                "textureHeight": 32,
-
-                "font": "../../Assets/LEMONMILK-Bold.ttf",
-                "text": "",
-                "script": "../../Assets/Scripts/enemy.lua",
                  "args": {"arg1": "30", "arg2": "", "arg3": "", "arg4": "", "arg5": ""},
 
                 
                 "positionX": 0,
-                "positionY": -120,
+                "positionY": -1260,
 
                 "rotationAngle": 0,
                 "rotationX": 0,
